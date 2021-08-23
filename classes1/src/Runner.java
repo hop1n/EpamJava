@@ -26,9 +26,7 @@ public class Runner {
 		System.out.println("Duration =" + (businessTrips[0].getDays()
 				+ businessTrips[1].getDays()));
 		for(BusinessTrip businessTrip : businessTrips){
-			if (businessTrip != null) {
 				System.out.println(businessTrip);
-			}
 		}
 		
 	}
