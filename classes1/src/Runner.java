@@ -19,10 +19,7 @@ public class Runner {
 					maxTotal = businessTrip.getTotal();
 					maxTotalTrip = businessTrip;
 				}	
-			}
-			else {
-				System.out.println("empty");
-			}
+			}			
 		}
 		System.out.println(maxTotalTrip);
 		businessTrips[businessTrips.length-1].setTransport(12345);		
@@ -31,9 +28,6 @@ public class Runner {
 		for(BusinessTrip businessTrip : businessTrips){
 			if (businessTrip != null) {
 				System.out.println(businessTrip);
-			}
-			else {
-				System.out.print("null\n");
 			}
 		}
 		

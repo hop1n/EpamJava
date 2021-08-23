@@ -5,13 +5,10 @@ public class BusinessTrip {
 	private String account;
 	private int transport;
 	private int days;
-	private int total;
 	
 	public BusinessTrip() {
-		account = "null";
 		transport = 0;
 		days = 0;
-		total = 0;
 	}
 	
 	public  BusinessTrip(String account, int transport, int days) {
@@ -45,8 +42,7 @@ public class BusinessTrip {
 	}
 	
 	public int getTotal() {
-		total = transport + RATE * days;
-		return total;
+		return  transport + RATE * days;
 	}
 
 	public void show(){
@@ -56,6 +52,7 @@ public class BusinessTrip {
 		System.out.println("days = " + days);
 		System.out.format("total = %d.%02d%n", getTotal()/100, getTotal()%100);
 	}
+	@Override
 	public String toString() {
 		return String.format("%s;%d.%02d;%d;%d.%02d;", account, transport/100,
 				transport%100, days, getTotal()/100, getTotal()%100);
