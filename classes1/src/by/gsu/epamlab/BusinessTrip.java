@@ -1,7 +1,7 @@
 package by.gsu.epamlab;
 
 public class BusinessTrip {
-	public static final int RATE = 1000;
+	private static final int RATE = 1000;
 	private String account;
 	private int transport;
 	private int days;
@@ -44,17 +44,22 @@ public class BusinessTrip {
 	public int getTotal() {
 		return  transport + RATE * days;
 	}
+	
+	private String moneyToString(int money) {
+		return String.format("%d.%02d", money/100, money%100);
+	}
 
 	public void show(){
-		System.out.format("rate = %d.%02d%n", RATE/100, RATE%100);
+		System.out.format("rate = %s%n", moneyToString(RATE));
 		System.out.println("account = " + account);
-		System.out.format("transport = %d.%02d%n",  transport/100, transport%100);
+		System.out.format("transport = %s%n", moneyToString(transport));
 		System.out.println("days = " + days);
-		System.out.format("total = %d.%02d%n", getTotal()/100, getTotal()%100);
+		System.out.format("total = %s%n", moneyToString(getTotal()));
 	}
 	@Override
 	public String toString() {
-		return String.format("%s;%d.%02d;%d;%d.%02d;", account, transport/100,
-				transport%100, days, getTotal()/100, getTotal()%100);
+		return String.format("%s;%s;%d;%s;", account, moneyToString(transport),
+				days, moneyToString(getTotal()));
 	}
 }
+
