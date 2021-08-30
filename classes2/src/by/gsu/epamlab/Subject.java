@@ -47,6 +47,6 @@ public class Subject {
 
     @Override
     public String toString() {
-        return name + DELIMITER + material + DELIMITER + volume + DELIMITER + getMass() + DELIMITER;
+        return name + DELIMITER + material + DELIMITER + volume + DELIMITER + getMass();
     }
 }
