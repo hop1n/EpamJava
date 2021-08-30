@@ -4,6 +4,7 @@ public class Subject {
     private String name;
     private Material material;
     private double volume;
+    private static final String DELIMITER = ";";
 
     public Subject(){
         material = new Material();
@@ -41,11 +42,11 @@ public class Subject {
     }
 
     public double getMass(){
-        return material.DENSITY * volume;
+        return material.getDensity() * volume;
     }
 
     @Override
     public String toString() {
-        return name + ';' + material + ';' + volume + ';' + getMass() + ';';
+        return name + DELIMITER + material + DELIMITER + volume + DELIMITER + getMass() + DELIMITER;
     }
 }

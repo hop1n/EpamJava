@@ -2,7 +2,8 @@ package by.gsu.epamlab;
 
 public class Material {
     private String name;
-    public final double DENSITY;
+    private final double DENSITY;
+    private static final String DELIMITER = ";";
 
     public Material(String name, double density){
         this.name = name;
@@ -10,7 +11,7 @@ public class Material {
     }
 
     public Material(){
-        DENSITY = 0;
+        this("",0);
     }
 
     public String getName() {
@@ -23,6 +24,6 @@ public class Material {
 
     @Override
     public String toString() {
-        return name + ';' + DENSITY;
+        return name + DELIMITER + DENSITY;
     }
 }
