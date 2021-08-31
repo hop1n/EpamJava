@@ -4,7 +4,6 @@ public class Subject {
     private String name;
     private Material material;
     private double volume;
-    private static final String DELIMITER = ";";
 
     public Subject(){
         material = new Material();
@@ -47,6 +46,6 @@ public class Subject {
 
     @Override
     public String toString() {
-        return name + DELIMITER + material + DELIMITER + volume + DELIMITER + getMass();
+        return name + ";" + material + ";" + volume + ";" + getMass();
     }
 }
