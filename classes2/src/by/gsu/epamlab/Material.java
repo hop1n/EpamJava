@@ -1,20 +1,20 @@
 package by.gsu.epamlab;
 
 public class Material {
-    private final String name;
+    private final String NAME;
     private final double DENSITY;
 
     public Material(String name, double density){
-        this.name = name;
+        this.NAME = name;
         this.DENSITY = density;
     }
 
     public Material(){
-        this("",0.0);
+        this("", 0.0);
     }
 
     public String getName() {
-        return name;
+        return NAME;
     }
 
     public double getDensity() {
@@ -23,6 +23,6 @@ public class Material {
 
     @Override
     public String toString() {
-        return name + ";" + DENSITY;
+        return NAME + ";" + DENSITY;
     }
 }
