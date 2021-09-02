@@ -1,21 +1,19 @@
 package by.gsu.epamlab;
 
 public enum Material {
-        STEEL("steel", 7850.0), COOPER("cooper", 8500.0);
-        private final String NAME;
+        STEEL(7850.0), COOPER(8500.0);
         private final double DENSITY;
 
-        Material(String name, double density){
-            this.NAME = name;
+        Material(double density){
             this.DENSITY = density;
         }
 
         Material() {
-            this("", 0.0);
+            this.DENSITY = 0.0;
         }
 
-        public String getName(){
-            return NAME;
+        public String getName() {
+            return name().toLowerCase();
         }
 
         public double getDensity(){
@@ -24,7 +22,7 @@ public enum Material {
 
         @Override
         public String toString() {
-            return NAME + ";" + DENSITY;
+            return getName() + ";" + DENSITY;
         }
 
 }
