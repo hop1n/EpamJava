@@ -11,13 +11,13 @@ public class Purchase implements Comparable<Purchase> {
         this(0,0,null);
     }
 
-    public Purchase(int number, int percent, WeekDay days){
+    public Purchase(int number, double percent, WeekDay days){
         this.number = number;
         this.percent = percent;
         this.day = days;
     }
 
-    public Purchase(int number, int percent, int day){
+    public Purchase(int number, double percent, int day){
         this(number, percent, WeekDay.values()[day]);
     }
 
@@ -49,12 +49,13 @@ public class Purchase implements Comparable<Purchase> {
         return (int) Math.round(PRICE * number * (100 - percent) / 100 / 100) * 100;
     }
 
+    @Override
     public int compareTo(Purchase purchase) {
         return this.getNumber() - purchase.getNumber();
     }
 
     @Override
     public String toString() {
-        return getNumber() + ";" + getPercent() + ";" + KopsToByn.toByn(getCost()) + ";";
+        return getNumber() + ";" + getPercent() + ";" + KopsToByn.toByn(getCost());
     }
 }
