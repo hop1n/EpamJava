@@ -15,6 +15,7 @@ buildNumber.properties
 *.iws
 *.ipr
 .idea/
+out/
 
 # eclipse project file
 .settings/
