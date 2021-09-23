@@ -9,8 +9,6 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Scanner;
 
-
-
 public class Runner {
     private static void printPurchases(Purchase[] purchases){
         System.out.println(Purchase.NAME + "\n" + KopsToByn.toByn(Purchase.PRICE));
@@ -22,10 +20,11 @@ public class Runner {
     public static void main (String[] args) throws FileNotFoundException {
         final String SEPORATOR = File.separator;
         final String PATH = "." + SEPORATOR + "src" + SEPORATOR + "in.txt";
+        Purchase[] purchases;
         try(Scanner sc = new Scanner(new FileReader(PATH))){
             sc.useLocale(Locale.ENGLISH);
             final int PURCHASES_NUMBER= sc.nextInt();
-            Purchase[] purchases = new Purchase[PURCHASES_NUMBER];
+            purchases = new Purchase[PURCHASES_NUMBER];
             for (int i = 0; i < PURCHASES_NUMBER; i++){
                 purchases[i] = new Purchase(sc.nextInt(), sc.nextDouble(), sc.nextInt());
             }
@@ -33,6 +32,7 @@ public class Runner {
             int sum=0;
             int mondayCost=0;
             int maxCost= 0;
+            double meanCost = 0.0;
             WeekDay maxDay = null;
             for (Purchase purchase: purchases){
                 int cost = purchase.getCost();
@@ -45,11 +45,10 @@ public class Runner {
                     mondayCost += cost;
                 }
             }
-            double meanCost = 0;
             if (sum != 0){
-                meanCost = (double) (sum/PURCHASES_NUMBER)/100;
+                meanCost = (double) (sum/purchases.length);
             }
-            System.out.printf(Locale.ENGLISH, "%.3f\n", meanCost);
+            System.out.printf(Locale.ENGLISH, "%.3f\n", meanCost/100);
             System.out.println(KopsToByn.toByn(mondayCost));
             System.out.println(maxDay);
             Arrays.sort(purchases);
