@@ -51,7 +51,7 @@ public class Purchase implements Comparable<Purchase> {
 
     @Override
     public int compareTo(Purchase purchase) {
-        return this.getNumber() - purchase.getNumber();
+        return this.number - purchase.number;
     }
 
     @Override
