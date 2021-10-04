@@ -19,7 +19,9 @@ public class Purchase {
         this.number = number;
     }
 
-    Scanner scanner = new Scanner(System.in);
+    public Purchase(Scanner sc) {
+        this(sc.next(), new Byn(), sc.nextInt());
+    }
 
     public String getName() {
         return name;

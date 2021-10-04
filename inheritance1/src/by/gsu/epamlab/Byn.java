@@ -1,5 +1,7 @@
 package by.gsu.epamlab;
 
+import java.util.Scanner;
+
 public class Byn implements Comparable<Byn> {
     int value;
 
@@ -9,6 +11,10 @@ public class Byn implements Comparable<Byn> {
 
     public Byn(){
         value = 0;
+    }
+
+    public Byn(Scanner sc) {
+        this(sc.nextInt());
     }
 
     public Byn multiply(int b){

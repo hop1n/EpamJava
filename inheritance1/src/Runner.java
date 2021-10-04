@@ -13,7 +13,13 @@ public class Runner {
         final String PATH = "." + SEPARATOR + "src" + SEPARATOR + "in.txt";
         Purchase[] purchases = new Purchase[6];
         try(Scanner sc = new Scanner(new FileReader(PATH))){
-
+            sc.useLocale(Locale.ENGLISH);
+            for (Purchase purchase : purchases){
+                purchase = PurchasesFactory.getPurchaseFromFactory(sc);
+            }
+            for (Purchase purchase : purchases){
+                System.out.println(purchase);
+            }
         }
     }
 }
