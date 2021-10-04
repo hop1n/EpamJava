@@ -5,11 +5,11 @@ import java.util.Scanner;
 public class Byn implements Comparable<Byn> {
     int value;
 
-    public Byn(int value){
+    public Byn(int value) {
         this.value = value;
     }
 
-    public Byn(){
+    public Byn() {
         value = 0;
     }
 
@@ -17,13 +17,13 @@ public class Byn implements Comparable<Byn> {
         this(sc.nextInt());
     }
 
-    public Byn multiply(int b){
+    public Byn multiply(int b) {
         value *= b;
         return this;
     }
 
     @Override
-    public int compareTo(Byn byn){
+    public int compareTo(Byn byn) {
         return this.value - byn.value;
     }
 
@@ -38,7 +38,7 @@ public class Byn implements Comparable<Byn> {
 
     @Override
     public String toString() {
-        return String.format("%d.%2d", value/100, value%100);
+        return String.format("%d.%02d", value / 100, value % 100);
     }
 
 }

@@ -8,12 +8,12 @@ public class Purchase {
     Byn price;
     int number;
 
-    public Purchase(){
+    public Purchase() {
         price = null;
         number = 0;
     }
 
-    public Purchase(String name, Byn price, int number){
+    public Purchase(String name, Byn price, int number) {
         this.name = name;
         this.price = price;
         this.number = number;
@@ -47,11 +47,11 @@ public class Purchase {
         this.number = number;
     }
 
-    public Byn getCost(){
+    public Byn getCost() {
         return price.multiply(number);
     }
 
-    public String toString(){
+    public String toString() {
         return name + ";" + price + ";" + number + ";" + getCost();
     }
 

@@ -4,19 +4,20 @@ import java.util.Scanner;
 
 public class PurchasesFactory {
     private static enum PurchaseKind {
-        LowCostPurchase, Purchase, PresentDiscountPurchase;
+        LOW_СOST_PURCHASE, PURCHASE, PERCENT_DISCOUNT_PURCHASE;
     }
+
     public static Purchase getPurchaseFromFactory(Scanner sc) {
         String id = sc.next();
         PurchaseKind kind = PurchaseKind.valueOf(id);
-        switch(kind) {
-            case PresentDiscountPurchase :
+        switch (kind) {
+            case PERCENT_DISCOUNT_PURCHASE:
                 return new PercentDiscountPurchase(sc);
-            case LowCostPurchase :
+            case LOW_СOST_PURCHASE:
                 return new LowCostPurchase(sc);
-            case Purchase :
-			    return new Purchase(sc);
-            default :
+            case PURCHASE:
+                return new Purchase(sc);
+            default:
                 throw new IllegalArgumentException();
         }
     }
