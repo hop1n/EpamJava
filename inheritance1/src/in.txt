@@ -1,0 +1,6 @@
+LowCostPurchase bread 100 3 10
+LowCostPurchase ketchup 40 1 10
+PercentDiscountPurchase water 140 5 3.3
+LowCostPurchase tomato 20 3 20
+PURCHASE sault 80 1
+PURCHASE rice 200 4
