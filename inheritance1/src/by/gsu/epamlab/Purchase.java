@@ -4,12 +4,12 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Purchase {
-    String name;
-    Byn price;
-    int number;
+    private String name;
+    private Byn price;
+    private int number;
 
     public Purchase() {
-        price = null;
+        price = new Byn(0);
         number = 0;
     }
 
@@ -20,7 +20,7 @@ public class Purchase {
     }
 
     public Purchase(Scanner sc) {
-        this(sc.next(), new Byn(), sc.nextInt());
+        this(sc.next(), new Byn(sc), sc.nextInt());
     }
 
     public String getName() {
@@ -48,7 +48,7 @@ public class Purchase {
     }
 
     public Byn getCost() {
-        return price.multiply(number);
+        return (new Byn(price)).multiply(number);
     }
 
     public String toString() {

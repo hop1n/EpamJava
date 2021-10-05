@@ -3,10 +3,14 @@ package by.gsu.epamlab;
 import java.util.Scanner;
 
 public class Byn implements Comparable<Byn> {
-    int value;
+    private int value;
 
     public Byn(int value) {
         this.value = value;
+    }
+
+    public Byn(Byn b){
+        this(b.value);
     }
 
     public Byn() {
@@ -19,6 +23,16 @@ public class Byn implements Comparable<Byn> {
 
     public Byn multiply(int b) {
         value *= b;
+        return this;
+    }
+
+    public Byn subtract(Byn a){
+        value -= a.value;
+        return this;
+    }
+
+    public Byn multiply(double count) {
+        value = (int) Math.round(value * count);
         return this;
     }
 
