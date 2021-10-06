@@ -1,6 +1,5 @@
 package by.gsu.epamlab;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Purchase {
@@ -52,7 +51,11 @@ public class Purchase {
     }
 
     public String toString() {
-        return name + ";" + price + ";" + number + ";" + getCost();
+        return fieldsToString() + ";" + getCost();
+    }
+
+    protected String fieldsToString(){
+        return name + ";" + price + ";" + number;
     }
 
     @Override

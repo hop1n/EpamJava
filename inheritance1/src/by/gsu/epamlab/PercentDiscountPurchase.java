@@ -3,8 +3,8 @@ package by.gsu.epamlab;
 import java.util.Scanner;
 
 public class PercentDiscountPurchase extends Purchase {
-    double percent;
-    final int a = 2;
+    private double percent;
+    private final int limit = 2;
 
     public PercentDiscountPurchase(Scanner sc) {
         super(sc.next(), new Byn(sc), sc.nextInt());
@@ -12,8 +12,12 @@ public class PercentDiscountPurchase extends Purchase {
     }
 
     public Byn getCost() {
-        if (getNumber() < a) {
+        if (getNumber() < limit) {
             return (new Byn(getPrice())).multiply(getNumber()).multiply(1 - percent / 100);
-        } else return getPrice();
+        } else return (new Byn(getPrice())).multiply(getNumber());
+    }
+
+    protected String fieldsToString(){
+        return super.fieldsToString()+ ";" + percent;
     }
 }
