@@ -9,7 +9,7 @@ public class Byn implements Comparable<Byn> {
         this.value = value;
     }
 
-    public Byn(Byn b){
+    public Byn(Byn b) {
         this(b.value);
     }
 
@@ -26,7 +26,7 @@ public class Byn implements Comparable<Byn> {
         return this;
     }
 
-    public Byn subtract(Byn a){
+    public Byn subtract(Byn a) {
         value -= a.value;
         return this;
     }

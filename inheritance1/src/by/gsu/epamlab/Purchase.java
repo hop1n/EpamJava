@@ -54,7 +54,7 @@ public class Purchase {
         return fieldsToString() + ";" + getCost();
     }
 
-    protected String fieldsToString(){
+    protected String fieldsToString() {
         return name + ";" + price + ";" + number;
     }
 
