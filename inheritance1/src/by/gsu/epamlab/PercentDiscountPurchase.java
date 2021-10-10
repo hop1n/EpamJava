@@ -14,10 +14,6 @@ public class PercentDiscountPurchase extends Purchase {
         this.percent = percent;
     }
 
-    public int getLimit() {
-        return LIMIT;
-    }
-
     public PercentDiscountPurchase(Scanner sc) {
         super(sc);
         this.percent = sc.nextDouble();
