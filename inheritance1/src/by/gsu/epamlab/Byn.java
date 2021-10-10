@@ -21,23 +21,18 @@ public class Byn implements Comparable<Byn> {
         this(sc.nextInt());
     }
 
-
-
-    public Byn mul(double k, RoundMethod roundMethod, int d){
-        value = (int) roundMethod.roundFunction(value * k / Math.pow(10, d));
+    public Byn mul(double k, RoundMethod roundMethod, int d) {
+        value = roundMethod.round(value * k, roundMethod, d);
         return this;
     }
+
     public Byn round(RoundMethod roundMethod, int d) {
-        value = (int) roundMethod.roundFunction(value / Math.pow(10, d));
+        value = roundMethod.round(value, roundMethod, d);
         return this;
     }
+
     public Byn subtract(Byn a) {
         value -= a.value;
-        return this;
-    }
-
-    public Byn multiply(double count) {
-        value = (int) Math.round(value * count);
         return this;
     }
 
