@@ -20,7 +20,7 @@ public class LowPricePurchase extends Purchase {
 
     @Override
     public Byn getCost() {
-        return (new Byn(getPrice())).subtract(discount).multiply(getNumber());
+        return (new Byn(getPrice())).subtract(discount).mul(getNumber());
     }
 
     protected String fieldsToString() {
