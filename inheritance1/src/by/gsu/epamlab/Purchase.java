@@ -50,7 +50,7 @@ public class Purchase {
     }
 
     public Byn getCost() {
-        return (new Byn(price)).multiply(number);
+        return (new Byn(price)).mul(number);
     }
 
     @Override

@@ -5,20 +5,25 @@ import java.util.Scanner;
 public class Byn implements Comparable<Byn> {
     private int value;
 
-    public Byn(int value) {
-        this.value = value;
-    }
-
-    public Byn(Byn b) {
-        this(b.value);
-    }
-
     public Byn() {
         value = 0;
     }
 
+    public Byn(int value) {
+        this.value = value;
+    }
+
+    public Byn(Byn byn) {
+        this(byn.value);
+    }
+
     public Byn(Scanner sc) {
         this(sc.nextInt());
+    }
+
+    public Byn mul(int count) {
+        value *= count;
+        return this;
     }
 
     public Byn mul(double k, RoundMethod roundMethod, int d) {
