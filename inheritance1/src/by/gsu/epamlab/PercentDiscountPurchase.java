@@ -19,15 +19,15 @@ public class PercentDiscountPurchase extends Purchase {
     }
 
     public PercentDiscountPurchase(Scanner sc) {
-        super(sc.next(), new Byn(sc), sc.nextInt());
+        super(sc);
         this.percent = sc.nextDouble();
     }
 
     @Override
     public Byn getCost() {
         Byn purchasePrice = super.getCost();
-        if (getNumber   () > LIMIT) {
-            purchasePrice.mul((int) (1 - percent / 100));
+        if (getNumber() > LIMIT) {
+            purchasePrice.mul(1 - percent / 100, RoundMethod.ROUND, 0);
         }
         return purchasePrice;
     }

@@ -23,7 +23,7 @@ public class Runner {
                 purchases[i] = PurchasesFactory.getPurchaseFromFactory(sc);
                 System.out.println(purchases[i]);
                 if (purchases[i].getCost().compareTo(maxCostPurchase.getCost()) > 0) {
-                        maxCostPurchase = purchases[i];
+                    maxCostPurchase = purchases[i];
                 }
                 if (isAllPurchasesEqual) {
                     isAllPurchasesEqual = purchases[i].equals(purchases[0]);
@@ -35,7 +35,7 @@ public class Runner {
             } else {
                 System.out.println("all purchases are not equal.\n");
             }
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.err.println("Input file is not found");
         }
     }

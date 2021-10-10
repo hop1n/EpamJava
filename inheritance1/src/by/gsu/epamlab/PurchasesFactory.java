@@ -19,6 +19,7 @@ public class PurchasesFactory {
                 return new PercentDiscountPurchase(sc);
             }
         };
+
         abstract Purchase getPurchase(Scanner sc);
     }
 
