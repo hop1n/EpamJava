@@ -36,8 +36,8 @@ public class Byn implements Comparable<Byn> {
         return this;
     }
 
-    public Byn subtract(Byn a) {
-        value -= a.value;
+    public Byn subtract(Byn byn) {
+        value -= byn.value;
         return this;
     }
 
