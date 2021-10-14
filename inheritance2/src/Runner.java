@@ -31,7 +31,7 @@ public class Runner {
 
         int index = Arrays.binarySearch(purchases, new LowPricePurchase(TOWEL, 1, new Byn(0)));
         if (index >= 0) {
-            System.out.println(purchases[index]);
+            System.out.println("Required purchase is: " + purchases[index]);
         } else {
             System.out.println("Required purchase is not found");
         }
