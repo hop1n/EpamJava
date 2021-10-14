@@ -5,7 +5,7 @@ import sun.java2d.cmm.ProfileDeferralInfo;
 import java.util.Objects;
 import java.util.Scanner;
 
-public abstract class AbstractPurchase implements Comparable<AbstractPurchase>{
+public abstract class AbstractPurchase implements Comparable<AbstractPurchase> {
     private Product product;
     private int number;
 

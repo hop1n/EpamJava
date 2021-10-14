@@ -4,12 +4,12 @@ public class Product {
     private String name;
     private final Byn PRICE;
 
-    public Product(String name, Byn price){
+    public Product(String name, Byn price) {
         this.name = name;
         this.PRICE = price;
     }
 
-    public Product(){
+    public Product() {
         this.PRICE = new Byn();
     }
 

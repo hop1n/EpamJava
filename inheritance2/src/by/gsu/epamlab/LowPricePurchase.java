@@ -6,10 +6,11 @@ public class LowPricePurchase extends AbstractPurchase {
     private Byn discount;
 
 
-    public LowPricePurchase(Product p, int n , Byn discount) {
+    public LowPricePurchase(Product p, int n, Byn discount) {
         super(n, p);
         this.discount = discount;
     }
+
     public Byn getDiscount() {
         return discount;
     }

@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 
 
-
 public class Runner {
     private static void printPurchases(AbstractPurchase[] purchases) {
         for (AbstractPurchase purchase : purchases) {
@@ -14,7 +13,6 @@ public class Runner {
 
     public static void main(String[] args) {
         final Product TOWEL = new Product("towel", new Byn(500));
-        new LowPricePurchase(TOWEL, 20, new Byn(500));
         AbstractPurchase[] purchases = {
                 new LowPricePurchase(TOWEL, 20, new Byn(500)),
                 new LowPricePurchase(TOWEL, 10, new Byn(300)),
@@ -29,9 +27,9 @@ public class Runner {
         Arrays.sort(purchases);
         printPurchases(purchases);
 
-        System.out.println(purchases[purchases.length-1].getCost());
+        System.out.println(purchases[purchases.length - 1].getCost());
 
-        int index = Arrays.binarySearch(purchases, new LowPricePurchase(TOWEL, 1, new Byn(0) ));
+        int index = Arrays.binarySearch(purchases, new LowPricePurchase(TOWEL, 1, new Byn(0)));
         if (index >= 0) {
             System.out.println(purchases[index]);
         } else {
