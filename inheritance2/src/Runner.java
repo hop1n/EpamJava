@@ -21,7 +21,7 @@ public class Runner {
                 new TransportPurchase(TOWEL, 12, new Byn(100))
         };
 
-        printPurchases(purchases);
+        //printPurchases(purchases);
 
         Arrays.sort(purchases);
 

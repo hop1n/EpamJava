@@ -21,9 +21,9 @@ public class PercentDiscountPurchase extends AbstractPurchase {
     public Byn getCost() {
         Byn purchasePrice = super.getCost();
         if (getNumber() > LIMIT) {
-            purchasePrice.mul(1 - percent / 100, RoundMethod.ROUND, 0);
+           purchasePrice =  purchasePrice.mul(1 - percent / 100, RoundMethod.ROUND, 2);
         }
-        return purchasePrice;
+        return purchasePrice.round(RoundMethod.FLOOR, 0);
     }
 
     protected String fieldsToString() {

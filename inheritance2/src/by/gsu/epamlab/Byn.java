@@ -15,6 +15,7 @@ public class Byn implements Comparable<Byn> {
         this(byn.value);
     }
 
+
     public Byn mul(int count) {
         return new Byn(value * count);
     }
