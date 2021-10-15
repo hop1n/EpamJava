@@ -22,7 +22,9 @@ public class Runner {
         };
 
         printPurchases(purchases);
+
         Arrays.sort(purchases);
+
         printPurchases(purchases);
 
         System.out.println("Minimum cost = " + purchases[purchases.length - 1].getCost());
@@ -33,7 +35,5 @@ public class Runner {
         } else {
             System.out.println("Required purchase is not found");
         }
-
-
     }
 }

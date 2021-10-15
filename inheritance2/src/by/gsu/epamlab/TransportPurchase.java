@@ -18,6 +18,6 @@ public class TransportPurchase extends AbstractPurchase {
 
     @Override
     public Byn getCost() {
-        return super.getCost();
+        return (getProduct().getPrice()).mul(getNumber()).sub(transportExpenses);
     }
 }

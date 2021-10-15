@@ -31,7 +31,7 @@ public abstract class AbstractPurchase implements Comparable<AbstractPurchase> {
     }
 
     public Byn getCost() {
-        return new Byn(product.getPrice()).mul(number);
+        return (product.getPrice()).mul(number);
     }
 
     @Override
