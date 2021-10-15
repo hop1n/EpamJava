@@ -1,7 +1,5 @@
 package by.gsu.epamlab;
 
-import java.util.Scanner;
-
 public class LowPricePurchase extends AbstractPurchase {
     private Byn discount;
 

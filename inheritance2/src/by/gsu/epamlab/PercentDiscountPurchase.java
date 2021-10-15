@@ -1,7 +1,5 @@
 package by.gsu.epamlab;
 
-import java.util.Scanner;
-
 public class PercentDiscountPurchase extends AbstractPurchase {
     private double percent;
     private final int LIMIT = 2;

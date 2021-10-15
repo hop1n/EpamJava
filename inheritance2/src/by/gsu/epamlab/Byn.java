@@ -1,7 +1,5 @@
 package by.gsu.epamlab;
 
-import java.util.Scanner;
-
 public class Byn implements Comparable<Byn> {
     private int value;
 

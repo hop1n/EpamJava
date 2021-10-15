@@ -1,6 +1,4 @@
 import by.gsu.epamlab.*;
-
-import java.io.FileNotFoundException;
 import java.util.Arrays;
 
 
@@ -27,7 +25,7 @@ public class Runner {
         Arrays.sort(purchases);
         printPurchases(purchases);
 
-        System.out.println(purchases[purchases.length - 1].getCost());
+        System.out.println("Minimum cost = " + purchases[purchases.length - 1].getCost());
 
         int index = Arrays.binarySearch(purchases, new LowPricePurchase(TOWEL, 1, new Byn(0)));
         if (index >= 0) {
