@@ -1,4 +1,5 @@
 import by.gsu.epamlab.*;
+
 import java.util.Arrays;
 
 
@@ -21,7 +22,6 @@ public class Runner {
         };
 
         printPurchases(purchases);
-
         Arrays.sort(purchases);
         printPurchases(purchases);
 
