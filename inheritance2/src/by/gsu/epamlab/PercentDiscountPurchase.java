@@ -17,18 +17,21 @@ public class PercentDiscountPurchase extends AbstractPurchase {
         this.percent = percent;
     }
 
-    @Override
     Byn unRoundedCost(){
-        return getProduct().getPrice().mul(getNumber());
+        Byn purchasePrice = getProduct().getPrice().mul(getNumber());
+        if (getNumber() > LIMIT) {
+            purchasePrice =  unRoundedCost().mul(1 - percent / 100, RoundMethod.ROUND, 0);
+        }
+        return purchasePrice;
     }
 
     @Override
     public Byn getCost() {
         Byn purchasePrice = unRoundedCost();
         if (getNumber() > LIMIT) {
-           purchasePrice =  purchasePrice.mul(1 - percent / 100, RoundMethod.ROUND, 0);
+           purchasePrice =  unRoundedCost().mul(1 - percent / 100, RoundMethod.ROUND, 0);
         }
-        return purchasePrice.round(RoundMethod.FLOOR, 2);
+        return purchasePrice;
     }
 
     protected String fieldsToString() {

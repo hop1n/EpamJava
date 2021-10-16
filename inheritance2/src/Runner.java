@@ -14,7 +14,7 @@ public class Runner {
         final Product TOWEL = new Product("towel", new Byn(500));
         AbstractPurchase[] purchases = {
                 new LowPricePurchase(TOWEL, 20, new Byn(500)),
-                new LowPricePurchase(TOWEL, 10, new Byn(300)),
+                new LowPricePurchase(TOWEL, 10, new Byn(345)),
                 new PercentDiscountPurchase(TOWEL, 5, 15.5),
                 new PercentDiscountPurchase(TOWEL, 11, 10.0),
                 new TransportPurchase(TOWEL, 12, new Byn(50)),
@@ -25,7 +25,7 @@ public class Runner {
 
         Arrays.sort(purchases);
 
-        printPurchases(purchases);
+        //printPurchases(purchases);
 
         System.out.println("Minimum cost = " + purchases[purchases.length - 1].getCost());
 

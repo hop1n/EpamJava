@@ -32,8 +32,9 @@ public abstract class AbstractPurchase implements Comparable<AbstractPurchase> {
 
     abstract Byn unRoundedCost();
 
+
     public Byn getCost() {
-        return unRoundedCost().round(RoundMethod.ROUND, 2);
+        return unRoundedCost().round(RoundMethod.FLOOR, 2);
     }
 
     @Override
