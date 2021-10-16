@@ -20,7 +20,7 @@ public class PercentDiscountPurchase extends AbstractPurchase {
     Byn unRoundedCost(){
         Byn purchasePrice = getProduct().getPrice().mul(getNumber());
         if (getNumber() > LIMIT) {
-            purchasePrice =  unRoundedCost().mul(1 - percent / 100, RoundMethod.ROUND, 0);
+            purchasePrice =  purchasePrice.mul(1 - percent / 100, RoundMethod.ROUND, 0);
         }
         return purchasePrice;
     }
