@@ -25,7 +25,7 @@ public class Runner {
 
         Arrays.sort(purchases);
 
-        //printPurchases(purchases);
+        printPurchases(purchases);
 
         System.out.println("Minimum cost = " + purchases[purchases.length - 1].getCost());
 
