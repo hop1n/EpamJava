@@ -32,6 +32,10 @@ public class Byn implements Comparable<Byn> {
         return new Byn(value - byn.value);
     }
 
+    public Byn add(Byn byn) {
+        return new Byn(value + byn.value);
+    }
+
     @Override
     public int compareTo(Byn byn) {
         return this.value - byn.value;

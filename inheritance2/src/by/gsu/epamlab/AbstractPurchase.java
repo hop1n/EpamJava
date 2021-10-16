@@ -30,8 +30,10 @@ public abstract class AbstractPurchase implements Comparable<AbstractPurchase> {
         this.number = number;
     }
 
+    abstract Byn unRoundedCost();
+
     public Byn getCost() {
-        return product.getPrice().mul(number);
+        return unRoundedCost().round(RoundMethod.ROUND, 2);
     }
 
     @Override
