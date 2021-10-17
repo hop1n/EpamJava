@@ -17,7 +17,7 @@ public class TransportPurchase extends AbstractPurchase {
     }
 
     @Override
-    Byn unRoundedCost(){
-        return getProduct().getPrice().mul(getNumber()).add(transportExpenses);
+    Byn unRoundedCost(Byn cost){
+        return cost.add(transportExpenses);
     }
 }

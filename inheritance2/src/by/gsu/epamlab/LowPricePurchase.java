@@ -18,8 +18,8 @@ public class LowPricePurchase extends AbstractPurchase {
     }
 
     @Override
-    Byn unRoundedCost(){
-        return getProduct().getPrice().sub(discount).mul(getNumber());
+    Byn unRoundedCost(Byn cost){
+        return cost.sub(discount.mul(getNumber()));
     }
 
     protected String fieldsToString() {
