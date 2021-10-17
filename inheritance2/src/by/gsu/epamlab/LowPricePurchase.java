@@ -4,8 +4,8 @@ public class LowPricePurchase extends AbstractPurchase {
     private Byn discount;
 
 
-    public LowPricePurchase(Product p, int n, Byn discount) {
-        super(n, p);
+    public LowPricePurchase(Product product, int number, Byn discount) {
+        super(number, product);
         this.discount = discount;
     }
 

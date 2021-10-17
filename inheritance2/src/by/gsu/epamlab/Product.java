@@ -1,32 +1,28 @@
 package by.gsu.epamlab;
 
 public class Product {
-    private String name;
-    private final Byn PRICE;
+    private final String name;
+    private final Byn price;
 
     public Product(String name, Byn price) {
         this.name = name;
-        this.PRICE = price;
+        this.price = price;
     }
 
     public Product() {
-        this.PRICE = new Byn();
+        this("", new Byn());
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Byn getPrice() {
-        return PRICE;
+        return price;
     }
 
     @Override
     public String toString() {
-        return name + ";" + PRICE;
+        return name + ";" + price;
     }
 }

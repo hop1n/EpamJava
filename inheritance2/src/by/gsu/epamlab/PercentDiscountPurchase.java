@@ -4,8 +4,8 @@ public class PercentDiscountPurchase extends AbstractPurchase {
     private double percent;
     private final int LIMIT = 2;
 
-    public PercentDiscountPurchase(Product p, int n, double percent) {
-        super(n, p);
+    public PercentDiscountPurchase(Product product, int number, double percent) {
+        super(number, product);
         this.percent = percent;
     }
 
