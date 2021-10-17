@@ -1,8 +1,8 @@
 package by.gsu.epamlab;
 
 public class PercentDiscountPurchase extends AbstractPurchase {
+    private static final int LIMIT = 2;
     private double percent;
-    private final int LIMIT = 2;
 
     public PercentDiscountPurchase(Product product, int number, double percent) {
         super(number, product);
