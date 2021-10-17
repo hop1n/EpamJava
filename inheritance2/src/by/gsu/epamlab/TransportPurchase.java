@@ -3,8 +3,8 @@ package by.gsu.epamlab;
 public class TransportPurchase extends AbstractPurchase {
     private Byn transportExpenses;
 
-    public TransportPurchase(Product p, int n, Byn transportExpenses) {
-        super(n, p);
+    public TransportPurchase(Product product, int number, Byn transportExpenses) {
+        super(number, product);
         this.transportExpenses = transportExpenses;
     }
 
