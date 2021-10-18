@@ -1,0 +1,31 @@
+package by.gsu.epamlab;
+
+public class PercentDiscountPurchase extends AbstractPurchase {
+    private static final int LIMIT = 2;
+    private double percent;
+
+    public PercentDiscountPurchase(Product product, int number, double percent) {
+        super(number, product);
+        this.percent = percent;
+    }
+
+    public double getPercent() {
+        return percent;
+    }
+
+    public void setPercent(double percent) {
+        this.percent = percent;
+    }
+    @Override
+    Byn unRoundedCost(Byn cost){
+        Byn purchasePrice = cost;
+        if (getNumber() > LIMIT) {
+            purchasePrice =  purchasePrice.mul(1 - percent / 100, RoundMethod.ROUND, 0);
+        }
+        return purchasePrice;
+    }
+
+    protected String fieldsToString() {
+        return super.fieldsToString() + ";" + percent;
+    }
+}
