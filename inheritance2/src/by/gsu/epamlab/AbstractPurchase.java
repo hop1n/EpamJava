@@ -18,10 +18,6 @@ public abstract class AbstractPurchase implements Comparable<AbstractPurchase> {
         return product;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     public int getNumber() {
         return number;
     }
