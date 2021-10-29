@@ -27,21 +27,19 @@ public class Runner {
         final String EMPTY_STRING = "";
         String sumElements = EMPTY_STRING;
         try (Scanner sc = new Scanner(new FileReader(PATH))) {
-            byte k = 0;
-            int i;
+            byte countErrLines = 0;
+            int number;
             double sum = 0.0;
             while (sc.hasNext()) {
-                String line;
-                line = sc.nextLine();
-                String[] charsArr;
-                charsArr = line.split(DELIMITER);
+                String line = sc.nextLine();
+                String[] charsArr = line.split(DELIMITER);
                 if (isNumber(charsArr[0])) {
-                    i = Integer.parseInt(charsArr[0]);
-                    if (i > charsArr.length - 1) {
-                        k++;
+                    number = Integer.parseInt(charsArr[0]);
+                    if (number > charsArr.length - 1) {
+                        countErrLines++;
                     } else {
                         try {
-                            double firstDigit = Double.parseDouble(charsArr[i]);
+                            double firstDigit = Double.parseDouble(charsArr[number]);
                             sum += firstDigit;
                             if (firstDigit < 0) {
                                 sumElements += MINUS + firstDigit * -1;
@@ -49,21 +47,22 @@ public class Runner {
                                 sumElements += PLUS + firstDigit;
                             }
                         } catch (NumberFormatException e) {
-                            k++;
+                            countErrLines++;
                         }
                     }
                 } else {
-                    k++;
+                    countErrLines++;
                 }
             }
             if (!sumElements.isEmpty()) {
-                sumElements = sumElements.substring(MINUS.length());
                 if (sumElements.startsWith(MINUS)) {
-                    sumElements = ONLY_MINUS + sumElements;
+                    sumElements = ONLY_MINUS + sumElements.substring(MINUS.length());
+                } else {
+                    sumElements = sumElements.substring(MINUS.length());
                 }
             }
             System.out.println("result(" + sumElements + ") = " + sum);
-            System.out.println("error-lines = " + k);
+            System.out.println("error-lines = " + countErrLines);
         } catch (FileNotFoundException e) {
             System.err.println("Input file is not found");
         }
