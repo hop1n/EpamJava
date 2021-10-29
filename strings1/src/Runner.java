@@ -33,7 +33,6 @@ public class Runner {
             while (sc.hasNext()){
                 str = sc.nextLine();
                 charsArr = str.split(";");
-                System.out.println(Arrays.toString(charsArr));
                 if (isNumber(charsArr[0])) {
                     i = Integer.parseInt(charsArr[0]);
                     if (i>charsArr.length-1){
@@ -44,7 +43,7 @@ public class Runner {
                             if (Double.parseDouble(charsArr[i]) < 0){
                                 sumElements += MINUS + Double.parseDouble(charsArr[i]) * -1;
                             } else{
-                                sumElements += PLUS + charsArr[i];
+                                sumElements += PLUS + Double.parseDouble(charsArr[i]);
                             }
                         } catch (NumberFormatException e){
                             k++;
@@ -62,9 +61,9 @@ public class Runner {
             } else
                 sumElements = sumElements.substring(MINUS.length());
             System.out.println("result(" + sumElements + ")=" + sum);
+            System.out.println("error-lines = " + k);
         } catch (FileNotFoundException e) {
             System.err.println("Input file is not found");
         }
     }
-
 }
