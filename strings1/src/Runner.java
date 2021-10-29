@@ -31,10 +31,10 @@ public class Runner {
             byte k = 0;
             int i;
             double sum = 0.0;
-            String str;
+            String line;
             while (sc.hasNext()) {
-                str = sc.nextLine();
-                charsArr = str.split(DELIMITER);
+                line = sc.nextLine();
+                charsArr = line.split(DELIMITER);
                 if (isNumber(charsArr[0])) {
                     i = Integer.parseInt(charsArr[0]);
                     if (i > charsArr.length - 1) {
