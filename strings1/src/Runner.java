@@ -31,8 +31,8 @@ public class Runner {
             byte k = 0;
             int i;
             double sum = 0.0;
-            String line;
             while (sc.hasNext()) {
+                String line;
                 line = sc.nextLine();
                 charsArr = line.split(DELIMITER);
                 if (isNumber(charsArr[0])) {
