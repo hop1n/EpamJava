@@ -28,12 +28,12 @@ public class Runner {
         String sumElements = EMPTY_STRING;
         try (Scanner sc = new Scanner(new FileReader(PATH))) {
             byte countErrLines = 0;
-            int number;
             double sum = 0.0;
             while (sc.hasNext()) {
                 String line = sc.nextLine();
                 String[] charsArr = line.split(DELIMITER);
                 if (isNumber(charsArr[0])) {
+                    int number;
                     number = Integer.parseInt(charsArr[0]);
                     if (number > charsArr.length - 1) {
                         countErrLines++;
@@ -55,10 +55,11 @@ public class Runner {
                 }
             }
             if (!sumElements.isEmpty()) {
+                String deletedSign = sumElements.substring(MINUS.length());
                 if (sumElements.startsWith(MINUS)) {
-                    sumElements = ONLY_MINUS + sumElements.substring(MINUS.length());
+                    sumElements = ONLY_MINUS + deletedSign;
                 } else {
-                    sumElements = sumElements.substring(MINUS.length());
+                    sumElements = deletedSign;
                 }
             }
             System.out.println("result(" + sumElements + ") = " + sum);
