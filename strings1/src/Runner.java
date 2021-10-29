@@ -5,11 +5,11 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Runner {
-    private static boolean isNumber (String in) {
+    private static boolean isNumber(String in) {
         String digits = "1234567890";
         boolean bool = true;
-        for (int i = 0; i<in.length();i++){
-            if (!digits.contains(in.substring(i, i+1))){
+        for (int i = 0; i < in.length(); i++) {
+            if (!digits.contains(in.substring(i, i + 1))) {
                 bool = false;
                 break;
             }
@@ -17,7 +17,7 @@ public class Runner {
         return bool;
     }
 
-    public static void main(String args[]){
+    public static void main(String args[]) {
         final String SEPORATOR = File.separator;
         final String PATH = "src" + SEPORATOR + "in.csv";
         final String PLUS = " + ";
@@ -30,22 +30,22 @@ public class Runner {
             int i = 0;
             double sum = 0.0;
             String str = "";
-            while (sc.hasNext()){
+            while (sc.hasNext()) {
                 str = sc.nextLine();
                 charsArr = str.split(";");
                 if (isNumber(charsArr[0])) {
                     i = Integer.parseInt(charsArr[0]);
-                    if (i>charsArr.length-1){
+                    if (i > charsArr.length - 1) {
                         k++;
                     } else {
                         try {
                             sum += Double.parseDouble(charsArr[i]);
-                            if (Double.parseDouble(charsArr[i]) < 0){
+                            if (Double.parseDouble(charsArr[i]) < 0) {
                                 sumElements += MINUS + Double.parseDouble(charsArr[i]) * -1;
-                            } else{
+                            } else {
                                 sumElements += PLUS + Double.parseDouble(charsArr[i]);
                             }
-                        } catch (NumberFormatException e){
+                        } catch (NumberFormatException e) {
                             k++;
                         }
                     }
@@ -55,11 +55,14 @@ public class Runner {
                 }
 
             }
-            if (sumElements.startsWith(MINUS)){
-                sumElements = sumElements.substring(MINUS.length());
-                sumElements = '-' + sumElements;
-            } else
-                sumElements = sumElements.substring(MINUS.length());
+            if (!sumElements.isEmpty()){
+                if (sumElements.startsWith(MINUS)) {
+                    sumElements = sumElements.substring(MINUS.length());
+                    sumElements = '-' + sumElements;
+                } else {
+                    sumElements = sumElements.substring(MINUS.length());
+                }
+            }
             System.out.println("result(" + sumElements + ")=" + sum);
             System.out.println("error-lines = " + k);
         } catch (FileNotFoundException e) {
