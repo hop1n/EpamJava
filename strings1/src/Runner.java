@@ -33,17 +33,18 @@ public class Runner {
             while (sc.hasNext()) {
                 str = sc.nextLine();
                 charsArr = str.split(";");
+                double firstDigit = Double.parseDouble(charsArr[i]);
                 if (isNumber(charsArr[0])) {
                     i = Integer.parseInt(charsArr[0]);
                     if (i > charsArr.length - 1) {
                         k++;
                     } else {
                         try {
-                            sum += Double.parseDouble(charsArr[i]);
-                            if (Double.parseDouble(charsArr[i]) < 0) {
-                                sumElements += MINUS + Double.parseDouble(charsArr[i]) * -1;
+                            sum += firstDigit;
+                            if (firstDigit < 0) {
+                                sumElements += MINUS + firstDigit * -1;
                             } else {
-                                sumElements += PLUS + Double.parseDouble(charsArr[i]);
+                                sumElements += PLUS + firstDigit;
                             }
                         } catch (NumberFormatException e) {
                             k++;
