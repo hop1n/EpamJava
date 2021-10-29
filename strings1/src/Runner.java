@@ -25,7 +25,6 @@ public class Runner {
         final String ONLY_MINUS = "-";
         final String DELIMITER = ";";
         final String EMPTY_STRING = "";
-        String[] charsArr;
         String sumElements = EMPTY_STRING;
         try (Scanner sc = new Scanner(new FileReader(PATH))) {
             byte k = 0;
@@ -34,6 +33,7 @@ public class Runner {
             while (sc.hasNext()) {
                 String line;
                 line = sc.nextLine();
+                String[] charsArr;
                 charsArr = line.split(DELIMITER);
                 if (isNumber(charsArr[0])) {
                     i = Integer.parseInt(charsArr[0]);
