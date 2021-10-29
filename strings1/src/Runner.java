@@ -6,10 +6,10 @@ import java.util.Scanner;
 
 public class Runner {
     private static boolean isNumber(String in) {
-        String digits = "1234567890";
+        final String DIGITS = "1234567890";
         boolean bool = true;
         for (int i = 0; i < in.length(); i++) {
-            if (!digits.contains(in.substring(i, i + 1))) {
+            if (!DIGITS.contains(in.substring(i, i + 1))) {
                 bool = false;
                 break;
             }
@@ -18,21 +18,23 @@ public class Runner {
     }
 
     public static void main(String args[]) {
-        final String SEPORATOR = File.separator;
-        final String PATH = "src" + SEPORATOR + "in.csv";
+        final String SEPARATOR = File.separator;
+        final String PATH = "src" + SEPARATOR + "in.csv";
         final String PLUS = " + ";
         final String MINUS = " - ";
         final String ONLY_MINUS = "-";
+        final String DELIMITER = ";";
+        final String EMPTY_STRING = "";
         String[] charsArr;
-        String sumElements = "";
+        String sumElements = EMPTY_STRING;
         try (Scanner sc = new Scanner(new FileReader(PATH))) {
             byte k = 0;
-            int i = 0;
+            int i;
             double sum = 0.0;
-            String str = "";
+            String str;
             while (sc.hasNext()) {
                 str = sc.nextLine();
-                charsArr = str.split(";");
+                charsArr = str.split(DELIMITER);
                 if (isNumber(charsArr[0])) {
                     i = Integer.parseInt(charsArr[0]);
                     if (i > charsArr.length - 1) {
@@ -51,20 +53,16 @@ public class Runner {
                         }
                     }
                 } else {
-                    System.out.println("wrong string");
                     k++;
                 }
-
             }
-            if (!sumElements.isEmpty()){
+            if (!sumElements.isEmpty()) {
+                sumElements = sumElements.substring(MINUS.length());
                 if (sumElements.startsWith(MINUS)) {
-                    sumElements = sumElements.substring(MINUS.length());
-                    sumElements = '-' + sumElements;
-                } else {
-                    sumElements = sumElements.substring(MINUS.length());
+                    sumElements = ONLY_MINUS + sumElements;
                 }
             }
-            System.out.println("result(" + sumElements + ")=" + sum);
+            System.out.println("result(" + sumElements + ") = " + sum);
             System.out.println("error-lines = " + k);
         } catch (FileNotFoundException e) {
             System.err.println("Input file is not found");
