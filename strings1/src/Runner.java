@@ -33,13 +33,13 @@ public class Runner {
             while (sc.hasNext()) {
                 str = sc.nextLine();
                 charsArr = str.split(";");
-                double firstDigit = Double.parseDouble(charsArr[i]);
                 if (isNumber(charsArr[0])) {
                     i = Integer.parseInt(charsArr[0]);
                     if (i > charsArr.length - 1) {
                         k++;
                     } else {
                         try {
+                            double firstDigit = Double.parseDouble(charsArr[i]);
                             sum += firstDigit;
                             if (firstDigit < 0) {
                                 sumElements += MINUS + firstDigit * -1;
