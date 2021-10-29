@@ -33,8 +33,7 @@ public class Runner {
                 String line = sc.nextLine();
                 String[] charsArr = line.split(DELIMITER);
                 if (isNumber(charsArr[0])) {
-                    int number;
-                    number = Integer.parseInt(charsArr[0]);
+                    int number = Integer.parseInt(charsArr[0]);
                     if (number > charsArr.length - 1) {
                         countErrLines++;
                     } else {
