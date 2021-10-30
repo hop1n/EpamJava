@@ -17,7 +17,7 @@ public class Runner {
             final String ERR_LINES_OUT = "error-lines = ";
             final String MINUS = " - ";
             final String PLUS = " + ";
-            byte countErrLines = 0;
+            int countErrLines = 0;
             double sum = 0.0;
             StringBuilder sumElements = new StringBuilder();
             while (sc.hasNext()) {
