@@ -10,21 +10,21 @@ public class Runner {
     public static void main(String args[]) {
         final String SEPARATOR = File.separator;
         final String PATH = "src" + SEPARATOR + "in.csv";
-        StringBuilder sumElements = new StringBuilder();
+        final String ERR_MSG = "Input file is not found";
         try (Scanner sc = new Scanner(new FileReader(PATH))) {
-            final String ERR_MSG = "Input file is not found";
             final String RESULT_BEGIN = "result(";
             final String RESULT_END = ") = ";
             final String ERR_LINES_OUT = "error-lines = ";
             final String MINUS = " - ";
+            final String PLUS = " + ";
             byte countErrLines = 0;
             double sum = 0.0;
+            StringBuilder sumElements = new StringBuilder();
             while (sc.hasNext()) {
                 final String DELIMETER = ";";
                 String[] charsArr = sc.nextLine().split(DELIMETER);
                 try {
                     int number = Integer.parseInt(charsArr[0]);
-                    final String PLUS = " + ";
                     double firstDigit = Double.parseDouble(charsArr[number]);
                     sum += firstDigit;
                     if (firstDigit < 0) {
