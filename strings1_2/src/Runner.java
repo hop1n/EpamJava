@@ -12,6 +12,7 @@ public class Runner {
         final String PATH = "src" + SEPARATOR + "in.csv";
         StringBuilder sumElements = new StringBuilder();
         try (Scanner sc = new Scanner(new FileReader(PATH))) {
+            final String ERR_MSG = "Input file is not found";
             final String RESULT_BEGIN = "result(";
             final String RESULT_END = ") = ";
             final String ERR_LINES_OUT = "error-lines = ";
@@ -47,7 +48,6 @@ public class Runner {
             System.out.println(RESULT_BEGIN + sumElements + RESULT_END + sum);
             System.out.println(ERR_LINES_OUT + countErrLines);
         } catch (FileNotFoundException e) {
-            final String ERR_MSG = "Input file is not found";
             System.err.println(ERR_MSG);
         }
     }
