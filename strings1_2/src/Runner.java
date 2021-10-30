@@ -31,7 +31,7 @@ public class Runner {
                     } else {
                         sumElements.append(PLUS).append(firstDigit);
                     }
-                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e ) {
+                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                     countErrLines++;
                 }
             }
@@ -44,7 +44,7 @@ public class Runner {
                     sumElements.insert(0, ONLY_MINUS);
                 }
             }
-            System.out.println(RESULT_BEGIN+ sumElements + RESULT_END + sum);
+            System.out.println(RESULT_BEGIN + sumElements + RESULT_END + sum);
             System.out.println(ERR_LINES_OUT + countErrLines);
         } catch (FileNotFoundException e) {
             final String ERR_MSG = "Input file is not found";
