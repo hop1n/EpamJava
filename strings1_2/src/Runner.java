@@ -27,11 +27,7 @@ public class Runner {
                     int number = Integer.parseInt(charsArr[0]);
                     double firstDigit = Double.parseDouble(charsArr[number]);
                     sum += firstDigit;
-                    if (firstDigit < 0) {
-                        sumElements.append(MINUS).append(firstDigit * -1);
-                    } else {
-                        sumElements.append(PLUS).append(firstDigit);
-                    }
+                    sumElements.append(firstDigit < 0 ? MINUS : PLUS).append(Math.abs(firstDigit));
                 } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
                     countErrLines++;
                 }
