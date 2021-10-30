@@ -23,23 +23,15 @@ public class Runner {
                 String[] charsArr = sc.nextLine().split(DELIMETER);
                 try {
                     int number = Integer.parseInt(charsArr[0]);
-                    if (number > charsArr.length - 1) {
-                        countErrLines++;
+                    final String PLUS = " + ";
+                    double firstDigit = Double.parseDouble(charsArr[number]);
+                    sum += firstDigit;
+                    if (firstDigit < 0) {
+                        sumElements.append(MINUS).append(firstDigit * -1);
                     } else {
-                        try {
-                            final String PLUS = " + ";
-                            double firstDigit = Double.parseDouble(charsArr[number]);
-                            sum += firstDigit;
-                            if (firstDigit < 0) {
-                                sumElements.append(MINUS).append(firstDigit * -1);
-                            } else {
-                                sumElements.append(PLUS).append(firstDigit);
-                            }
-                        } catch (NumberFormatException e) {
-                            countErrLines++;
-                        }
+                        sumElements.append(PLUS).append(firstDigit);
                     }
-                } catch (NumberFormatException e){
+                } catch (NumberFormatException | ArrayIndexOutOfBoundsException e ) {
                     countErrLines++;
                 }
             }
