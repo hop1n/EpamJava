@@ -21,8 +21,6 @@ public class Runner {
         final String SEPARATOR = File.separator;
         final String PATH = "src" + SEPARATOR + "in.csv";
         final String PLUS = " + ";
-        final String MINUS = " - ";
-        final char ONLY_MINUS = '-';
         final String DELIMETER = ";";
         StringBuilder sumElements = new StringBuilder();
         try (Scanner sc = new Scanner(new FileReader(PATH))) {
@@ -52,16 +50,23 @@ public class Runner {
                 }
             }
             if (sumElements.length() != 0) {
-                String sign = sumElements.substring(0, MINUS.length());
-                sumElements.delete(0, MINUS.length());
+                final String MINUS = " - ";
+                final char ONLY_MINUS = '-';
+                final int SIGN_LENGTH = MINUS.length();
+                String sign = sumElements.substring(0, SIGN_LENGTH);
+                sumElements.delete(0, SIGN_LENGTH);
                 if (sign.equals(MINUS)) {
                     sumElements.insert(0, ONLY_MINUS);
                 }
             }
-            System.out.println("result(" + sumElements + ") = " + sum);
-            System.out.println("error-lines = " + countErrLines);
+            final String RESULT_BEGIN = "result(";
+            final String RESULT_END = ") = ";
+            final String ERR_LINES_OUT = "error-lines = ";
+            System.out.println(RESULT_BEGIN+ sumElements + RESULT_END + sum);
+            System.out.println(ERR_LINES_OUT + countErrLines);
         } catch (FileNotFoundException e) {
-            System.err.println("Input file is not found");
+            final String ERR_MSG = "Input file is not found";
+            System.err.println(ERR_MSG);
         }
     }
 }
