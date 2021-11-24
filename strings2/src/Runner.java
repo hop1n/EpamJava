@@ -8,41 +8,40 @@ public class Runner {
             final String INPUT_PROPERTIES = "in";
             ResourceBundle rb = ResourceBundle.getBundle(INPUT_PROPERTIES);
             Enumeration<String> keys = rb.getKeys();
-            String element = null;
-            List<String> indexes = new ArrayList<String>();
-            String key;
             int errorLines = 0;
             double sum = 0.0;
             while (keys.hasMoreElements()) {
+                String key;
                 try {
+                    String regex1 = "index.*";
+                    String regex2 = "index([1-9]\\d*)";
+                    String regex3 ="([1-9])(\\d*)";
                     key = keys.nextElement();
-                    String regex = "index.*";
+                    String regex = regex1;
                     Pattern pattern = Pattern.compile(regex);
                     Matcher matcher = pattern.matcher(key);
-                    if (matcher.lookingAt()){
-                        regex = "index([1-9]\\d*)";
+                    if (matcher.lookingAt()) {
+                        regex = regex2;
                         pattern = Pattern.compile(regex);
                         matcher = pattern.matcher(key);
-                        if(matcher.matches()){
-                            regex = "([1-9])(\\d*)";
+                        if (matcher.matches()) {
+                            regex = regex3;
                             pattern = Pattern.compile(regex);
                             matcher = pattern.matcher(matcher.group());
                             matcher.find();
                             String s = matcher.group();
                             pattern = Pattern.compile(regex);
                             matcher = pattern.matcher(rb.getString(key).trim());
-                            if(matcher.lookingAt()){
+                            if (matcher.lookingAt()) {
                                 sum += Double.parseDouble(rb.getString("value" + s + matcher.group()));
+                            } else {
+                                errorLines++;
                             }
-                            else {
-                            errorLines++;
-                            }
-                        }
-                        else {
+                        } else {
                             errorLines++;
                         }
                     }
-                } catch(MissingResourceException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                } catch (MissingResourceException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
                     errorLines++;
                 }
             }
