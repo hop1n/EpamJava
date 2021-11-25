@@ -19,20 +19,17 @@ public class Runner {
                     final String regex2 = "index([1-9]\\d*)";
                     final String regex3 ="([1-9])(\\d*)";
                     String key = keys.nextElement();
-                    String regex = regex1;
-                    Pattern pattern = Pattern.compile(regex);
+                    Pattern pattern = Pattern.compile(regex1);
                     Matcher matcher = pattern.matcher(key);
                     if (matcher.lookingAt()) {
-                        regex = regex2;
-                        pattern = Pattern.compile(regex);
+                        pattern = Pattern.compile(regex2);
                         matcher = pattern.matcher(key);
                         if (matcher.matches()) {
-                            regex = regex3;
-                            pattern = Pattern.compile(regex);
+                            pattern = Pattern.compile(regex3);
                             matcher = pattern.matcher(matcher.group());
                             matcher.find();
                             String s = matcher.group();
-                            pattern = Pattern.compile(regex);
+                            pattern = Pattern.compile(regex3);
                             matcher = pattern.matcher(rb.getString(key).trim());
                             if (matcher.lookingAt()) {
                                 sum += Double.parseDouble(rb.getString("value" + s + matcher.group()));
