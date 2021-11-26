@@ -9,6 +9,7 @@ public class Runner {
             final String INPUT_PROPERTIES = "in";
             final String ERR_LINES_OUT = "error-lines = ";
             final String SUM_OUT = "sum = ";
+            final String KEY_VALUE_OUT = "value";
             ResourceBundle rb = ResourceBundle.getBundle(INPUT_PROPERTIES);
             Enumeration<String> keys = rb.getKeys();
             int errorLines = 0;
@@ -32,7 +33,7 @@ public class Runner {
                             pattern = Pattern.compile(regex3);
                             matcher = pattern.matcher(rb.getString(key).trim());
                             if (matcher.lookingAt()) {
-                                sum += Double.parseDouble(rb.getString("value" + s + matcher.group()));
+                                sum += Double.parseDouble(rb.getString(KEY_VALUE_OUT + s + matcher.group()));
                             } else {
                                 errorLines++;
                             }
