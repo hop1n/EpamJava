@@ -16,21 +16,21 @@ public class Runner {
             double sum = 0.0;
             while (keys.hasMoreElements()) {
                 try {
-                    final String regex1 = "index.*";
-                    final String regex2 = "index([1-9]\\d*)";
-                    final String regex3 ="([1-9])(\\d*)";
+                    final String FIRST_MATCH = "index.*";
+                    final String SECOND_MATCH = "index([1-9]\\d*)";
+                    final String THIRD_MATCH ="([1-9])(\\d*)";
                     String key = keys.nextElement();
-                    Pattern pattern = Pattern.compile(regex1);
+                    Pattern pattern = Pattern.compile(FIRST_MATCH);
                     Matcher matcher = pattern.matcher(key);
                     if (matcher.lookingAt()) {
-                        pattern = Pattern.compile(regex2);
+                        pattern = Pattern.compile(SECOND_MATCH);
                         matcher = pattern.matcher(key);
                         if (matcher.matches()) {
-                            pattern = Pattern.compile(regex3);
+                            pattern = Pattern.compile(THIRD_MATCH);
                             matcher = pattern.matcher(matcher.group());
                             matcher.find();
                             String s = matcher.group();
-                            pattern = Pattern.compile(regex3);
+                            pattern = Pattern.compile(THIRD_MATCH);
                             matcher = pattern.matcher(rb.getString(key).trim());
                             if (matcher.lookingAt()) {
                                 sum += Double.parseDouble(rb.getString(KEY_VALUE_OUT + s + matcher.group()));
