@@ -21,27 +21,20 @@ public class Runner {
             int errors = 0;
             double sum = 0.0;
             String valueIJ;
-//compile patterns for above expressions here
             final int TAIL_INDEX = 1;
             final String VALUE = "value";
             while (keys.hasMoreElements()) {
                 String key = keys.nextElement();
                 Matcher keyMatcher = pattern_1.matcher(key);
-//create keyMatcher for key on KEY_REG_EXP
                 if (keyMatcher.matches()) {
                     String iStr = keyMatcher.group(TAIL_INDEX);
                     String jStr = rb.getString(key).trim();
-                    String s = keyMatcher.group();
                     Matcher iMatcher = pattern_2.matcher(iStr);
                     Matcher jMatcher = pattern_2.matcher(jStr);
-
-//create iMather for iStr, jMather for jStr on NUM_REG_EXP
                     if (iMatcher.matches() && jMatcher.matches()) {
                         valueIJ = VALUE + iStr + jStr;
                         try {
-                            sum += Double.parseDouble(rb.getString(KEY_VALUE_OUT + s + keyMatcher.group()));
-//read value on the key valueIJ
-//increase sum on the value
+                            sum += Double.parseDouble(rb.getString(valueIJ));
                         } catch (MissingResourceException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
                             errors++;
                         }
