@@ -16,23 +16,22 @@ public class Runner {
             final String NUM_REG_EXP = "[1-9]\\d*";
             ResourceBundle rb = ResourceBundle.getBundle(INPUT_PROPERTIES);
             Enumeration<String> keys = rb.getKeys();
-            Pattern pattern_1 = Pattern.compile(KEY_REG_EXP);
-            Pattern pattern_2 = Pattern.compile(NUM_REG_EXP);
+            Pattern pattern_key = Pattern.compile(KEY_REG_EXP);
+            Pattern pattern_num = Pattern.compile(NUM_REG_EXP);
             int errors = 0;
             double sum = 0.0;
-            String valueIJ;
             final int TAIL_INDEX = 1;
             final String VALUE = "value";
             while (keys.hasMoreElements()) {
                 String key = keys.nextElement();
-                Matcher keyMatcher = pattern_1.matcher(key);
+                Matcher keyMatcher = pattern_key.matcher(key);
                 if (keyMatcher.matches()) {
                     String iStr = keyMatcher.group(TAIL_INDEX);
                     String jStr = rb.getString(key).trim();
-                    Matcher iMatcher = pattern_2.matcher(iStr);
-                    Matcher jMatcher = pattern_2.matcher(jStr);
+                    Matcher iMatcher = pattern_num.matcher(iStr);
+                    Matcher jMatcher = pattern_num.matcher(jStr);
                     if (iMatcher.matches() && jMatcher.matches()) {
-                        valueIJ = VALUE + iStr + jStr;
+                        String valueIJ = VALUE + iStr + jStr;
                         try {
                             sum += Double.parseDouble(rb.getString(valueIJ));
                         } catch (MissingResourceException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
