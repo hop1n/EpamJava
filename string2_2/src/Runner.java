@@ -45,7 +45,7 @@ public class Runner {
             System.out.println(SUM_OUT + sum);
             System.out.println(ERR_LINES_OUT + errors);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e);;
         }
 
     }
