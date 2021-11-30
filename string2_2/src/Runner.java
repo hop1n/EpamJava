@@ -9,7 +9,6 @@ public class Runner {
         final String ERR_MESSAGE = "there is no data";
         try {
             final String ERR_LINES_OUT = "error-lines = ";
-            final String KEY_VALUE_OUT = "value";
             final String SUM_OUT = "sum = ";
             final String INPUT_PROPERTIES = "in";
             final String KEY_REG_EXP = "index(.*)";
