@@ -100,7 +100,7 @@ public class RunnerTest {
     }
 
     @Test(expectedExceptions = MissingResourceException.class)
-    public void testWrongCsvName() throws MissingResourceException, FileNotFoundException {
+    public void testWrongFileName() throws MissingResourceException, FileNotFoundException {
         final String testName = "in9";
         getResult(testName);
     }
