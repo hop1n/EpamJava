@@ -86,7 +86,7 @@ public class RunnerTest {
         final double EXPECTED_SUM = 8.24;
         Result result = getResult(FILE_NAME);
         Assert.assertEquals(EXPECTED_ERRORS, result.errors);
-        Assert.assertEquals(EXPECTED_SUM, result.sum, 0.00001);
+        Assert.assertEquals(EXPECTED_SUM, result.sum, 0.001);
     }
 
     @Test
@@ -96,7 +96,7 @@ public class RunnerTest {
         final double EXPECTED_SUM = 30.242;
         Result result = getResult(FILE_NAME);
         Assert.assertEquals(EXPECTED_ERRORS, result.errors);
-        Assert.assertEquals(EXPECTED_SUM, result.sum, 0.00001);
+        Assert.assertEquals(EXPECTED_SUM, result.sum, 0.0001);
     }
 
     @Test(expectedExceptions = MissingResourceException.class)
