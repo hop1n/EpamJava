@@ -12,9 +12,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RunnerTest {
-    private static class Result{
+    private static class Result {
         private double sum;
         private int errors;
+
+        public void setSum(double sum) {
+            this.sum = sum;
+        }
+
+        public void setErrors(int errors) {
+            this.errors = errors;
+        }
 
         public Result(int errors, double sum) {
             this.errors = errors;
@@ -89,6 +97,12 @@ public class RunnerTest {
         Result result = getResult(FILE_NAME);
         Assert.assertEquals(EXPECTED_ERRORS, result.errors);
         Assert.assertEquals(EXPECTED_SUM, result.sum, 0.00001);
+    }
+
+    @Test(expectedExceptions = MissingResourceException.class)
+    public void testWrongCsvName() throws MissingResourceException, FileNotFoundException {
+        final String testName = "in9";
+        getResult(testName);
     }
 
 }
