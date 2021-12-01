@@ -91,5 +91,4 @@ public class RunnerTest {
         Assert.assertEquals(EXPECTED_SUM, result.sum, 0.00001);
     }
 
-
 }
