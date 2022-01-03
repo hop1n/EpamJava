@@ -5,7 +5,7 @@ import by.epam.lab.Purchase;
 
 import java.util.Comparator;
 
-public class PurchaseComparatorV1 implements Comparator<Purchase> {
+public class PurchaseComparator implements Comparator<Purchase> {
 
     @Override
     public int compare(Purchase p1, Purchase p2) {

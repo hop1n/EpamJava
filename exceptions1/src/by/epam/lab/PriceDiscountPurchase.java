@@ -2,15 +2,11 @@ package by.epam.lab;
 
 import java.util.Scanner;
 
-public class PriceDiscountPurchase extends Purchase {
+public final class PriceDiscountPurchase extends Purchase {
     private Byn discount;
 
     public Byn getDiscount() {
         return discount;
-    }
-
-    public void setDiscount(Byn discount) {
-        this.discount = discount;
     }
 
     public PriceDiscountPurchase(Scanner sc) {
@@ -29,6 +25,6 @@ public class PriceDiscountPurchase extends Purchase {
     }
 
     protected String fieldsToString() {
-        return String.format("%10s%10s", super.fieldsToString(), discount);
+        return super.fieldsToString() + discount;
     }
 }

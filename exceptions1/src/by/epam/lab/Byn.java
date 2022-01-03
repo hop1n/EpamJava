@@ -25,14 +25,14 @@ public final class Byn implements Comparable<Byn> {
     public Byn mul(int count) {
         return new Byn(value * count);
     }
-//
-//    public Byn mul(double k, RoundMethod roundMethod, int d) {
-//        return new Byn(roundMethod.round(value * k, roundMethod, d));
-//    }
-//
-//    public Byn round(RoundMethod roundMethod, int d) {
-//        return new Byn(roundMethod.round(value, roundMethod, d));
-//    }
+
+    public Byn mul(double k, RoundMethod roundMethod, int d) {
+        return new Byn(roundMethod.round(value * k, roundMethod, d));
+    }
+
+    public Byn round(RoundMethod roundMethod, int d) {
+        return new Byn(roundMethod.round(value, roundMethod, d));
+    }
 
     public Byn sub(Byn byn) {
         return new Byn(value - byn.value);
@@ -58,7 +58,7 @@ public final class Byn implements Comparable<Byn> {
 
     @Override
     public String toString() {
-        return String.format("%d.%02d", value / 100, value % 100);
+        return String.format(Constants.BYN_TO_STRING, value / 100, value % 100);
     }
 
 }

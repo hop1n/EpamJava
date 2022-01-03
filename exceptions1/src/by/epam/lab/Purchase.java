@@ -1,12 +1,13 @@
 package by.epam.lab;
+import java.sql.SQLOutput;
 import java.util.Objects;
 import java.util.Scanner;
 import java.lang.*;
 
-public class Purchase {
+public class Purchase implements Comparable<Purchase> {
     private String name;
-    private Byn price;
-    private int number;
+    private final Byn price;
+    private final int number;
 
     public Purchase() {
         price = new Byn(0);
@@ -35,24 +36,12 @@ public class Purchase {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Byn getPrice() {
         return price;
     }
 
-    public void setPrice(Byn price) {
-        this.price = price;
-    }
-
     public int getNumber() {
         return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
     }
 
     public Byn getCost() {
@@ -61,13 +50,13 @@ public class Purchase {
 
     @Override
     public String toString() {
-        return String.format("%10s%10s",fieldsToString(), getCost());
+        return fieldsToString() + Constants.DELIMITER + getCost();
     }
 
     protected String fieldsToString() {
-        return String.format("%10s%10s%10d", name, price, number);
-        //return name + ";" + price + ";" + number;
+        return name + Constants.DELIMITER + price + Constants.DELIMITER + number;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -77,6 +66,11 @@ public class Purchase {
         return name.equals(purchase.name) && price.equals(purchase.price);
     }
     public String getTableOfPurchases(){
-        return String.format("%10s%10s%10d%10s%10s", name, price, number, "-", getCost());
+        return name + Constants.DELIMITER + price + Constants.DELIMITER + number + Constants.DASH + getCost();
+    }
+
+    @Override
+    public int compareTo(Purchase o) {
+        return 0;
     }
 }
