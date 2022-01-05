@@ -21,7 +21,7 @@ public final class PriceDiscountPurchase extends Purchase {
 
     @Override
     public Byn getCost() {
-        return new Byn(getPrice()).sub(discount).mul(getNumber());
+        return getPrice().sub(discount).mul(getNumber());
     }
 
     protected String fieldsToString() {

@@ -45,7 +45,7 @@ public class Purchase implements Comparable<Purchase> {
     }
 
     public Byn getCost() {
-        return new Byn(price).mul(number);
+        return price.mul(number);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Purchase implements Comparable<Purchase> {
     }
 
     @Override
-    public int compareTo(Purchase o) {
-        return 0;
+    public int compareTo(Purchase purchase) {
+        return purchase.getCost().compareTo(getCost());
     }
 }

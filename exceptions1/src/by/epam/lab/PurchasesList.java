@@ -47,11 +47,11 @@ public class PurchasesList {
                                                     > 0) {
                                                 purchases.add(new PriceDiscountPurchase
                                                         (parts[Constants.NAME_INDEX],
-                                                        parts[Constants.PRICE_INDEX],
-                                                        parts[Constants.NUMBER_INDEX],
-                                                        parts[Constants.DISCOUNT_INDEX]));
+                                                                parts[Constants.PRICE_INDEX],
+                                                                parts[Constants.NUMBER_INDEX],
+                                                                parts[Constants.DISCOUNT_INDEX]));
                                             } else {
-                                                System.err. println(str +
+                                                System.err.println(str +
                                                         Constants.NON_POSITIVE_VALUE +
                                                         parts[Constants.DISCOUNT_INDEX] +
                                                         Constants.IN_DISCOUNT);
@@ -121,16 +121,19 @@ public class PurchasesList {
 
     public void deleteByIndexes(int startIndex, int endIndex) {
         int i = startIndex;
-        try {
-            for (i = startIndex; i <=endIndex; i++){
+        if (startIndex > purchases.size() - 1 || startIndex < 0 ){
+            System.err.println(Constants.WRONG_INDEX + startIndex);
+        }
+        if (endIndex > purchases.size() - 1 || endIndex < 0) {
+            System.err.println(Constants.WRONG_INDEX + endIndex);
+        } else {
+            for (i = startIndex; i <= endIndex; i++) {
                 purchases.remove(startIndex);
             }
-        } catch (IndexOutOfBoundsException err) {
-            System.out.println(Constants.WRONG_INDEX + i);
         }
     }
 
-    public Byn getCost() {
+    public Byn getTotalCost() {
         Byn cost = new Byn();
         for (Purchase purchase : purchases) {
             cost = cost.add(purchase.getCost());
@@ -143,11 +146,11 @@ public class PurchasesList {
             System.out.println(purchase);
 
         }
-        System.out.println(Constants.TOTAL_COST_OUT + getCost());
+        System.out.println(Constants.TOTAL_COST_OUT + getTotalCost());
     }
 
     public void purchaseSort() {
-        purchases.sort(COMPARATOR);
+        Collections.sort(purchases, COMPARATOR);
     }
 
     public int searchAnElement(Purchase purchase) {

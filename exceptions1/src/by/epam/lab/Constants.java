@@ -25,4 +25,5 @@ public class Constants {
     public final static int PRICE_INDEX = 1;
     public final static int DISCOUNT_INDEX = 3;
     public final static String BYN_TO_STRING = "%d.%02d";
+    public final static int BYN_CONVERT = 100;
 }

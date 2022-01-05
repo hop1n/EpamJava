@@ -58,7 +58,7 @@ public final class Byn implements Comparable<Byn> {
 
     @Override
     public String toString() {
-        return String.format(Constants.BYN_TO_STRING, value / 100, value % 100);
+        return String.format(Constants.BYN_TO_STRING, value / Constants.BYN_CONVERT, value % Constants.BYN_CONVERT);
     }
 
 }
