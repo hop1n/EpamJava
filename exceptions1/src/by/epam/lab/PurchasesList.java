@@ -145,7 +145,7 @@ public class PurchasesList {
         for (Purchase purchase : purchases) {
             s.append(purchase);
         }
-        return String.format("%s", s);
+        return s.toString();
     }
 
     public void purchasesSort() {
