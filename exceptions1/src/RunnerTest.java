@@ -113,6 +113,7 @@ public class RunnerTest {
     @Test
     public void testSearchAnElement(){
         Purchase requiredPurchase = new PriceDiscountPurchase("meat","1100","2","80");
+        testPurchases.purchasesSort();
         int index = Collections.binarySearch(testPurchases.getPurchases(), requiredPurchase, COMPARATOR);
         int index2 = testPurchases2.searchAnElement(requiredPurchase);
         Assert.assertEquals(index, index2);
