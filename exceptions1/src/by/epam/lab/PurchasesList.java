@@ -120,14 +120,13 @@ public class PurchasesList {
     }
 
     public void deleteByIndexes(int startIndex, int endIndex) {
-        int i = startIndex;
         if (startIndex > purchases.size() - 1 || startIndex < 0 ){
             System.err.println(Constants.WRONG_INDEX + startIndex);
         }
         if (endIndex > purchases.size() - 1 || endIndex < 0) {
             System.err.println(Constants.WRONG_INDEX + endIndex);
         } else {
-            for (i = startIndex; i <= endIndex; i++) {
+            for (int i = startIndex; i <= endIndex; i++) {
                 purchases.remove(startIndex);
             }
         }
@@ -141,19 +140,20 @@ public class PurchasesList {
         return cost;
     }
 
-    public void printPurchases() {
+    public String printPurchases() {
+        StringBuilder s = new StringBuilder();
         for (Purchase purchase : purchases) {
-            System.out.println(purchase);
-
+            s.append(purchase);
         }
-        System.out.println(Constants.TOTAL_COST_OUT + getTotalCost());
+        return String.format("%s", s);
     }
 
-    public void purchaseSort() {
+    public void purchasesSort() {
         Collections.sort(purchases, COMPARATOR);
     }
 
     public int searchAnElement(Purchase purchase) {
+        purchasesSort();
         return Collections.binarySearch(purchases, purchase, COMPARATOR);
     }
 }

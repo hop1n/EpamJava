@@ -35,15 +35,6 @@ public class RunnerTest {
         System.setErr(originalErr);
     }
 
-//    public static String getOutput() {
-//        StringBuilder inputString = new StringBuilder();
-//
-//        while (.hasNextLine()){
-//            inputString.append(scanner.nextLine());
-//        }
-//        return inputString.toString();
-//    }
-
     @Test
     public void testPurchasesListConstructor() {
         final int EXPECTED_SIZE_OF_PURCHASES = 8;
@@ -75,7 +66,7 @@ public class RunnerTest {
 
     @Test
     public void testInsertByIndex() {
-        final int EXPECTED_INDEX = 2;
+        final int RIGHT_INDEX = 2;
         final int WRONG_INDEX = -1;
         final int WRONG_SECOND_INDEX = 50;
         final int START_INDEX = 0;
@@ -83,8 +74,8 @@ public class RunnerTest {
         Purchase purchase = new PriceDiscountPurchase("water", "120", "10", "20");
         Purchase second_purchase = new PriceDiscountPurchase("bread", "100", "20", "10");
         Purchase third_purchase = new PriceDiscountPurchase("apple", "50", "5", "10");
-        testPurchases.insertByIndex(EXPECTED_INDEX, purchase);
-        Assert.assertEquals(testPurchases.getPurchases().indexOf(purchase), EXPECTED_INDEX);
+        testPurchases.insertByIndex(RIGHT_INDEX, purchase);
+        Assert.assertEquals(testPurchases.getPurchases().indexOf(purchase), RIGHT_INDEX);
         testPurchases.insertByIndex(WRONG_INDEX, second_purchase);
         Assert.assertEquals(testPurchases.getPurchases().indexOf(second_purchase), START_INDEX);
         testPurchases.insertByIndex(WRONG_SECOND_INDEX, third_purchase);
@@ -107,7 +98,7 @@ public class RunnerTest {
     }
 
     @Test
-    public void testGetCost(){
+    public void testGetTotalCost(){
         final Byn EXPECTED_COST = new Byn(4692);
         Assert.assertEquals(EXPECTED_COST, testPurchases.getTotalCost());
     }
@@ -115,7 +106,7 @@ public class RunnerTest {
     @Test
     public void testPurchasesSort(){
         testPurchases2.getPurchases().sort(COMPARATOR);
-        testPurchases.purchaseSort();
+        testPurchases.purchasesSort();
         Assert.assertEquals(testPurchases.getPurchases(), testPurchases2.getPurchases());
     }
 
