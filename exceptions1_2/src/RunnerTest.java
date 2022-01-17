@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.PrintStream;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 import static org.junit.Assert.*;
@@ -97,9 +98,10 @@ public class RunnerTest {
     @Test
     public void testPurchasesSort() {
         testPurchases2 = new PurchasesList(IN_PATH);
-        testPurchases2.getPurchases().sort(COMPARATOR);
+        List<Purchase> listToSort =testPurchases2.getPurchases();
+        Collections.sort(listToSort, COMPARATOR);
         testPurchases.purchasesSort();
-        Assert.assertEquals(testPurchases.getPurchases(), testPurchases2.getPurchases());
+        Assert.assertEquals(testPurchases.getPurchases(), listToSort);
     }
 
     @Test

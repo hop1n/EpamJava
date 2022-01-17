@@ -8,7 +8,7 @@ public class Purchase implements Comparable<Purchase> {
     private final int number;
 
     public Purchase(Purchase p) {
-        this(p.getName(), p.getPrice(), p.getNumber());
+        this(p.name, p.price, p.number);
     }
 
     public Purchase() {

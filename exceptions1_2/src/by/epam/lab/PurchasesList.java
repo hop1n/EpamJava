@@ -16,7 +16,7 @@ public class PurchasesList {
     private boolean IS_SORTED = false;
 
     public List<Purchase> getPurchases() {
-        List<Purchase> newList = new ArrayList<Purchase>(purchases.size());
+        List<Purchase> newList = new ArrayList<>();
         for(Purchase purchase : purchases) {
             if (purchase.getClass() == Purchase.class) {
                 newList.add(new Purchase(purchase));
@@ -87,7 +87,7 @@ public class PurchasesList {
     public String printPurchases() {
         StringBuilder s = new StringBuilder();
         for (Purchase purchase : purchases) {
-            s.append(purchase);
+            s.append(purchase + "\n");
         }
         return s.toString();
     }
