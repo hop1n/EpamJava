@@ -16,11 +16,19 @@ public class PurchasesList {
     private boolean IS_SORTED = false;
 
     public List<Purchase> getPurchases() {
-        return purchases;
+        List<Purchase> newList = new ArrayList<Purchase>(purchases.size());
+        for(Purchase purchase : purchases) {
+            if (purchase.getClass() == Purchase.class) {
+                newList.add(new Purchase(purchase));
+            } else {
+                newList.add(new PriceDiscountPurchase((PriceDiscountPurchase) purchase));
+            }
+        }
+        return newList;
     }
 
     public PurchasesList() {
-        purchases = new ArrayList<Purchase>();
+        this.purchases = new ArrayList<Purchase>();
     }
 
     public PurchasesList(String fileName) {

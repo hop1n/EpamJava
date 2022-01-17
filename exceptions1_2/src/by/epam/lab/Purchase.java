@@ -1,13 +1,15 @@
 package by.epam.lab;
-import java.sql.SQLOutput;
-import java.util.Objects;
 import java.util.Scanner;
 import java.lang.*;
 
 public class Purchase implements Comparable<Purchase> {
-    private String name;
+    private final String name;
     private final Byn price;
     private final int number;
+
+    public Purchase(Purchase p) {
+        this(p.getName(), p.getPrice(), p.getNumber());
+    }
 
     public Purchase() {
         this(Constants.EMPTY_LINE, new Byn(0), 0);
@@ -24,7 +26,9 @@ public class Purchase implements Comparable<Purchase> {
     }
 
     public Purchase(Scanner sc) {
-        this(sc.next(), new Byn(sc), sc.nextInt());
+        this.name  = sc.next();
+        this.price = new Byn(sc);
+        this.number = sc.nextInt();
     }
 
     public String getName() {
