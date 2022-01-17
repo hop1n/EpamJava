@@ -20,7 +20,7 @@ public class PurchasesList {
     }
 
     public PurchasesList() {
-        this.purchases = new ArrayList<Purchase>();
+        purchases = new ArrayList<Purchase>();
     }
 
     public PurchasesList(String fileName) {
@@ -30,9 +30,7 @@ public class PurchasesList {
                 String str = sc.nextLine();
                 try {
                     purchases.add(PurchaseFactory.getPurchaseFromFactory(str));
-                } catch (InvalidNumberOfArgumentsException | InvalidNameException
-                        | NullArgumentException | CsvLineException | NonPositiveArgumentException
-                        | NegativeArgumentException e) {
+                } catch (CsvLineException e) {
                     System.err.println(e.getMessage());
                 }
 

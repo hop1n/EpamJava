@@ -14,7 +14,7 @@ public final class Byn implements Comparable<Byn> {
     public Byn(int rubs, int kops) {
         if (kops > 0 && kops < 100) {
             if (rubs > 0) {
-                throw new NumberFormatException("invalid value of rubs and kops");
+                throw new IllegalArgumentException("invalid value of rubs and kops");
             }
         }
         this.value = rubs * 100 + kops;

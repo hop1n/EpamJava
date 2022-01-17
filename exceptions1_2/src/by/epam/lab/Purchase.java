@@ -10,8 +10,7 @@ public class Purchase implements Comparable<Purchase> {
     private final int number;
 
     public Purchase() {
-        price = new Byn(0);
-        number = 0;
+        this(Constants.EMPTY_LINE, new Byn(0), 0);
     }
 
     public Purchase(String name, Byn price, int number) {
@@ -21,15 +20,11 @@ public class Purchase implements Comparable<Purchase> {
     }
 
     public Purchase(String name, String price, String number) {
-        this.name = name;
-        this.price = new Byn(Integer.parseInt(price));
-        this.number = Integer.parseInt(number);
+        this(name, new Byn(Integer.parseInt(price)), Integer.parseInt(number));
     }
 
     public Purchase(Scanner sc) {
-        this.name = sc.next();
-        this.price = new Byn(sc);
-        this.number = sc.nextInt();
+        this(sc.next(), new Byn(sc), sc.nextInt());
     }
 
     public String getName() {

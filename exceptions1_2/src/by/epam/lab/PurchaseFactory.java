@@ -21,21 +21,20 @@ public class PurchaseFactory {
         abstract Purchase getPurchase(String[] strings);
     }
 
-    public static Purchase getPurchaseFromFactory(String csvLine) throws
-            InvalidNumberOfArgumentsException, InvalidNameException, NullArgumentException, CsvLineException {
+    public static Purchase getPurchaseFromFactory(String csvLine) throws CsvLineException {
         String[] parts = csvLine.split(Constants.DELIMITER);
         Purchase returnPurchase = null;
-        if (!(parts.length >= Constants.NUMBER_OF_PURCHASE_INDEXES &&
-                parts.length <= Constants.NUMBER_OF_PURCHASE_DISCOUNT_INDEXES)) {
-            throw new InvalidNumberOfArgumentsException(csvLine + " wrong number of arguments");
-        }
-        if (!(allArgumentsNotNull(parts, csvLine))) {
-            throw new NullArgumentException(csvLine + " some argument is null");
-        }
-        if (parts[Constants.NAME_INDEX] == null || parts[Constants.NAME_INDEX].equals(Constants.EMPTY_LINE)) {
-            throw new InvalidNameException(csvLine + " Invalid name");
-        }
         try {
+            if (!(parts.length >= Constants.NUMBER_OF_PURCHASE_INDEXES &&
+                    parts.length <= Constants.NUMBER_OF_PURCHASE_DISCOUNT_INDEXES)) {
+                throw new InvalidNumberOfArgumentsException(csvLine + " wrong number of arguments");
+            }
+            if (!(allArgumentsNotNull(parts, csvLine))) {
+                throw new NullArgumentException(csvLine + " some argument is null");
+            }
+            if (parts[Constants.NAME_INDEX] == null || parts[Constants.NAME_INDEX].equals(Constants.EMPTY_LINE)) {
+                throw new InvalidNameException(csvLine + " Invalid name");
+            }
             if (!(Integer.parseInt(parts[Constants.PRICE_INDEX]) > 0)) {
                 throw new NonPositiveArgumentException(csvLine + " wrong price value");
             }
@@ -59,10 +58,14 @@ public class PurchaseFactory {
                 }
                 returnPurchase = PurchaseKind.PRICE_DISCOUNT_PURCHASE.getPurchase(parts);
             }
-        } catch (NumberFormatException e) {
+            return returnPurchase;
+        } catch (InvalidNumberOfArgumentsException | InvalidNameException
+                | NullArgumentException | NonPositiveArgumentException
+                | NegativeArgumentException e) {
+            throw new CsvLineException(e.getMessage());
+        } catch (NumberFormatException e){
             throw new CsvLineException(csvLine + " wrong type of variable number, price or discount");
         }
-        return returnPurchase;
     }
 
     private static boolean allArgumentsNotNull(String[] parts, String str) {
