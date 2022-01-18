@@ -5,19 +5,19 @@ import by.epam.lab.exceptions.NegativeArgumentException;
 import java.util.Scanner;
 
 public final class Byn implements Comparable<Byn> {
-    private int value;
+    private final int value;
 
     public Byn() {
         value = 0;
     }
 
     public Byn(int rubs, int kops) {
-        if (kops > 0 && kops < 100) {
+        if (kops > 0 && kops < Constants.BYN_VALUE_IN_KOPS) {
             if (rubs > 0) {
                 throw new IllegalArgumentException("invalid value of rubs and kops");
             }
         }
-        this.value = rubs * 100 + kops;
+        this.value = rubs * Constants.BYN_VALUE_IN_KOPS + kops;
     }
 
     public Byn(String strKops) {

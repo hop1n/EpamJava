@@ -2,6 +2,7 @@ package by.epam.lab;
 
 import by.epam.lab.exceptions.*;
 import by.epam.lab.exceptions.InvalidNumberOfArgumentsException;
+import sun.awt.CausedFocusEvent;
 
 import java.util.Scanner;
 
@@ -27,34 +28,28 @@ public class PurchaseFactory {
         try {
             if (!(parts.length >= Constants.NUMBER_OF_PURCHASE_INDEXES &&
                     parts.length <= Constants.NUMBER_OF_PURCHASE_DISCOUNT_INDEXES)) {
-                throw new InvalidNumberOfArgumentsException(csvLine + " wrong number of arguments");
+                throw new InvalidNumberOfArgumentsException(csvLine + Causes.ARGUMENTS_EXCEPTION);
             }
             if (!(allArgumentsNotNull(parts, csvLine))) {
-                throw new NullArgumentException(csvLine + " some argument is null");
+                throw new NullArgumentException(csvLine + Causes.NULL_ARG);
             }
             if (parts[Constants.NAME_INDEX] == null || parts[Constants.NAME_INDEX].equals(Constants.EMPTY_LINE)) {
-                throw new InvalidNameException(csvLine + " Invalid name");
+                throw new InvalidNameException(csvLine + Causes.WRONG_NAME);
             }
-            if (!(Integer.parseInt(parts[Constants.PRICE_INDEX]) > 0)) {
-                throw new NonPositiveArgumentException(csvLine + " wrong price value");
-            }
-            if (!(Integer.parseInt(parts[Constants.NUMBER_INDEX]) > 0)) {
-                throw new NonPositiveArgumentException(csvLine + " wrong number of purchase");
-            }
+            checkIfPositive(parts[Constants.PRICE_INDEX], Constants.NAME, csvLine);
+            checkIfPositive(parts[Constants.NUMBER_INDEX], Constants.NUMBER, csvLine);
             if (parts.length == Constants.NUMBER_OF_PURCHASE_INDEXES) {
                 if (!(Integer.parseInt(parts[Constants.PRICE_INDEX]) *
                         Integer.parseInt(parts[Constants.NUMBER_INDEX]) > 0)) {
-                    throw new NonPositiveArgumentException(csvLine + " non positive total cost of purchase");
+                    throw new NonPositiveArgumentException(csvLine + Causes.NEGATIVE_COST);
                 }
                 returnPurchase = PurchaseKind.PURCHASE.getPurchase(parts);
 
             } else {
-                if (!(Integer.parseInt(parts[Constants.DISCOUNT_INDEX]) > 0)) {
-                    throw new NonPositiveArgumentException(csvLine + " wrong discount value");
-                }
+                checkIfPositive(parts[Constants.DISCOUNT_INDEX], Constants.DISCOUNT, csvLine);
                 if (!((Integer.parseInt(parts[Constants.PRICE_INDEX]) - Integer.parseInt(parts[Constants.DISCOUNT_INDEX])) *
                         Integer.parseInt(parts[Constants.NUMBER_INDEX]) > 0)) {
-                    throw new NonPositiveArgumentException(csvLine + " non positive total cost of purchase");
+                    throw new NonPositiveArgumentException(csvLine + Causes.NEGATIVE_COST);
                 }
                 returnPurchase = PurchaseKind.PRICE_DISCOUNT_PURCHASE.getPurchase(parts);
             }
@@ -62,9 +57,15 @@ public class PurchaseFactory {
         } catch (InvalidNumberOfArgumentsException | InvalidNameException
                 | NullArgumentException | NonPositiveArgumentException
                 | NegativeArgumentException e) {
-            throw new CsvLineException(e.getMessage());
+            throw new CsvLineException(csvLine + e.getMessage());
         } catch (NumberFormatException e){
-            throw new CsvLineException(csvLine + " wrong type of variable number, price or discount");
+            throw new CsvLineException(csvLine + Causes.CSV_EXCEPTION);
+        }
+    }
+
+    private static void checkIfPositive(String element, String fieldName, String csvLine){
+        if (!(Integer.parseInt(element)>0)){
+            throw new NonPositiveArgumentException(csvLine + Causes.WRONG + fieldName);
         }
     }
 
