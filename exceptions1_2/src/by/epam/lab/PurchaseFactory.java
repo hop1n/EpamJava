@@ -28,28 +28,28 @@ public class PurchaseFactory {
         try {
             if (!(parts.length >= Constants.NUMBER_OF_PURCHASE_INDEXES &&
                     parts.length <= Constants.NUMBER_OF_PURCHASE_DISCOUNT_INDEXES)) {
-                throw new InvalidNumberOfArgumentsException(csvLine + Causes.ARGUMENTS_EXCEPTION);
+                throw new InvalidNumberOfArgumentsException(Causes.ARGUMENTS_EXCEPTION);
             }
             if (!(allArgumentsNotNull(parts, csvLine))) {
-                throw new NullArgumentException(csvLine + Causes.NULL_ARG);
+                throw new NullArgumentException(Causes.NULL_ARG);
             }
             if (parts[Constants.NAME_INDEX] == null || parts[Constants.NAME_INDEX].equals(Constants.EMPTY_LINE)) {
-                throw new InvalidNameException(csvLine + Causes.WRONG_NAME);
+                throw new InvalidNameException(Causes.WRONG_NAME);
             }
-            checkIfPositive(parts[Constants.PRICE_INDEX], Constants.NAME, csvLine);
-            checkIfPositive(parts[Constants.NUMBER_INDEX], Constants.NUMBER, csvLine);
+            checkIfPositive(parts[Constants.PRICE_INDEX], Constants.PRICE);
+            checkIfPositive(parts[Constants.NUMBER_INDEX], Constants.NUMBER);
             if (parts.length == Constants.NUMBER_OF_PURCHASE_INDEXES) {
                 if (!(Integer.parseInt(parts[Constants.PRICE_INDEX]) *
                         Integer.parseInt(parts[Constants.NUMBER_INDEX]) > 0)) {
-                    throw new NonPositiveArgumentException(csvLine + Causes.NEGATIVE_COST);
+                    throw new NonPositiveArgumentException(Causes.NEGATIVE_COST);
                 }
                 returnPurchase = PurchaseKind.PURCHASE.getPurchase(parts);
 
             } else {
-                checkIfPositive(parts[Constants.DISCOUNT_INDEX], Constants.DISCOUNT, csvLine);
+                checkIfPositive(parts[Constants.DISCOUNT_INDEX], Constants.DISCOUNT);
                 if (!((Integer.parseInt(parts[Constants.PRICE_INDEX]) - Integer.parseInt(parts[Constants.DISCOUNT_INDEX])) *
                         Integer.parseInt(parts[Constants.NUMBER_INDEX]) > 0)) {
-                    throw new NonPositiveArgumentException(csvLine + Causes.NEGATIVE_COST);
+                    throw new NonPositiveArgumentException(Causes.NEGATIVE_COST);
                 }
                 returnPurchase = PurchaseKind.PRICE_DISCOUNT_PURCHASE.getPurchase(parts);
             }
@@ -63,9 +63,9 @@ public class PurchaseFactory {
         }
     }
 
-    private static void checkIfPositive(String element, String fieldName, String csvLine){
+    private static void checkIfPositive(String element, String fieldName){
         if (!(Integer.parseInt(element)>0)){
-            throw new NonPositiveArgumentException(csvLine + Causes.WRONG + fieldName);
+            throw new NonPositiveArgumentException(Causes.WRONG + fieldName);
         }
     }
 

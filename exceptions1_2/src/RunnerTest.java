@@ -38,16 +38,16 @@ public class RunnerTest {
     @Test
     public void testPurchasesListConstructor() {
         final int EXPECTED_SIZE_OF_PURCHASES = 8;
-        String EXPECTED_OUT = "candy;0;2 wrong price value\r\n" +
-                "candy;-100;-2 wrong price value\r\n" +
-                "candy;100;2;0 wrong discount value\r\n" +
+        String EXPECTED_OUT = "candy;0;2 wrong price\r\n" +
+                "candy;-100;-2 wrong price\r\n" +
+                "candy;100;2;0 wrong discount\r\n" +
                 "candy wrong number of arguments\r\n" +
                 ";100;2 some argument is null\r\n" +
                 "beer;;1 some argument is null\r\n" +
                 "candy;100;2;500 non positive total cost of purchase\r\n" +
                 "candy;100;2;100 non positive total cost of purchase\r\n" +
                 "water;15;4;0.1;cold wrong number of arguments\r\n" +
-                "water;70;5;-1 wrong discount value\r\n" +
+                "water;70;5;-1 wrong discount\r\n" +
                 ";; wrong number of arguments\r\n" +
                 "water;ok;4 wrong type of variable number, price or discount\r\n" +
                 "water;70;4;0.5 wrong type of variable number, price or discount\r\n" +
