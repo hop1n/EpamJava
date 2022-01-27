@@ -29,7 +29,8 @@ public class RunnerTest {
     @Before
     public void setUpStreams() {
         System.setErr(new PrintStream(errContent));
-        testPurchases = new PurchasesList(IN_PATH);
+
+        testPurchases = new PurchasesList(IN_PATH, COMPARATOR);
     }
 
     @After
@@ -46,8 +47,8 @@ public class RunnerTest {
                 "candy wrong number of arguments\r\n" +
                 ";100;2 Invalid name\r\n" +
                 "beer;;1 wrong format of variable number, price or discount\r\n" +
-                "candy;100;2;500 non positive total cost of purchase\r\n" +
-                "candy;100;2;100 non positive total cost of purchase\r\n" +
+                "candy;100;2;500 wrong total cost\r\n" +
+                "candy;100;2;100 wrong total cost\r\n" +
                 "water;15;4;0.1;cold wrong number of arguments\r\n" +
                 "water;70;5;-1 wrong discount\r\n" +
                 ";; wrong number of arguments\r\n" +
@@ -102,7 +103,7 @@ public class RunnerTest {
 
     @Test
     public void testPurchasesSort() throws InvalidNameException {
-        testPurchases2 = new PurchasesList(IN_PATH);
+        testPurchases2 = new PurchasesList(IN_PATH, COMPARATOR);
         List<Purchase> listToSort =testPurchases2.getPurchases();
         Collections.sort(listToSort, COMPARATOR);
         testPurchases.purchasesSort();
@@ -111,7 +112,7 @@ public class RunnerTest {
 
     @Test
     public void testSearchAnElement() throws InvalidNameException, InvalidNumberOfArgumentsException {
-        testPurchases2 = new PurchasesList(IN_PATH);
+        testPurchases2 = new PurchasesList(IN_PATH, COMPARATOR);
         String[] requiredPurchaseData = {"meat", "1100", "2", "80"};
         Purchase requiredPurchase = new PriceDiscountPurchase(requiredPurchaseData);
         testPurchases.purchasesSort();

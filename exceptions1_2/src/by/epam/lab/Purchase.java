@@ -37,7 +37,8 @@ public class Purchase implements Comparable<Purchase> {
             this.price = new Byn(Integer.parseInt(strings[Constants.PRICE_INDEX]));
             CheckIfPositive.check(strings[Constants.NUMBER_INDEX], Constants.NUMBER);
             this.number = Integer.parseInt(strings[Constants.NUMBER_INDEX]);
-        } }
+        }
+    }
 
     public String getName() {
         return name;
@@ -71,9 +72,6 @@ public class Purchase implements Comparable<Purchase> {
         if (!(o instanceof Purchase)) return false;
         Purchase purchase = (Purchase) o;
         return name.equals(purchase.name) && price.equals(purchase.price);
-    }
-    public String getTableOfPurchases(){
-        return name + Constants.DELIMITER + price + Constants.DELIMITER + number + Constants.DASH + getCost();
     }
 
     @Override

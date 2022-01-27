@@ -41,31 +41,5 @@ public class PurchaseFactory {
             throw new CsvLineException(csvLine + Causes.CSV_EXCEPTION);
         }
     }
-
-    private static boolean allArgumentsNotNull(String[] parts, String str) {
-        boolean b = true;
-        for (int i = 0; i < parts.length; i++) {
-            if (parts[i].length() == 0) {
-                b = false;
-                String output;
-                switch (i) {
-                    case Constants.NAME_INDEX:
-                        output = str + Constants.EMPTY_NAME;
-                        break;
-                    case Constants.PRICE_INDEX:
-                        output = str + Constants.EMPTY_PRICE;
-                        break;
-                    case Constants.NUMBER_INDEX:
-                        output = str + Constants.EMPTY_NUMBER;
-                        break;
-                    case Constants.DISCOUNT_INDEX:
-                        output = str + Constants.EMPTY_DISCOUNT;
-                        break;
-                }
-                break;
-            }
-        }
-        return b;
-    }
 }
 

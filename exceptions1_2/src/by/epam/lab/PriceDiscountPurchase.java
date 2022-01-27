@@ -17,6 +17,7 @@ public final class PriceDiscountPurchase extends Purchase {
         super(strings);
         CheckIfPositive.check(strings[Constants.DISCOUNT_INDEX], Constants.DISCOUNT);
         this.discount = new Byn(Integer.parseInt(strings[Constants.DISCOUNT_INDEX]));
+        CheckIfPositive.check(getCost(), Constants.TOTAL_COST);
     }
 
     @Override

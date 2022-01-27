@@ -5,14 +5,11 @@ import by.epam.lab.exceptions.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class PurchasesList {
     private List<Purchase> purchases;
-    private final PurchaseComparator COMPARATOR = new PurchaseComparator();
+    private Comparator<Purchase> comparator;
     private boolean IS_SORTED = false;
 
     public List<Purchase> getPurchases() throws InvalidNameException {
@@ -31,8 +28,9 @@ public class PurchasesList {
         this.purchases = new ArrayList<Purchase>();
     }
 
-    public PurchasesList(String fileName) {
+    public PurchasesList(String fileName, Comparator<Purchase> comparator) {
         this();
+        this.comparator = comparator;
         try (Scanner sc = new Scanner(new FileReader(fileName))) {
             while (sc.hasNextLine()) {
                 String str = sc.nextLine();
@@ -94,13 +92,13 @@ public class PurchasesList {
 
     public void purchasesSort() {
         IS_SORTED = true;
-        Collections.sort(purchases, COMPARATOR);
+        Collections.sort(purchases, comparator);
     }
 
     public int searchAnElement(Purchase purchase) {
         if (!IS_SORTED) {
-            Collections.sort(purchases, COMPARATOR);
+            Collections.sort(purchases, comparator);
         }
-        return Collections.binarySearch(purchases, purchase, COMPARATOR);
+        return Collections.binarySearch(purchases, purchase, comparator);
     }
 }

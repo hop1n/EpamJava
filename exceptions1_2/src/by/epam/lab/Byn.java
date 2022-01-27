@@ -25,9 +25,9 @@ public final class Byn implements Comparable<Byn> {
     }
 
     public Byn(int value) {
-        if (value < 0) {
-            throw new NonPositiveArgumentException("wrong value for Byn: " + value);
-        }
+//        if (value < 0) {
+//            throw new NegativeArgumentException("wrong value for Byn: " + value);
+//        }
         this.value = value;
     }
 
