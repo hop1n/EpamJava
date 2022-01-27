@@ -40,6 +40,10 @@ public class Purchase implements Comparable<Purchase> {
         }
     }
 
+    public Purchase getPurchaseClone(){
+        return new Purchase(this.name, new Byn(price), number);
+    }
+
     public String getName() {
         return name;
     }

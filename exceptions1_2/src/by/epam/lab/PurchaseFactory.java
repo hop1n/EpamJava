@@ -10,8 +10,7 @@ public class PurchaseFactory {
     private enum PurchaseKind {
         PURCHASE {
             Purchase getPurchase(String[] strings) throws InvalidNameException, InvalidNumberOfArgumentsException {
-                return new Purchase(strings); // тут и ниже левчук говорит использовать вместо конструктора с 4-мя стрингами
-                                              // я переделал и у меня не работает инициализация в тестах
+                return new Purchase(strings);
             }
         },
         PRICE_DISCOUNT_PURCHASE {

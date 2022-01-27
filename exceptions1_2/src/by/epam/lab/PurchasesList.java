@@ -10,16 +10,12 @@ import java.util.*;
 public class PurchasesList {
     private List<Purchase> purchases;
     private Comparator<Purchase> comparator;
-    private boolean IS_SORTED = false;
+    private boolean isSorted = false;
 
     public List<Purchase> getPurchases() throws InvalidNameException {
         List<Purchase> newList = new ArrayList<>();
         for(Purchase purchase : purchases) {
-            if (purchase.getClass() == Purchase.class) {
-                newList.add(new Purchase(purchase));
-            } else {
-                newList.add(new PriceDiscountPurchase((PriceDiscountPurchase) purchase));
-            }
+                newList.add(purchase.getPurchaseClone());
         }
         return newList;
     }
@@ -58,7 +54,7 @@ public class PurchasesList {
                 purchases.add(0, insertPurchase);
             }
         }
-        IS_SORTED = false;
+        isSorted = false;
     }
 
     public void deleteByIndexes(int startIndex, int endIndex) {
@@ -91,12 +87,12 @@ public class PurchasesList {
     }
 
     public void purchasesSort() {
-        IS_SORTED = true;
+        isSorted = true;
         Collections.sort(purchases, comparator);
     }
 
     public int searchAnElement(Purchase purchase) {
-        if (!IS_SORTED) {
+        if (!isSorted) {
             Collections.sort(purchases, comparator);
         }
         return Collections.binarySearch(purchases, purchase, comparator);

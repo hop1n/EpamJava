@@ -20,6 +20,16 @@ public final class PriceDiscountPurchase extends Purchase {
         CheckIfPositive.check(getCost(), Constants.TOTAL_COST);
     }
 
+    public PriceDiscountPurchase(String name, Byn price, int number, Byn discount){
+        super(name, price, number);
+        this.discount = discount;
+    }
+
+    @Override
+    public Purchase getPurchaseClone(){
+        return new PriceDiscountPurchase(getName(), new Byn(getPrice()), getNumber(), new Byn(discount));
+    }
+
     @Override
     public Byn getCost() {
         return getPrice().sub(discount).mul(getNumber());
