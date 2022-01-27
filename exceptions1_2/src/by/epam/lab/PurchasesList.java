@@ -14,8 +14,8 @@ public class PurchasesList {
 
     public List<Purchase> getPurchases() throws InvalidNameException {
         List<Purchase> newList = new ArrayList<>();
-        for(Purchase purchase : purchases) {
-                newList.add(purchase.getPurchaseClone());
+        for (Purchase purchase : purchases) {
+            newList.add(purchase.getPurchaseClone());
         }
         return newList;
     }
@@ -64,9 +64,7 @@ public class PurchasesList {
         if (endIndex > purchases.size() - 1 || endIndex < 0) {
             System.err.println(Constants.WRONG_INDEX + endIndex);
         } else {
-            for (int i = startIndex; i <= endIndex; i++) {
-                purchases.remove(startIndex);
-            }
+            purchases.removeAll(purchases.subList(startIndex, endIndex+1));
         }
     }
 

@@ -87,7 +87,7 @@ public class RunnerTest {
                 testPurchases.getPurchases().get(0),
                 testPurchases.getPurchases().get(1)
         };
-        testPurchases.deleteByIndexes(0, 1);
+        testPurchases.deleteByIndexes(0, 2);
         Assert.assertFalse(testPurchases.getPurchases().contains(requiredPurchases[0]));
         Assert.assertFalse(testPurchases.getPurchases().contains(requiredPurchases[1]));
         testPurchases.deleteByIndexes(-5, -7);
@@ -104,7 +104,7 @@ public class RunnerTest {
     @Test
     public void testPurchasesSort() throws InvalidNameException {
         testPurchases2 = new PurchasesList(IN_PATH, COMPARATOR);
-        List<Purchase> listToSort =testPurchases2.getPurchases();
+        List<Purchase> listToSort = testPurchases2.getPurchases();
         Collections.sort(listToSort, COMPARATOR);
         testPurchases.purchasesSort();
         Assert.assertEquals(testPurchases.getPurchases(), listToSort);

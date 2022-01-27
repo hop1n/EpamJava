@@ -1,4 +1,5 @@
 package by.epam.lab;
+
 import by.epam.lab.exceptions.InvalidNameException;
 import by.epam.lab.exceptions.InvalidNumberOfArgumentsException;
 
@@ -40,7 +41,7 @@ public class Purchase implements Comparable<Purchase> {
         }
     }
 
-    public Purchase getPurchaseClone(){
+    public Purchase getPurchaseClone() {
         return new Purchase(this.name, new Byn(price), number);
     }
 
