@@ -1,6 +1,7 @@
 package by.epam.lab;
 
 import by.epam.lab.exceptions.NegativeArgumentException;
+import by.epam.lab.exceptions.NonPositiveArgumentException;
 
 import java.util.Scanner;
 
@@ -25,7 +26,7 @@ public final class Byn implements Comparable<Byn> {
 
     public Byn(int value) {
         if (value < 0) {
-            throw new NegativeArgumentException("wrong value for Byn: " + value);
+            throw new NonPositiveArgumentException("wrong value for Byn: " + value);
         }
         this.value = value;
     }

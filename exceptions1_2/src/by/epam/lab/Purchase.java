@@ -37,9 +37,7 @@ public class Purchase implements Comparable<Purchase> {
             this.price = new Byn(Integer.parseInt(strings[Constants.PRICE_INDEX]));
             CheckIfPositive.check(strings[Constants.NUMBER_INDEX], Constants.NUMBER);
             this.number = Integer.parseInt(strings[Constants.NUMBER_INDEX]);
-        }
-        CheckIfPositive.check(getCost(), Constants.TOTAL_COST);
-    }
+        } }
 
     public String getName() {
         return name;

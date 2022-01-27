@@ -1,5 +1,6 @@
 package by.epam.lab;
 import by.epam.lab.exceptions.InvalidNameException;
+import by.epam.lab.exceptions.InvalidNumberOfArgumentsException;
 
 public final class PriceDiscountPurchase extends Purchase {
     private final Byn discount;
@@ -8,17 +9,12 @@ public final class PriceDiscountPurchase extends Purchase {
         return discount;
     }
 
-//    public PriceDiscountPurchase(String[] strings) throws InvalidNameException {
-//        this(strings[Constants.NAME_INDEX], strings[Constants.PRICE_INDEX],
-//                strings[Constants.NUMBER_INDEX], strings[Constants.DISCOUNT_INDEX]);
-//    }
-
     public PriceDiscountPurchase(PriceDiscountPurchase p) throws InvalidNameException {
         super(p.getName(), p.getPrice(), p.getNumber());
         discount = p.discount;
     }
-    public PriceDiscountPurchase(String[] strings) throws InvalidNameException {
-        super();
+    public PriceDiscountPurchase(String[] strings) throws InvalidNameException, InvalidNumberOfArgumentsException {
+        super(strings);
         CheckIfPositive.check(strings[Constants.DISCOUNT_INDEX], Constants.DISCOUNT);
         this.discount = new Byn(Integer.parseInt(strings[Constants.DISCOUNT_INDEX]));
     }

@@ -1,6 +1,7 @@
 import by.epam.lab.*;
 import by.epam.lab.comparators.PurchaseComparator;
 import by.epam.lab.exceptions.InvalidNameException;
+import by.epam.lab.exceptions.InvalidNumberOfArgumentsException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -58,7 +59,7 @@ public class RunnerTest {
     }
 
     @Test
-    public void testInsertByIndex() throws InvalidNameException {
+    public void testInsertByIndex() throws InvalidNameException, InvalidNumberOfArgumentsException {
         final int RIGHT_INDEX = 2;
         final int WRONG_INDEX = -1;
         final int WRONG_SECOND_INDEX = 50;
@@ -109,7 +110,7 @@ public class RunnerTest {
     }
 
     @Test
-    public void testSearchAnElement() throws InvalidNameException {
+    public void testSearchAnElement() throws InvalidNameException, InvalidNumberOfArgumentsException {
         testPurchases2 = new PurchasesList(IN_PATH);
         String[] requiredPurchaseData = {"meat", "1100", "2", "80"};
         Purchase requiredPurchase = new PriceDiscountPurchase(requiredPurchaseData);

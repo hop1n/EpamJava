@@ -15,7 +15,7 @@ public class PurchaseFactory {
             }
         },
         PRICE_DISCOUNT_PURCHASE {
-            Purchase getPurchase(String[] strings) throws InvalidNameException {
+            Purchase getPurchase(String[] strings) throws InvalidNameException, InvalidNumberOfArgumentsException {
                 return new PriceDiscountPurchase(strings);
             }
         };
