@@ -15,7 +15,7 @@ public class PurchasesList {
     private final PurchaseComparator COMPARATOR = new PurchaseComparator();
     private boolean IS_SORTED = false;
 
-    public List<Purchase> getPurchases() {
+    public List<Purchase> getPurchases() throws InvalidNameException {
         List<Purchase> newList = new ArrayList<>();
         for(Purchase purchase : purchases) {
             if (purchase.getClass() == Purchase.class) {

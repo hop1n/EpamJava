@@ -23,4 +23,6 @@ public class Constants {
     public final static String PRICE = " price";
     public final static String NUMBER = " number";
     public final static String DISCOUNT = " discount";
+    public final static String TOTAL_COST = " total cost";
+    public final static int ZERO = 0;
 }

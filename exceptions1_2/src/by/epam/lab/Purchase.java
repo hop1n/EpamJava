@@ -1,5 +1,7 @@
 package by.epam.lab;
-import java.util.Scanner;
+import by.epam.lab.exceptions.InvalidNameException;
+import by.epam.lab.exceptions.InvalidNumberOfArgumentsException;
+
 import java.lang.*;
 
 public class Purchase implements Comparable<Purchase> {
@@ -21,14 +23,22 @@ public class Purchase implements Comparable<Purchase> {
         this.number = number;
     }
 
-    public Purchase(String name, String price, String number) {
-        this(name, new Byn(Integer.parseInt(price)), Integer.parseInt(number));
-    }
 
-    public Purchase(Scanner sc) {
-        this.name  = sc.next();
-        this.price = new Byn(sc);
-        this.number = sc.nextInt();
+    public Purchase(String[] strings) throws InvalidNameException, InvalidNumberOfArgumentsException {
+        if (!(strings.length >= Constants.NUMBER_OF_PURCHASE_INDEXES &&
+                strings.length <= Constants.NUMBER_OF_PURCHASE_DISCOUNT_INDEXES)) {
+            throw new InvalidNumberOfArgumentsException(Causes.ARGUMENTS_EXCEPTION);
+        }
+        if (strings[Constants.NAME_INDEX] == null || strings[Constants.NAME_INDEX].equals(Constants.EMPTY_LINE)) {
+            throw new InvalidNameException(Causes.WRONG_NAME);
+        } else {
+            this.name = strings[Constants.NAME_INDEX];
+            CheckIfPositive.check(strings[Constants.PRICE_INDEX], Constants.PRICE);
+            this.price = new Byn(Integer.parseInt(strings[Constants.PRICE_INDEX]));
+            CheckIfPositive.check(strings[Constants.NUMBER_INDEX], Constants.NUMBER);
+            this.number = Integer.parseInt(strings[Constants.NUMBER_INDEX]);
+        }
+        CheckIfPositive.check(getCost(), Constants.TOTAL_COST);
     }
 
     public String getName() {
@@ -73,3 +83,4 @@ public class Purchase implements Comparable<Purchase> {
         return purchase.getCost().compareTo(getCost());
     }
 }
+

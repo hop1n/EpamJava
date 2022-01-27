@@ -12,12 +12,11 @@ public final class Byn implements Comparable<Byn> {
     }
 
     public Byn(int rubs, int kops) {
-        if (kops > 0 && kops < Constants.BYN_VALUE_IN_KOPS) {
-            if (rubs > 0) {
-                throw new IllegalArgumentException("invalid value of rubs and kops");
-            }
+        if (kops > 0 && kops < Constants.BYN_VALUE_IN_KOPS && rubs > 0) {
+            this.value = rubs * Constants.BYN_VALUE_IN_KOPS + kops;
+        } else {
+            throw new IllegalArgumentException("invalid value of rubs and kops");
         }
-        this.value = rubs * Constants.BYN_VALUE_IN_KOPS + kops;
     }
 
     public Byn(String strKops) {

@@ -1,5 +1,6 @@
 import by.epam.lab.*;
 import by.epam.lab.comparators.PurchaseComparator;
+import by.epam.lab.exceptions.InvalidNameException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -36,36 +37,39 @@ public class RunnerTest {
     }
 
     @Test
-    public void testPurchasesListConstructor() {
+    public void testPurchasesListConstructor() throws InvalidNameException {
         final int EXPECTED_SIZE_OF_PURCHASES = 8;
         String EXPECTED_OUT = "candy;0;2 wrong price\r\n" +
                 "candy;-100;-2 wrong price\r\n" +
                 "candy;100;2;0 wrong discount\r\n" +
                 "candy wrong number of arguments\r\n" +
-                ";100;2 some argument is null\r\n" +
-                "beer;;1 some argument is null\r\n" +
+                ";100;2 Invalid name\r\n" +
+                "beer;;1 wrong format of variable number, price or discount\r\n" +
                 "candy;100;2;500 non positive total cost of purchase\r\n" +
                 "candy;100;2;100 non positive total cost of purchase\r\n" +
                 "water;15;4;0.1;cold wrong number of arguments\r\n" +
                 "water;70;5;-1 wrong discount\r\n" +
                 ";; wrong number of arguments\r\n" +
-                "water;ok;4 wrong type of variable number, price or discount\r\n" +
-                "water;70;4;0.5 wrong type of variable number, price or discount\r\n" +
-                "water;70.5;1 wrong type of variable number, price or discount\r\n";
+                "water;ok;4 wrong format of variable number, price or discount\r\n" +
+                "water;70;4;0.5 wrong format of variable number, price or discount\r\n" +
+                "water;70.5;1 wrong format of variable number, price or discount\r\n";
         Assert.assertEquals(EXPECTED_OUT, errContent.toString());
         Assert.assertEquals(testPurchases.getPurchases().size(), EXPECTED_SIZE_OF_PURCHASES);
     }
 
     @Test
-    public void testInsertByIndex() {
+    public void testInsertByIndex() throws InvalidNameException {
         final int RIGHT_INDEX = 2;
         final int WRONG_INDEX = -1;
         final int WRONG_SECOND_INDEX = 50;
         final int START_INDEX = 0;
         int lastIndex;
-        Purchase purchase = new PriceDiscountPurchase("water", "120", "10", "20");
-        Purchase second_purchase = new PriceDiscountPurchase("bread", "100", "20", "10");
-        Purchase third_purchase = new PriceDiscountPurchase("apple", "50", "5", "10");
+        String[] firstPurchaseData = {"water", "120", "10", "20"};
+        String[] secondPurchaseData = {"bread", "100", "20", "10"};
+        String[] thirdPurchaseData = {"apple", "50", "5", "10"};
+        Purchase purchase = new PriceDiscountPurchase(firstPurchaseData); // задать вопрос богдану который я оставил в коментах в фактори
+        Purchase second_purchase = new PriceDiscountPurchase(secondPurchaseData);
+        Purchase third_purchase = new PriceDiscountPurchase(thirdPurchaseData);
         testPurchases.insertByIndex(RIGHT_INDEX, purchase);
         Assert.assertEquals(testPurchases.getPurchases().indexOf(purchase), RIGHT_INDEX);
         testPurchases.insertByIndex(WRONG_INDEX, second_purchase);
@@ -76,7 +80,7 @@ public class RunnerTest {
     }
 
     @Test
-    public void testDeleteByIndexes() {
+    public void testDeleteByIndexes() throws InvalidNameException {
         Purchase[] requiredPurchases = {
                 testPurchases.getPurchases().get(0),
                 testPurchases.getPurchases().get(1)
@@ -96,7 +100,7 @@ public class RunnerTest {
     }
 
     @Test
-    public void testPurchasesSort() {
+    public void testPurchasesSort() throws InvalidNameException {
         testPurchases2 = new PurchasesList(IN_PATH);
         List<Purchase> listToSort =testPurchases2.getPurchases();
         Collections.sort(listToSort, COMPARATOR);
@@ -105,9 +109,10 @@ public class RunnerTest {
     }
 
     @Test
-    public void testSearchAnElement() {
+    public void testSearchAnElement() throws InvalidNameException {
         testPurchases2 = new PurchasesList(IN_PATH);
-        Purchase requiredPurchase = new PriceDiscountPurchase("meat", "1100", "2", "80");
+        String[] requiredPurchaseData = {"meat", "1100", "2", "80"};
+        Purchase requiredPurchase = new PriceDiscountPurchase(requiredPurchaseData);
         testPurchases.purchasesSort();
         int index = Collections.binarySearch(testPurchases.getPurchases(), requiredPurchase, COMPARATOR);
         int index2 = testPurchases2.searchAnElement(requiredPurchase);

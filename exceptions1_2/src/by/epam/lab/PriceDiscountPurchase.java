@@ -1,6 +1,5 @@
 package by.epam.lab;
-
-import java.util.Scanner;
+import by.epam.lab.exceptions.InvalidNameException;
 
 public final class PriceDiscountPurchase extends Purchase {
     private final Byn discount;
@@ -9,13 +8,19 @@ public final class PriceDiscountPurchase extends Purchase {
         return discount;
     }
 
-    public PriceDiscountPurchase(PriceDiscountPurchase p) {
+//    public PriceDiscountPurchase(String[] strings) throws InvalidNameException {
+//        this(strings[Constants.NAME_INDEX], strings[Constants.PRICE_INDEX],
+//                strings[Constants.NUMBER_INDEX], strings[Constants.DISCOUNT_INDEX]);
+//    }
+
+    public PriceDiscountPurchase(PriceDiscountPurchase p) throws InvalidNameException {
         super(p.getName(), p.getPrice(), p.getNumber());
         discount = p.discount;
     }
-    public PriceDiscountPurchase(String name, String price, String number, String discount) {
-        super(name, price, number);
-        this.discount = new Byn(Integer.parseInt(discount));
+    public PriceDiscountPurchase(String[] strings) throws InvalidNameException {
+        super();
+        CheckIfPositive.check(strings[Constants.DISCOUNT_INDEX], Constants.DISCOUNT);
+        this.discount = new Byn(Integer.parseInt(strings[Constants.DISCOUNT_INDEX]));
     }
 
     @Override
