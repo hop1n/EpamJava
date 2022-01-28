@@ -30,7 +30,7 @@ public class Purchase implements Comparable<Purchase> {
                 strings.length <= Constants.NUMBER_OF_PURCHASE_DISCOUNT_INDEXES)) {
             throw new InvalidNumberOfArgumentsException(Causes.ARGUMENTS_EXCEPTION);
         }
-        if (strings[Constants.NAME_INDEX] == null || strings[Constants.NAME_INDEX].equals(Constants.EMPTY_LINE)) {
+        if (strings[Constants.NAME_INDEX].equals(Constants.EMPTY_LINE)) {
             throw new InvalidNameException(Causes.WRONG_NAME);
         } else {
             this.name = strings[Constants.NAME_INDEX];

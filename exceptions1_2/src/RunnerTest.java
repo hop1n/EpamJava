@@ -69,7 +69,7 @@ public class RunnerTest {
         String[] firstPurchaseData = {"water", "120", "10", "20"};
         String[] secondPurchaseData = {"bread", "100", "20", "10"};
         String[] thirdPurchaseData = {"apple", "50", "5", "10"};
-        Purchase purchase = new PriceDiscountPurchase(firstPurchaseData); // задать вопрос богдану который я оставил в коментах в фактори
+        Purchase purchase = new PriceDiscountPurchase(firstPurchaseData);
         Purchase second_purchase = new PriceDiscountPurchase(secondPurchaseData);
         Purchase third_purchase = new PriceDiscountPurchase(thirdPurchaseData);
         testPurchases.insertByIndex(RIGHT_INDEX, purchase);
