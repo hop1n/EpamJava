@@ -10,21 +10,22 @@ public final class PriceDiscountPurchase extends Purchase {
         return discount;
     }
 
-    public PriceDiscountPurchase(PriceDiscountPurchase p) throws InvalidNameException {
+    public PriceDiscountPurchase(PriceDiscountPurchase p) {
         super(p.getName(), p.getPrice(), p.getNumber());
         discount = p.discount;
     }
 
-    public PriceDiscountPurchase(String[] strings) throws InvalidNameException, InvalidNumberOfArgumentsException {
-        super(strings);
-        CheckIfPositive.check(strings[Constants.DISCOUNT_INDEX], Constants.DISCOUNT);
-        this.discount = new Byn(Integer.parseInt(strings[Constants.DISCOUNT_INDEX]));
-        CheckIfPositive.check(getCost(), Constants.TOTAL_COST);
+    public PriceDiscountPurchase(String[] strings) {
+        this(strings[Constants.NAME_INDEX], new Byn(Integer.parseInt(strings[Constants.PRICE_INDEX])),
+                Integer.parseInt(strings[Constants.NUMBER_INDEX]),
+                new Byn(Integer.parseInt(strings[Constants.DISCOUNT_INDEX])));
     }
 
     public PriceDiscountPurchase(String name, Byn price, int number, Byn discount) {
         super(name, price, number);
+        CheckIfPositive.check(discount, Constants.DISCOUNT);
         this.discount = discount;
+        CheckIfPositive.check(getCost(), Constants.TOTAL_COST);
     }
 
     @Override

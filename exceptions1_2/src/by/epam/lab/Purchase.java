@@ -15,30 +15,25 @@ public class Purchase implements Comparable<Purchase> {
     }
 
     public Purchase() {
-        this(Constants.EMPTY_LINE, new Byn(0), 0);
+        throw new IllegalStateException("Purchase is empty");
     }
 
     public Purchase(String name, Byn price, int number) {
-        this.name = name;
+        if (name.equals(Constants.EMPTY_LINE)) {
+            throw new InvalidNameException(Causes.WRONG_NAME);
+        } else {
+            this.name = name;
+        }
+        CheckIfPositive.check(price, Constants.PRICE);
         this.price = price;
+        CheckIfPositive.check(number, Constants.NUMBER);
         this.number = number;
     }
 
 
     public Purchase(String[] strings) throws InvalidNameException, InvalidNumberOfArgumentsException {
-        if (!(strings.length >= Constants.NUMBER_OF_PURCHASE_INDEXES &&
-                strings.length <= Constants.NUMBER_OF_PURCHASE_DISCOUNT_INDEXES)) {
-            throw new InvalidNumberOfArgumentsException(Causes.ARGUMENTS_EXCEPTION);
-        }
-        if (strings[Constants.NAME_INDEX].equals(Constants.EMPTY_LINE)) {
-            throw new InvalidNameException(Causes.WRONG_NAME);
-        } else {
-            this.name = strings[Constants.NAME_INDEX];
-            CheckIfPositive.check(strings[Constants.PRICE_INDEX], Constants.PRICE);
-            this.price = new Byn(Integer.parseInt(strings[Constants.PRICE_INDEX]));
-            CheckIfPositive.check(strings[Constants.NUMBER_INDEX], Constants.NUMBER);
-            this.number = Integer.parseInt(strings[Constants.NUMBER_INDEX]);
-        }
+        this(strings[Constants.NAME_INDEX], new Byn(Integer.parseInt(strings[Constants.PRICE_INDEX])),
+                Integer.parseInt(strings[Constants.NUMBER_INDEX]));
     }
 
     public Purchase getPurchaseClone() {

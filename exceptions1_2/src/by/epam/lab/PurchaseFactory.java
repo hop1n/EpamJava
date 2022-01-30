@@ -26,6 +26,10 @@ public class PurchaseFactory {
         String[] parts = csvLine.split(Constants.DELIMITER);
         Purchase returnPurchase;
         try {
+            if (!(parts.length >= Constants.NUMBER_OF_PURCHASE_INDEXES &&
+                    parts.length <= Constants.NUMBER_OF_PURCHASE_DISCOUNT_INDEXES)) {
+                throw new InvalidNumberOfArgumentsException(Causes.ARGUMENTS_EXCEPTION);
+            }
             if (parts.length == Constants.NUMBER_OF_PURCHASE_INDEXES) {
                 returnPurchase = PurchaseKind.PURCHASE.getPurchase(parts);
             } else {

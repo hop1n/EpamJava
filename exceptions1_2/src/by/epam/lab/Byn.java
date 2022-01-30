@@ -9,11 +9,11 @@ public final class Byn implements Comparable<Byn> {
     private final int value;
 
     public Byn() {
-        value = 0;
+        this(0);
     }
 
     public Byn(int rubs, int kops) {
-        if (kops > 0 && kops < Constants.BYN_VALUE_IN_KOPS && rubs > 0) {
+        if (kops >= 0 && kops < Constants.BYN_VALUE_IN_KOPS && rubs >= 0) {
             this.value = rubs * Constants.BYN_VALUE_IN_KOPS + kops;
         } else {
             throw new IllegalArgumentException("invalid value of rubs and kops");

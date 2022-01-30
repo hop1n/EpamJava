@@ -2,7 +2,7 @@ package by.epam.lab;
 
 public class Constants {
     public final static String FILE_NOT_FOUND = "Input file is not found";
-    public final static String WRONG_INDEX = " wrong index";
+    public final static String SOME_INDEX_IS_WRONG = " some index is wrong";
     public final static String DELIMITER = ";";
     public final static int NUMBER_OF_PURCHASE_INDEXES = 3;
     public final static int NUMBER_OF_PURCHASE_DISCOUNT_INDEXES = 4;

@@ -56,7 +56,7 @@ public class RunnerTest {
                 "water;70;4;0.5 wrong format of variable number, price or discount\r\n" +
                 "water;70.5;1 wrong format of variable number, price or discount\r\n";
         Assert.assertEquals(EXPECTED_OUT, errContent.toString());
-        Assert.assertEquals(testPurchases.getPurchases().size(), EXPECTED_SIZE_OF_PURCHASES);
+        Assert.assertEquals(testPurchases.getClonedPurchases().size(), EXPECTED_SIZE_OF_PURCHASES);
     }
 
     @Test
@@ -73,26 +73,25 @@ public class RunnerTest {
         Purchase second_purchase = new PriceDiscountPurchase(secondPurchaseData);
         Purchase third_purchase = new PriceDiscountPurchase(thirdPurchaseData);
         testPurchases.insertByIndex(RIGHT_INDEX, purchase);
-        Assert.assertEquals(testPurchases.getPurchases().indexOf(purchase), RIGHT_INDEX);
+        Assert.assertEquals(testPurchases.getClonedPurchases().indexOf(purchase), RIGHT_INDEX);
         testPurchases.insertByIndex(WRONG_INDEX, second_purchase);
-        Assert.assertEquals(testPurchases.getPurchases().indexOf(second_purchase), START_INDEX);
+        Assert.assertEquals(testPurchases.getClonedPurchases().indexOf(second_purchase), START_INDEX);
         testPurchases.insertByIndex(WRONG_SECOND_INDEX, third_purchase);
-        lastIndex = testPurchases.getPurchases().size() - 1;
-        Assert.assertEquals(testPurchases.getPurchases().indexOf(third_purchase), lastIndex);
+        lastIndex = testPurchases.getClonedPurchases().size() - 1;
+        Assert.assertEquals(testPurchases.getClonedPurchases().indexOf(third_purchase), lastIndex);
     }
 
     @Test
     public void testDeleteByIndexes() throws InvalidNameException {
         Purchase[] requiredPurchases = {
-                testPurchases.getPurchases().get(0),
-                testPurchases.getPurchases().get(1)
+                testPurchases.getClonedPurchases().get(0),
+                testPurchases.getClonedPurchases().get(1)
         };
         testPurchases.deleteByIndexes(0, 2);
-        Assert.assertFalse(testPurchases.getPurchases().contains(requiredPurchases[0]));
-        Assert.assertFalse(testPurchases.getPurchases().contains(requiredPurchases[1]));
+        Assert.assertFalse(testPurchases.getClonedPurchases().contains(requiredPurchases[0]));
+        Assert.assertFalse(testPurchases.getClonedPurchases().contains(requiredPurchases[1]));
         testPurchases.deleteByIndexes(-5, -7);
-        Assert.assertTrue(errContent.toString().contains(Constants.WRONG_INDEX + "-5"));
-        Assert.assertTrue(errContent.toString().contains(Constants.WRONG_INDEX + "-7"));
+        Assert.assertTrue(errContent.toString().contains(Constants.SOME_INDEX_IS_WRONG));
     }
 
     @Test
@@ -104,10 +103,10 @@ public class RunnerTest {
     @Test
     public void testPurchasesSort() throws InvalidNameException {
         testPurchases2 = new PurchasesList(IN_PATH, COMPARATOR);
-        List<Purchase> listToSort = testPurchases2.getPurchases();
+        List<Purchase> listToSort = testPurchases2.getClonedPurchases();
         Collections.sort(listToSort, COMPARATOR);
         testPurchases.purchasesSort();
-        Assert.assertEquals(testPurchases.getPurchases(), listToSort);
+        Assert.assertEquals(testPurchases.getClonedPurchases(), listToSort);
     }
 
     @Test
@@ -116,7 +115,7 @@ public class RunnerTest {
         String[] requiredPurchaseData = {"meat", "1100", "2", "80"};
         Purchase requiredPurchase = new PriceDiscountPurchase(requiredPurchaseData);
         testPurchases.purchasesSort();
-        int index = Collections.binarySearch(testPurchases.getPurchases(), requiredPurchase, COMPARATOR);
+        int index = Collections.binarySearch(testPurchases.getClonedPurchases(), requiredPurchase, COMPARATOR);
         int index2 = testPurchases2.searchAnElement(requiredPurchase);
         Assert.assertEquals(index, index2);
 

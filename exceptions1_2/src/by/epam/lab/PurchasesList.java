@@ -12,7 +12,7 @@ public class PurchasesList {
     private Comparator<Purchase> comparator;
     private boolean isSorted = false;
 
-    public List<Purchase> getPurchases() throws InvalidNameException {
+    public List<Purchase> getClonedPurchases() {
         List<Purchase> newList = new ArrayList<>();
         for (Purchase purchase : purchases) {
             newList.add(purchase.getPurchaseClone());
@@ -22,6 +22,7 @@ public class PurchasesList {
 
     public PurchasesList() {
         this.purchases = new ArrayList<Purchase>();
+        this.comparator = new PurchaseComparator();
     }
 
     public PurchasesList(String fileName, Comparator<Purchase> comparator) {
@@ -58,14 +59,22 @@ public class PurchasesList {
     }
 
     public void deleteByIndexes(int startIndex, int endIndex) {
-        if (startIndex > purchases.size() - 1 || startIndex < 0) {
-            System.err.println(Constants.WRONG_INDEX + startIndex);
+        if (startIndex > purchases.size() -1 ){
+            startIndex = purchases.size() -1;
+            System.err.println(Constants.SOME_INDEX_IS_WRONG);
         }
-        if (endIndex > purchases.size() - 1 || endIndex < 0) {
-            System.err.println(Constants.WRONG_INDEX + endIndex);
-        } else {
-            purchases.removeAll(purchases.subList(startIndex, endIndex+1));
+        if (endIndex < 0){
+            endIndex = 0;
+            System.err.println(Constants.SOME_INDEX_IS_WRONG);
         }
+        if (startIndex < 0) {
+            startIndex = 0;
+        }
+        if (endIndex > purchases.size() - 1) {
+            endIndex = purchases.size() - 1;
+        }
+        purchases.subList(startIndex, endIndex + 1).clear();
+
     }
 
     public Byn getTotalCost() {
@@ -76,7 +85,7 @@ public class PurchasesList {
         return cost;
     }
 
-    public String printPurchases() {
+    public String toString() {
         StringBuilder s = new StringBuilder();
         for (Purchase purchase : purchases) {
             s.append(purchase + "\n");
