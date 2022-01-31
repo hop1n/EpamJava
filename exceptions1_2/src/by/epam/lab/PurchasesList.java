@@ -73,7 +73,7 @@ public class PurchasesList {
         if (endIndex > purchases.size() - 1) {
             endIndex = purchases.size() - 1;
         }
-        purchases.subList(startIndex, endIndex + 1).clear();
+        purchases.subList(startIndex, endIndex).clear();
 
     }
 
