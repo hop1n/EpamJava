@@ -21,9 +21,8 @@ public class Purchase implements Comparable<Purchase> {
     public Purchase(String name, Byn price, int number) {
         if (name.equals(Constants.EMPTY_LINE)) {
             throw new InvalidNameException(Causes.WRONG_NAME);
-        } else {
-            this.name = name;
         }
+        this.name = name;
         CheckIfPositive.check(price, Constants.PRICE);
         this.price = price;
         CheckIfPositive.check(number, Constants.NUMBER);
@@ -31,7 +30,7 @@ public class Purchase implements Comparable<Purchase> {
     }
 
 
-    public Purchase(String[] strings) throws InvalidNameException, InvalidNumberOfArgumentsException {
+    public Purchase(String[] strings) {
         this(strings[Constants.NAME_INDEX], new Byn(Integer.parseInt(strings[Constants.PRICE_INDEX])),
                 Integer.parseInt(strings[Constants.NUMBER_INDEX]));
     }

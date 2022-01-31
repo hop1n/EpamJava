@@ -9,17 +9,17 @@ import java.util.Scanner;
 public class PurchaseFactory {
     private enum PurchaseKind {
         PURCHASE {
-            Purchase getPurchase(String[] strings) throws InvalidNameException, InvalidNumberOfArgumentsException {
+            Purchase getPurchase(String[] strings) {
                 return new Purchase(strings);
             }
         },
         PRICE_DISCOUNT_PURCHASE {
-            Purchase getPurchase(String[] strings) throws InvalidNameException, InvalidNumberOfArgumentsException {
+            Purchase getPurchase(String[] strings) {
                 return new PriceDiscountPurchase(strings);
             }
         };
 
-        abstract Purchase getPurchase(String[] strings) throws InvalidNameException, InvalidNumberOfArgumentsException;
+        abstract Purchase getPurchase(String[] strings);
     }
 
     public static Purchase getPurchaseFromFactory(String csvLine) throws CsvLineException {
@@ -38,8 +38,8 @@ public class PurchaseFactory {
 
     private static PurchaseKind getPurchaseKind(int length) {
         PurchaseKind returnPurchase;
-        if (!(length >= Constants.NUMBER_OF_PURCHASE_INDEXES &&
-                length <= Constants.NUMBER_OF_PURCHASE_DISCOUNT_INDEXES)) {
+        if (length < Constants.NUMBER_OF_PURCHASE_INDEXES ||
+                length > Constants.NUMBER_OF_PURCHASE_DISCOUNT_INDEXES) {
             throw new InvalidNumberOfArgumentsException(Causes.ARGUMENTS_EXCEPTION);
         }
         if (length == Constants.NUMBER_OF_PURCHASE_INDEXES) {
