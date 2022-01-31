@@ -20,6 +20,8 @@ public final class Byn implements Comparable<Byn> {
         }
     }
 
+
+
     public Byn(String strKops) {
         this(Integer.parseInt(strKops));
     }
