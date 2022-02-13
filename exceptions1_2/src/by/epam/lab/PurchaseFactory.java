@@ -2,9 +2,6 @@ package by.epam.lab;
 
 import by.epam.lab.exceptions.*;
 import by.epam.lab.exceptions.InvalidNumberOfArgumentsException;
-import sun.awt.CausedFocusEvent;
-
-import java.util.Scanner;
 
 public class PurchaseFactory {
     private enum PurchaseKind {

@@ -34,6 +34,7 @@ public class PurchasesList {
                 String str = sc.nextLine();
                 try {
                     purchases.add(PurchaseFactory.getPurchaseFromFactory(str));
+                    isSorted = false;
                 } catch (CsvLineException e) {
                     System.err.println(e.getMessage());
                 }
@@ -97,13 +98,14 @@ public class PurchasesList {
     }
 
     public void purchasesSort() {
-        isSorted = true;
         Collections.sort(purchases, comparator);
+        isSorted = true;
     }
 
     public int searchAnElement(Purchase purchase) {
         if (!isSorted) {
             Collections.sort(purchases, comparator);
+            isSorted = true;
         }
         return Collections.binarySearch(purchases, purchase, comparator);
     }

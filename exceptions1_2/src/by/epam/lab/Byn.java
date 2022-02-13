@@ -1,10 +1,5 @@
 package by.epam.lab;
 
-import by.epam.lab.exceptions.NegativeArgumentException;
-import by.epam.lab.exceptions.NonPositiveArgumentException;
-
-import java.util.Scanner;
-
 public final class Byn implements Comparable<Byn> {
     private final int value;
 
@@ -17,8 +12,8 @@ public final class Byn implements Comparable<Byn> {
     }
 
     public Byn(int value) {
-        if (value <= 0) {
-            throw new NonPositiveArgumentException(" non positive value " + value);
+        if (value < 0) {
+            throw new IllegalArgumentException(Causes.WRONG_BYN_VALUE + value);
         }
         this.value = value;
     }
@@ -41,7 +36,7 @@ public final class Byn implements Comparable<Byn> {
 
     private static int getValidValue(int rubs, int coins) {
         if (coins < 0 || coins >= Constants.BYN_VALUE_IN_KOPS || rubs < 0) {
-            throw new IllegalArgumentException("invalid value of rubs and kops");
+            throw new IllegalArgumentException(Causes.RUBS_KOPS_EXC);
         }
         return Constants.BYN_VALUE_IN_KOPS * rubs + coins;
     }

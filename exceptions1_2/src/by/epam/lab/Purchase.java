@@ -1,9 +1,10 @@
 package by.epam.lab;
 
 import by.epam.lab.exceptions.InvalidNameException;
-import by.epam.lab.exceptions.InvalidNumberOfArgumentsException;
+import by.epam.lab.exceptions.NonPositiveArgumentException;
 
 import java.lang.*;
+import java.util.concurrent.CompletionService;
 
 public class Purchase {
     private final String name;
@@ -15,8 +16,14 @@ public class Purchase {
     }
 
     public Purchase(String name, Byn price, int number) {
-        if (name.equals(Constants.EMPTY_LINE)) {
-            throw new InvalidNameException(Causes.WRONG_NAME);
+        if (name.isEmpty() || name.trim().isEmpty()) {
+            throw new InvalidNameException(Causes.WRONG + Constants.NAME);
+        }
+        if (price.compareTo(new Byn(0)) == 0){
+            throw new NonPositiveArgumentException(Causes.WRONG + Constants.PRICE);
+        }
+        if (number <= 0){
+            throw new NonPositiveArgumentException(Causes.WRONG + Constants.NUMBER);
         }
         this.name = name;
         this.price = price;
@@ -29,7 +36,7 @@ public class Purchase {
 
     private static Purchase getValidPurchase(String[] fields) {
         if(fields.length != Constants.NUMBER_OF_PURCHASE_INDEXES) {
-            throw new ArrayIndexOutOfBoundsException("wrong args number");
+            throw new ArrayIndexOutOfBoundsException(Causes.ARGUMENTS_EXCEPTION);
         }
         return new Purchase(fields[Constants.NAME_INDEX], new Byn(Integer.parseInt(fields[Constants.PRICE_INDEX])), Integer.parseInt(fields[Constants.NUMBER_INDEX]));
     }
@@ -65,6 +72,18 @@ public class Purchase {
 
     protected String fieldsToString() {
         return name + Constants.DELIMITER + price + Constants.DELIMITER + number;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Purchase purchase = (Purchase) o;
+
+        if (number != purchase.number) return false;
+        if (!name.equals(purchase.name)) return false;
+        return price.equals(purchase.price);
     }
 }
 

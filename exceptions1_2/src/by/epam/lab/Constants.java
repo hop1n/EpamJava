@@ -13,11 +13,8 @@ public class Constants {
     public final static String BYN_TO_STRING = "%d.%02d";
     public final static int BYN_CONVERT = 100;
     public final static int BYN_VALUE_IN_KOPS = 100;
-    public final static String EMPTY_LINE = "";
     public final static String NAME = " name";
     public final static String PRICE = " price";
     public final static String NUMBER = " number";
     public final static String DISCOUNT = " discount";
-    public final static String TOTAL_COST = " total cost";
-    public final static int ZERO = 0;
 }
