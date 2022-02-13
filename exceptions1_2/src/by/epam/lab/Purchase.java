@@ -36,7 +36,7 @@ public class Purchase {
 
     private static Purchase getValidPurchase(String[] fields) {
         if(fields.length != Constants.NUMBER_OF_PURCHASE_INDEXES) {
-            throw new ArrayIndexOutOfBoundsException(Causes.ARGUMENTS_EXCEPTION);
+            throw new IllegalArgumentException(Causes.ARGUMENTS_EXCEPTION);
         }
         return new Purchase(fields[Constants.NAME_INDEX], new Byn(Integer.parseInt(fields[Constants.PRICE_INDEX])), Integer.parseInt(fields[Constants.NUMBER_INDEX]));
     }

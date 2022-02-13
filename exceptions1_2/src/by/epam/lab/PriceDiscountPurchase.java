@@ -31,7 +31,7 @@ public final class PriceDiscountPurchase extends Purchase {
 
     private static PriceDiscountPurchase getValidPriceDiscountPurchase(String[] fields) {
         if(fields.length != Constants.NUMBER_OF_PURCHASE_DISCOUNT_INDEXES) {
-            throw new ArrayIndexOutOfBoundsException(" wrong args number");
+            throw new IllegalArgumentException(" wrong args number");
         }
         return new PriceDiscountPurchase(fields[Constants.NAME_INDEX], new Byn(Integer.parseInt(fields[Constants.PRICE_INDEX])),
                 Integer.parseInt(fields[Constants.NUMBER_INDEX]), new Byn(Integer.parseInt(fields[Constants.DISCOUNT_INDEX])));

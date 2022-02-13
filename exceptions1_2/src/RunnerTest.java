@@ -1,4 +1,7 @@
 import by.epam.lab.*;
+
+import by.epam.lab.PurchaseFactory;
+import by.epam.lab.PurchasesList;
 import by.epam.lab.comparators.PurchaseComparator;
 import by.epam.lab.exceptions.CsvLineException;
 import by.epam.lab.exceptions.InvalidNameException;
@@ -14,8 +17,6 @@ import java.io.File;
 import java.io.PrintStream;
 import java.util.Collections;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class RunnerTest {
     final PurchaseComparator COMPARATOR = new PurchaseComparator();
