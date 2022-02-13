@@ -5,14 +5,10 @@ import by.epam.lab.exceptions.InvalidNumberOfArgumentsException;
 
 import java.lang.*;
 
-public class Purchase implements Comparable<Purchase> {
+public class Purchase {
     private final String name;
     private final Byn price;
     private final int number;
-
-    public Purchase(Purchase p) {
-        this(p.name, p.price, p.number);
-    }
 
     public Purchase() {
         throw new IllegalStateException("Purchase is empty");
@@ -23,16 +19,23 @@ public class Purchase implements Comparable<Purchase> {
             throw new InvalidNameException(Causes.WRONG_NAME);
         }
         this.name = name;
-        CheckIfPositive.check(price, Constants.PRICE);
         this.price = price;
-        CheckIfPositive.check(number, Constants.NUMBER);
         this.number = number;
     }
 
-
     public Purchase(String[] strings) {
-        this(strings[Constants.NAME_INDEX], new Byn(Integer.parseInt(strings[Constants.PRICE_INDEX])),
-                Integer.parseInt(strings[Constants.NUMBER_INDEX]));
+        this(getValidPurchase(strings));
+    }
+
+    private static Purchase getValidPurchase(String[] fields) {
+        if(fields.length != Constants.NUMBER_OF_PURCHASE_INDEXES) {
+            throw new ArrayIndexOutOfBoundsException("wrong args number");
+        }
+        return new Purchase(fields[Constants.NAME_INDEX], new Byn(Integer.parseInt(fields[Constants.PRICE_INDEX])), Integer.parseInt(fields[Constants.NUMBER_INDEX]));
+    }
+
+    public Purchase(Purchase p) {
+        this(p.name, p.price, p.number);
     }
 
     public Purchase getPurchaseClone() {
@@ -62,20 +65,6 @@ public class Purchase implements Comparable<Purchase> {
 
     protected String fieldsToString() {
         return name + Constants.DELIMITER + price + Constants.DELIMITER + number;
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Purchase)) return false;
-        Purchase purchase = (Purchase) o;
-        return name.equals(purchase.name) && price.equals(purchase.price);
-    }
-
-    @Override
-    public int compareTo(Purchase purchase) {
-        return purchase.getCost().compareTo(getCost());
     }
 }
 

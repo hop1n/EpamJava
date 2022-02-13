@@ -23,6 +23,7 @@ public class PurchasesList {
     public PurchasesList() {
         this.purchases = new ArrayList<Purchase>();
         this.comparator = new PurchaseComparator();
+        isSorted = true;
     }
 
     public PurchasesList(String fileName, Comparator<Purchase> comparator) {
@@ -41,6 +42,7 @@ public class PurchasesList {
         } catch (FileNotFoundException e) {
             System.err.println(Constants.FILE_NOT_FOUND);
             purchases = new ArrayList<>();
+            isSorted = true;
         }
     }
 
@@ -58,7 +60,8 @@ public class PurchasesList {
         isSorted = false;
     }
 
-    public void deleteByIndexes(int startIndex, int endIndex) {
+    public int deleteByIndexes(int startIndex, int endIndex) {
+        int lengthBefore = purchases.size();
         if (startIndex > purchases.size() -1 ){
             startIndex = purchases.size() -1;
             System.err.println(Constants.SOME_INDEX_IS_WRONG);
@@ -71,10 +74,10 @@ public class PurchasesList {
             startIndex = 0;
         }
         if (endIndex > purchases.size() - 1) {
-            endIndex = purchases.size() - 1;
+            endIndex = purchases.size();
         }
         purchases.subList(startIndex, endIndex).clear();
-
+        return lengthBefore - purchases.size();
     }
 
     public Byn getTotalCost() {

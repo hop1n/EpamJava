@@ -12,27 +12,15 @@ public final class Byn implements Comparable<Byn> {
         this(0);
     }
 
-    public Byn(int rubs, int kops) {
-        if (kops >= 0 && kops < Constants.BYN_VALUE_IN_KOPS && rubs >= 0) {
-            this.value = rubs * Constants.BYN_VALUE_IN_KOPS + kops;
-        } else {
-            throw new IllegalArgumentException("invalid value of rubs and kops");
-        }
-    }
-
-
-
-    public Byn(String strKops) {
-        this(Integer.parseInt(strKops));
+    public Byn(int rubs, int coins) {
+        this(getValidValue(rubs, coins));
     }
 
     public Byn(int value) {
+        if (value <= 0) {
+            throw new NonPositiveArgumentException(" non positive value " + value);
+        }
         this.value = value;
-    }
-
-
-    public Byn(Scanner sc) {
-        this(sc.nextInt());
     }
 
     public Byn(Byn byn) {
@@ -43,13 +31,19 @@ public final class Byn implements Comparable<Byn> {
         return new Byn(value * count);
     }
 
-
     public Byn sub(Byn byn) {
         return new Byn(value - byn.value);
     }
 
     public Byn add(Byn byn) {
         return new Byn(value + byn.value);
+    }
+
+    private static int getValidValue(int rubs, int coins) {
+        if (coins < 0 || coins >= Constants.BYN_VALUE_IN_KOPS || rubs < 0) {
+            throw new IllegalArgumentException("invalid value of rubs and kops");
+        }
+        return Constants.BYN_VALUE_IN_KOPS * rubs + coins;
     }
 
     @Override

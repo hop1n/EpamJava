@@ -26,28 +26,19 @@ public class PurchaseFactory {
         try {
             String[] parts = csvLine.split(Constants.DELIMITER);
             return getPurchaseKind(parts.length).getPurchase(parts);
-        } catch (InvalidNumberOfArgumentsException | InvalidNameException
-                | NonPositiveArgumentException
-                | NegativeArgumentException e) {
-            throw new CsvLineException(csvLine + e.getMessage());
         } catch (NumberFormatException e) {
             throw new CsvLineException(csvLine + Causes.CSV_EXCEPTION);
+        } catch (IllegalArgumentException e) {
+            throw new CsvLineException(csvLine + e.getMessage());
         }
     }
 
-
     private static PurchaseKind getPurchaseKind(int length) {
-        PurchaseKind returnPurchase;
-        if (length < Constants.NUMBER_OF_PURCHASE_INDEXES ||
-                length > Constants.NUMBER_OF_PURCHASE_DISCOUNT_INDEXES) {
+        try {
+            return PurchaseKind.values()[length - Constants.NUMBER_OF_PURCHASE_INDEXES];
+        } catch (IndexOutOfBoundsException e) {
             throw new InvalidNumberOfArgumentsException(Causes.ARGUMENTS_EXCEPTION);
         }
-        if (length == Constants.NUMBER_OF_PURCHASE_INDEXES) {
-            returnPurchase = PurchaseKind.PURCHASE;
-        } else {
-            returnPurchase = PurchaseKind.PRICE_DISCOUNT_PURCHASE;
-        }
-        return returnPurchase;
     }
 }
 

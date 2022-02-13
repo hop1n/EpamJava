@@ -1,5 +1,6 @@
 import by.epam.lab.*;
 import by.epam.lab.comparators.PurchaseComparator;
+import by.epam.lab.exceptions.CsvLineException;
 import by.epam.lab.exceptions.InvalidNameException;
 import by.epam.lab.exceptions.InvalidNumberOfArgumentsException;
 import org.junit.After;
@@ -41,16 +42,16 @@ public class RunnerTest {
     @Test
     public void testPurchasesListConstructor() throws InvalidNameException {
         final int EXPECTED_SIZE_OF_PURCHASES = 8;
-        String EXPECTED_OUT = "candy;0;2 wrong price\r\n" +
-                "candy;-100;-2 wrong price\r\n" +
-                "candy;100;2;0 wrong discount\r\n" +
+        String EXPECTED_OUT = "candy;0;2 non positive value 0\r\n" +
+                "candy;-100;-2 non positive value -100\r\n" +
+                "candy;100;2;0 non positive value 0\r\n" +
                 "candy wrong number of arguments\r\n" +
                 ";100;2 Invalid name\r\n" +
                 "beer;;1 wrong format of variable number, price or discount\r\n" +
-                "candy;100;2;500 wrong total cost\r\n" +
-                "candy;100;2;100 wrong total cost\r\n" +
+                "candy;100;2;500 wrong discount\r\n" +
+                "candy;100;2;100 wrong discount\r\n" +
                 "water;15;4;0.1;cold wrong number of arguments\r\n" +
-                "water;70;5;-1 wrong discount\r\n" +
+                "water;70;5;-1 non positive value -1\r\n" +
                 ";; wrong number of arguments\r\n" +
                 "water;ok;4 wrong format of variable number, price or discount\r\n" +
                 "water;70;4;0.5 wrong format of variable number, price or discount\r\n" +
@@ -84,14 +85,11 @@ public class RunnerTest {
     @Test
     public void testDeleteByIndexes() throws InvalidNameException {
         Purchase[] requiredPurchases = {
-                testPurchases.getClonedPurchases().get(0),
-                testPurchases.getClonedPurchases().get(1)
+                testPurchases.getClonedPurchases().get(testPurchases.getClonedPurchases().size()-1),
         };
-        testPurchases.deleteByIndexes(0, 2);
+        int result = testPurchases.deleteByIndexes(testPurchases.getClonedPurchases().size()-1, testPurchases.getClonedPurchases().size());
+        Assert.assertEquals(1, result);
         Assert.assertFalse(testPurchases.getClonedPurchases().contains(requiredPurchases[0]));
-        Assert.assertFalse(testPurchases.getClonedPurchases().contains(requiredPurchases[1]));
-        testPurchases.deleteByIndexes(-5, -7);
-        Assert.assertTrue(errContent.toString().contains(Constants.SOME_INDEX_IS_WRONG));
     }
 
     @Test
@@ -118,6 +116,18 @@ public class RunnerTest {
         int index = Collections.binarySearch(testPurchases.getClonedPurchases(), requiredPurchase, COMPARATOR);
         int index2 = testPurchases2.searchAnElement(requiredPurchase);
         Assert.assertEquals(index, index2);
+    }
+
+    @Test
+    public void getPurchaseFromFactoryTest() throws CsvLineException {
+        final PriceDiscountPurchase expectedPriceDiscountPurchase = new PriceDiscountPurchase("cucumber", new Byn(90), 5, new Byn(10));
+        final Purchase expectedPurchase = new Purchase("apple", new Byn(50), 10);
+        final String csvLine1 = "apple;50;10";
+        final String csvLine2 = "cucumber;90;5;10";
+        Purchase actualPurchase = PurchaseFactory.getPurchaseFromFactory(csvLine1);
+        Purchase actualPriceDiscountPurchase = PurchaseFactory.getPurchaseFromFactory(csvLine2);
+        assertEquals(expectedPurchase, actualPurchase);
+        assertEquals(expectedPriceDiscountPurchase, actualPriceDiscountPurchase);
 
     }
 }
