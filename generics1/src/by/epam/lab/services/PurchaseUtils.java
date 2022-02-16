@@ -4,11 +4,7 @@ import by.epam.lab.Constants;
 import by.epam.lab.beans.*;
 
 public class PurchaseUtils {
-    Purchase purchase;
-
-    public PurchaseUtils() {
-        purchase = null;
-    }
+    private final Purchase purchase;
 
     public PurchaseUtils(Object item, Number number) {
         this.purchase = new Purchase(item, number);
@@ -42,13 +38,13 @@ public class PurchaseUtils {
     }
 
     public boolean printIsSameCost(Purchase... purchases) {
-        boolean isExsits = false;
+        boolean isExsists = false;
         for (Purchase purchases1: purchases){
             if (this.purchase.getCost().compareTo(purchases1.getCost()) == 0){
-                isExsits = true;
+                isExsists = true;
                 break;
             }
         }
-        return isExsits;
+        return isExsists;
     }
 }
