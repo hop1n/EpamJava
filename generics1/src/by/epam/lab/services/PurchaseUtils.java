@@ -29,7 +29,7 @@ public class PurchaseUtils {
         System.out.println(otp);
     }
 
-    public boolean printIsSameCost(Purchase[] purchases) {
+    public boolean printIsSameCost(Purchase... purchases) {
         boolean bool = false;
         for (Purchase purchases1: purchases){
             if (this.purchase.getCost() == purchases1.getCost()){
