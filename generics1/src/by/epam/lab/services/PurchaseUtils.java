@@ -37,7 +37,7 @@ public class PurchaseUtils {
         System.out.println(otp + Constants.DIFF + purchase.getCost() + Constants.BYN);
     }
 
-    public boolean printIsSameCost(Purchase... purchases) {
+    public void printIsSameCost(Purchase... purchases) {
         boolean isExsists = false;
         for (Purchase purchases1: purchases){
             if (this.purchase.getCost().compareTo(purchases1.getCost()) == 0){
@@ -45,6 +45,6 @@ public class PurchaseUtils {
                 break;
             }
         }
-        return isExsists;
+        System.out.println(isExsists);
     }
 }
