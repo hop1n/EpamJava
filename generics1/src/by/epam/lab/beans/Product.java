@@ -12,7 +12,7 @@ public class Product {
     }
 
     public Product() {
-        this("", new Byn());
+        this(Constants.EMPTY_LINE, new Byn());
     }
 
     public String getName() {
@@ -25,10 +25,10 @@ public class Product {
 
     @Override
     public String toString() {
-        return fieldsToString();
+        return fieldsToString() + Constants.DELIMITER + getPrice();
     }
 
     protected String fieldsToString() {
-        return name + Constants.DELIMITER + price + Constants.DELIMITER;
+        return name + Constants.DELIMITER + price;
     }
 }

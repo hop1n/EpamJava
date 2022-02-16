@@ -1,5 +1,6 @@
 package by.epam.lab.beans;
 
+import by.epam.lab.Constants;
 import by.epam.lab.services.RoundMethod;
 
 public class Purchase {
@@ -26,13 +27,13 @@ public class Purchase {
     public Byn getCost() {
         Byn cost = new Byn();
         String type = item.getClass().getSimpleName();
-        if (type.equals("Product")){
+        if (type.equals(Constants.PRODUCT)){
             cost = ((Product) item).getPrice().mul(number.doubleValue(), RoundMethod.ROUND, 0);
         }
-        if (type.equals("DiscountProduct")){
+        if (type.equals(Constants.DISCOUNT_PRODUCT)){
             cost = ((DiscountProduct) item).getPrice().mul(number.doubleValue(), RoundMethod.ROUND, 0);
         }
-        if (type.equals("Service")){
+        if (type.equals(Constants.SERVICE)){
             cost = ((Service) item).getPrice().mul(number.doubleValue(), RoundMethod.ROUND, 0);
         }
         return cost;
