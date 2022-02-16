@@ -38,4 +38,9 @@ public class Purchase {
         }
         return cost;
     }
+
+    @Override
+    public String toString() {
+        return item + Constants.DELIMITER + number + Constants.DELIMITER + getCost();
+    }
 }

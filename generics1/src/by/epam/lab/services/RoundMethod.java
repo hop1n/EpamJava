@@ -22,8 +22,7 @@ public enum RoundMethod {
 
     public int round(double roundedValue, RoundMethod roundMethod, int d) {
         int tenPow = POW_ARR[d];
-        int result = (int) roundMethod.roundFunction(roundedValue / tenPow) * tenPow;
-        return result;
+        return (int) roundMethod.roundFunction(roundedValue / tenPow) * tenPow;
 
     }
 }

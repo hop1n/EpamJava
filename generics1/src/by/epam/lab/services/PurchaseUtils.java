@@ -6,6 +6,18 @@ import by.epam.lab.beans.*;
 public class PurchaseUtils {
     Purchase purchase;
 
+    public PurchaseUtils() {
+        purchase = null;
+    }
+
+    public PurchaseUtils(Object item, Number number) {
+        this.purchase = new Purchase(item, number);
+    }
+
+    public PurchaseUtils(Purchase purchase){
+        this.purchase = purchase;
+    }
+
     public Purchase getPurchase() {
         return purchase;
     }
@@ -15,28 +27,28 @@ public class PurchaseUtils {
     }
 
     public void printCost() {
-        System.out.println("cost = " + purchase.getCost());
+        System.out.println(Constants.COST_OTP + purchase.getCost() + Constants.BYN);
     }
 
     public void printCostDiff(Purchase p) {
         String otp;
          int diff = purchase.getCost().compareTo(p.getCost());
          if (diff == 0) {
-            otp = "";
+            otp = Constants.EMPTY_LINE;
          } else {
              otp = String.valueOf(diff);
          }
-        System.out.println(otp);
+        System.out.println(otp + Constants.DIFF + purchase.getCost() + Constants.BYN);
     }
 
     public boolean printIsSameCost(Purchase... purchases) {
-        boolean bool = false;
+        boolean isExsits = false;
         for (Purchase purchases1: purchases){
-            if (this.purchase.getCost() == purchases1.getCost()){
-                bool = true;
+            if (this.purchase.getCost().compareTo(purchases1.getCost()) == 0){
+                isExsits = true;
                 break;
             }
         }
-        return bool;
+        return isExsits;
     }
 }

@@ -8,4 +8,7 @@ public class Constants {
     public final static String PRODUCT = "Product";
     public final static String DISCOUNT_PRODUCT = "DiscountProduct";
     public final static String SERVICE = "Service";
+    public final static String BYN = " BYN";
+    public final static String COST_OTP = "cost = ";
+    public final static String DIFF = " diff = ";
 }

@@ -15,7 +15,7 @@ public class DiscountProduct extends Product {
     }
 
     public Byn getPrice() {
-        return getPrice().sub(discount);
+        return super.getPrice().sub(discount);
     }
 
     protected String fieldsToString() {
