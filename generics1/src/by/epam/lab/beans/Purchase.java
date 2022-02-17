@@ -4,14 +4,14 @@ import by.epam.lab.Constants;
 import by.epam.lab.services.RoundMethod;
 
 public class Purchase {
-    private final Object item;
+    private final Priceable item;
     private final Number number;
 
     public Purchase() {
         this(null, 0);
     }
 
-    public Purchase(Object item, Number number) {
+    public Purchase(Priceable item, Number number) {
         this.item = item;
         this.number = number;
     }

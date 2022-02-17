@@ -4,9 +4,9 @@ import by.epam.lab.Constants;
 import by.epam.lab.services.RoundMethod;
 
 public class Service implements Priceable {
-    String name;
-    Byn totalCost;
-    int usersNumber;
+    private final String name;
+    private final Byn totalCost;
+    private final int usersNumber;
 
     public Service(){
         this(Constants.EMPTY_LINE, new Byn(0), 0);
@@ -24,6 +24,6 @@ public class Service implements Priceable {
 
     @Override
     public String toString () {
-        return name + Constants.DELIMITER + totalCost + Constants.DELIMITER + usersNumber;
+        return name + Constants.DELIMITER + totalCost + Constants.DELIMITER + usersNumber + Constants.DELIMITER + getPrice();
     }
 }

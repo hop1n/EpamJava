@@ -6,7 +6,7 @@ import by.epam.lab.beans.*;
 public class PurchaseUtils {
     private final Purchase purchase;
 
-    public PurchaseUtils(Object item, Number number) {
+    public PurchaseUtils(Priceable item, Number number) {
         this.purchase = new Purchase(item, number);
     }
 
@@ -42,13 +42,13 @@ public class PurchaseUtils {
     }
 
     public void printIsSameCost(Purchase... purchases) {
-        boolean isExsists = false;
+        boolean isExists = false;
         for (Purchase purchases1: purchases){
-            if (this.purchase.getCost().compareTo(purchases1.getCost()) == 0){
-                isExsists = true;
+            if (purchase.getCost().compareTo(purchases1.getCost()) == 0){
+                isExists = true;
                 break;
             }
         }
-        System.out.println(isExsists);
+        System.out.println(isExists);
     }
 }
