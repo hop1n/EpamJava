@@ -25,18 +25,7 @@ public class Purchase {
     }
 
     public Byn getCost() {
-        Byn cost = new Byn();
-        String type = item.getClass().getSimpleName();
-        if (type.equals(Constants.PRODUCT)){
-            cost = ((Product) item).getPrice().mul(number.doubleValue(), RoundMethod.ROUND, 0);
-        }
-        if (type.equals(Constants.DISCOUNT_PRODUCT)){
-            cost = ((DiscountProduct) item).getPrice().mul(number.doubleValue(), RoundMethod.ROUND, 0);
-        }
-        if (type.equals(Constants.SERVICE)){
-            cost = ((Service) item).getPrice().mul(number.doubleValue(), RoundMethod.ROUND, 0);
-        }
-        return cost;
+        return item.getPrice().mul(number.doubleValue(), RoundMethod.ROUND, 0);
     }
 
     @Override

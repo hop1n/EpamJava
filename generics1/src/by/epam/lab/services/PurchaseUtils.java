@@ -19,7 +19,7 @@ public class PurchaseUtils {
     }
 
     public void printPurchase() {
-        System.out.println(purchase.getItem() + Constants.DELIMITER + purchase.getNumber());
+        System.out.println(purchase);
     }
 
     public void printCost() {
