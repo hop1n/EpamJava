@@ -4,7 +4,7 @@ import by.epam.lab.beans.*;
 import by.epam.lab.services.PurchaseUtils;
 
 public class Runner {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Product milk = new Product("milk", new Byn(170));
         Purchase p1 = new Purchase(milk, 20);
         PurchaseUtils pu1 = new PurchaseUtils(p1);

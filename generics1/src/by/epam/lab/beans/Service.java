@@ -8,22 +8,22 @@ public class Service implements Priceable {
     private final Byn totalCost;
     private final int usersNumber;
 
-    public Service(){
+    public Service() {
         this(Constants.EMPTY_LINE, new Byn(0), 0);
     }
 
-    public Service(String name, Byn totalCost, int usersNumber){
+    public Service(String name, Byn totalCost, int usersNumber) {
         this.name = name;
         this.totalCost = totalCost;
         this.usersNumber = usersNumber;
     }
 
-    public Byn getPrice(){
-        return totalCost.mul(1.0/usersNumber, RoundMethod.CEIL, 0);
+    public Byn getPrice() {
+        return totalCost.mul(1.0 / usersNumber, RoundMethod.CEIL, 0);
     }
 
     @Override
-    public String toString () {
+    public String toString() {
         return name + Constants.DELIMITER + totalCost + Constants.DELIMITER + usersNumber + Constants.DELIMITER + getPrice();
     }
 }

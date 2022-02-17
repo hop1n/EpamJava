@@ -16,7 +16,7 @@ public class Purchase {
         this.number = number;
     }
 
-    public Object getItem() {
+    public Priceable getItem() {
         return item;
     }
 

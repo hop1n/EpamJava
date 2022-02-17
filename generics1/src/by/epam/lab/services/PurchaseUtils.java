@@ -10,7 +10,7 @@ public class PurchaseUtils {
         this.purchase = new Purchase(item, number);
     }
 
-    public PurchaseUtils(Purchase purchase){
+    public PurchaseUtils(Purchase purchase) {
         this.purchase = purchase;
     }
 
@@ -29,12 +29,12 @@ public class PurchaseUtils {
     public void printCostDiff(Purchase p) {
         String otp = Constants.EMPTY_LINE;
         Byn diff = new Byn(0);
-        int result = purchase.getCost().compareTo(p.getCost()) ;
+        int result = purchase.getCost().compareTo(p.getCost());
         if (result > 0) {
             diff = purchase.getCost().sub(p.getCost());
             otp = Constants.POSITIVE;
         }
-        if (result < 0){
+        if (result < 0) {
             diff = p.getCost().sub(purchase.getCost());
             otp = Constants.NEGATIVE;
         }
@@ -43,8 +43,8 @@ public class PurchaseUtils {
 
     public void printIsSameCost(Purchase... purchases) {
         boolean isExists = false;
-        for (Purchase purchases1: purchases){
-            if (purchase.getCost().compareTo(purchases1.getCost()) == 0){
+        for (Purchase purchases1 : purchases) {
+            if (purchase.getCost().compareTo(purchases1.getCost()) == 0) {
                 isExists = true;
                 break;
             }
