@@ -20,7 +20,7 @@ public class Runner {
         PurchaseUtils pu3 = new PurchaseUtils(p3);
         Service gym = new Service("gym", new Byn(7560), 5);
         PurchaseUtils pu4 = new PurchaseUtils(gym, 2.25);
-        Object item4 = pu4.getPurchase().getItem();
+        Priceable item4 = pu4.getPurchase().getItem();
         System.out.println(item4);
         pu4.printCost();
         pu2.printIsSameCost(p1, p3, pu4.getPurchase());
