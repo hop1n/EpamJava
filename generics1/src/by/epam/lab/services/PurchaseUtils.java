@@ -28,7 +28,7 @@ public class PurchaseUtils<T extends Priceable> {
         System.out.println(Constants.COST_OTP + purchase.getCost() + Constants.BYN);
     }
 
-    public void printCostDiff(Purchase<T> p) {
+    public void printCostDiff(Purchase<?> p) {
         String otp = Constants.EMPTY_LINE;
         Byn diff = new Byn(0);
         int result = purchase.getCost().compareTo(p.getCost());
@@ -43,9 +43,9 @@ public class PurchaseUtils<T extends Priceable> {
         System.out.println(otp + Constants.DIFF + diff + Constants.BYN);
     }
 
-    public void printIsSameCost(Purchase... purchases) {
+    public void printIsSameCost(Purchase<?>... purchases) {
         boolean isExists = false;
-        for (Purchase purchases1 : purchases) {
+        for (Purchase<?> purchases1 : purchases) {
             if (purchase.getCost().compareTo(purchases1.getCost()) == 0) {
                 isExists = true;
                 break;

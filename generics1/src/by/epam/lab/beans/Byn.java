@@ -35,7 +35,7 @@ public final class Byn implements Comparable<Byn> {
     }
 
     public Byn div(int count) {
-        return new Byn(value / count);
+        return mul(1.0 / count, RoundMethod.ROUND, 0);
     }
 
     public Byn sub(Byn byn) {
