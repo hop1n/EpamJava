@@ -43,7 +43,7 @@ public class PurchaseUtils<T extends Priceable> {
         System.out.println(otp + Constants.DIFF + diff + Constants.BYN);
     }
 
-    public void printIsSameCost(Purchase<?>... purchases) {
+    public void printIsSameCost(Purchase<? extends Priceable>... purchases) {
         boolean isExists = false;
         for (Purchase<?> purchases1 : purchases) {
             if (purchase.getCost().compareTo(purchases1.getCost()) == 0) {
