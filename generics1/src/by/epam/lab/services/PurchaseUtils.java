@@ -28,7 +28,7 @@ public class PurchaseUtils<T extends Priceable> {
         System.out.println(Constants.COST_OTP + purchase.getCost() + Constants.BYN);
     }
 
-    public void printCostDiff(Purchase<?> p) {
+    public void printCostDiff(Purchase<? extends  Priceable> p) {
         String otp = Constants.EMPTY_LINE;
         Byn diff = new Byn(0);
         int result = purchase.getCost().compareTo(p.getCost());
