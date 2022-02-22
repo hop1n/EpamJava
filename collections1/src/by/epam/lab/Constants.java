@@ -21,4 +21,5 @@ public class Constants {
     public final static String ENUMERATED_MAP = "Enumerated map";
     public final static String OUTPUT_AFTER_DELETING = "\nAfter deleting";
     public final static String OUTPUT_COST_EACH_DAY ="total cost for each day: \n";
+    public final static int HASH_CODE_CONST = 31;
 }

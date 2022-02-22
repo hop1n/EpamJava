@@ -1,7 +1,6 @@
 package by.epam.lab.beans;
 
 import by.epam.lab.Constants;
-import by.epam.lab.services.RoundMethod;
 
 import java.util.Scanner;
 
@@ -24,16 +23,12 @@ public final class Byn implements Comparable<Byn> {
         this(sc.nextInt());
     }
 
+    public Byn(String value){
+        this(Integer.parseInt(value));
+    }
+
     public Byn mul(int count) {
         return new Byn(value * count);
-    }
-
-    public Byn mul(double k, RoundMethod roundMethod, int d) {
-        return new Byn(roundMethod.round(value * k, roundMethod, d));
-    }
-
-    public Byn round(RoundMethod roundMethod, int d) {
-        return new Byn(roundMethod.round(value, roundMethod, d));
     }
 
     public Byn sub(Byn byn) {
@@ -60,7 +55,7 @@ public final class Byn implements Comparable<Byn> {
 
     @Override
     public int hashCode() {
-        return value + 17;
+        return value;
     }
 
     @Override

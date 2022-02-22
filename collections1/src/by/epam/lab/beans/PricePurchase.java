@@ -17,9 +17,8 @@ public class PricePurchase extends Purchase{
     }
 
     public PricePurchase(String[] fields) {
-        super(fields[Constants.NAME_INDEX], new Byn(Integer.parseInt(fields[Constants.PRICE_INDEX])),
-                Integer.parseInt(fields[Constants.NUMBER_INDEX]));
-        this.discount = new Byn(Integer.parseInt(fields[Constants.DISCOUNT_INDEX]));
+        super(fields);
+        this.discount = new Byn(fields[Constants.DISCOUNT_INDEX]);
     }
 
     public Byn getDiscount() {

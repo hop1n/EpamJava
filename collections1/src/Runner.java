@@ -39,6 +39,22 @@ public class Runner {
         return sum;
     }
 
+    private static void findPurchaseDay(Map<Purchase, WeekDay> map, Purchase purchase){
+        WeekDay requiredDay;
+        requiredDay = map.get(purchase);
+        if (requiredDay == null){
+            System.out.println("required purchase not find");
+        }else{
+            System.out.println(requiredDay);
+        }
+    }
+
+    private static<T, N> void printMap(Map<T, N> map){
+        for (Map.Entry<T, N> entry: map.entrySet()) {
+            System.out.println(entry);
+        }
+    }
+
     public static void main (String[] args) {
         Map<Purchase, WeekDay> firstPurchase = new HashMap<>();
         Map<Purchase, WeekDay> lastPurchase = new HashMap<>();
@@ -63,37 +79,28 @@ public class Runner {
                 enumeratedMap.get(day).add(purchase);
             }
             System.out.println(Constants.FIRST_PURCHASE_MAP);
-            for (Map.Entry<Purchase, WeekDay> entry: firstPurchase.entrySet()) {
-                System.out.println(entry);
-            }
+            printMap(firstPurchase);
             System.out.println();
             System.out.println(Constants.LAST_PURCHASE_MAP);
-            for (Map.Entry<Purchase, WeekDay> entry: lastPurchase.entrySet()) {
-                System.out.println(entry);
-            }
-            System.out.println(lastPurchase.get(new Purchase("bread", new Byn(155), 3)));
-            System.out.println(firstPurchase.get(new Purchase("bread", new Byn(155), 3)));
-            System.out.println(firstPurchase.get(new Purchase("bread", new Byn(170), 4)));
+            printMap(lastPurchase);
+            findPurchaseDay(lastPurchase, new Purchase("bread", new Byn(155), 3));
+            findPurchaseDay(firstPurchase, new Purchase("bread", new Byn(155), 3));
+            findPurchaseDay(firstPurchase, new Purchase("bread", new Byn(170), 4));
             deleteMapElementsByName(lastPurchase, "meat");
             deleteMapElementsByDay(firstPurchase, WeekDay.FRIDAY);
             System.out.println(Constants.OUTPUT_AFTER_DELETING);
             System.out.println(Constants.FIRST_PURCHASE_MAP);
-            for (Map.Entry<Purchase, WeekDay> entry: firstPurchase.entrySet()) {
-                System.out.println(entry);
-            }
+            printMap(firstPurchase);
             System.out.println();
             System.out.println(Constants.LAST_PURCHASE_MAP);
-            for (Map.Entry<Purchase, WeekDay> entry: lastPurchase.entrySet()) {
-                System.out.println(entry);
-            }
+            printMap(lastPurchase);
             sum = getPurchasesTotalCost(discountList);
             System.out.println(sum);
             System.out.println(Constants.ENUMERATED_MAP);
+            printMap(enumeratedMap);
             for (Map.Entry<WeekDay, List<Purchase>> entry: enumeratedMap.entrySet()) {
-                System.out.println(entry);
-            }
-            for (Map.Entry<WeekDay, List<Purchase>> entry: enumeratedMap.entrySet()) {
-                System.out.println(Constants.OUTPUT_COST_EACH_DAY + entry.getKey() + " " + getPurchasesTotalCost(entry.getValue()));
+                System.out.println(Constants.OUTPUT_COST_EACH_DAY + entry.getKey() + " " +
+                        getPurchasesTotalCost(entry.getValue()));
             }
             System.out.println(enumeratedMap.get(WeekDay.MONDAY));
         } catch (FileNotFoundException e) {

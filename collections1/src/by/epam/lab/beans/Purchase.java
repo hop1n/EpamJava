@@ -22,7 +22,7 @@ public class Purchase {
     }
 
     public Purchase(String[] fields) {
-        this(fields[Constants.NAME_INDEX], new Byn(Integer.parseInt(fields[Constants.PRICE_INDEX])),
+        this(fields[Constants.NAME_INDEX], new Byn(fields[Constants.PRICE_INDEX]),
                 Integer.parseInt(fields[Constants.NUMBER_INDEX]));
     }
 
@@ -78,7 +78,7 @@ public class Purchase {
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = Constants.HASH_CODE_CONST * result + (price != null ? price.hashCode() : 0);
         return result;
     }
 }
