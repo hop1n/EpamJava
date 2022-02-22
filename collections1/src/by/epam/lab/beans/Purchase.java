@@ -11,8 +11,6 @@ public class Purchase {
     private int number;
 
     public Purchase() {
-        price = new Byn(0);
-        number = 0;
     }
 
     public Purchase(String name, Byn price, int number) {
@@ -24,10 +22,6 @@ public class Purchase {
     public Purchase(String[] fields) {
         this(fields[Constants.NAME_INDEX], new Byn(fields[Constants.PRICE_INDEX]),
                 Integer.parseInt(fields[Constants.NUMBER_INDEX]));
-    }
-
-    public Purchase(Scanner sc) {
-        this(sc.next(), new Byn(sc), sc.nextInt());
     }
 
     public String getName() {

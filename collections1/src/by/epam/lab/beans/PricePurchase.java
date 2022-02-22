@@ -11,11 +11,6 @@ public class PricePurchase extends Purchase{
         this.discount = new Byn(0);
     }
 
-    public PricePurchase(Scanner sc) {
-        super(sc);
-        this.discount = new Byn(sc);
-    }
-
     public PricePurchase(String[] fields) {
         super(fields);
         this.discount = new Byn(fields[Constants.DISCOUNT_INDEX]);

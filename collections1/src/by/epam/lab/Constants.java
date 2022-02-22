@@ -22,4 +22,8 @@ public class Constants {
     public final static String OUTPUT_AFTER_DELETING = "\nAfter deleting";
     public final static String OUTPUT_COST_EACH_DAY ="total cost for each day: \n";
     public final static int HASH_CODE_CONST = 31;
+    public final static String FAILED_SEARCH = "required purchase not find";
+    public final static String SUCCESSFUL_SEARCH = "required purchase: ";
+    public final static String MEAT = "meat";
+    public final static String MONDAY_PURCHASES = "Monday purchases: ";
 }
