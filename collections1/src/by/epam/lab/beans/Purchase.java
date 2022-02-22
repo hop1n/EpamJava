@@ -1,6 +1,8 @@
 package by.epam.lab.beans;
 
 
+import by.epam.lab.Constants;
+
 import java.util.Scanner;
 
 public class Purchase {
@@ -19,10 +21,13 @@ public class Purchase {
         this.number = number;
     }
 
+    public Purchase(String[] fields) {
+        this(fields[Constants.NAME_INDEX], new Byn(Integer.parseInt(fields[Constants.PRICE_INDEX])),
+                Integer.parseInt(fields[Constants.NUMBER_INDEX]));
+    }
+
     public Purchase(Scanner sc) {
-        this.name = sc.next();
-        this.price = new Byn(sc);
-        this.number = sc.nextInt();
+        this(sc.next(), new Byn(sc), sc.nextInt());
     }
 
     public String getName() {
@@ -55,11 +60,11 @@ public class Purchase {
 
     @Override
     public String toString() {
-        return fieldsToString() + ";" + getCost();
+        return getClass().getSimpleName() + Constants.DELIMITER  + fieldsToString() + Constants.DELIMITER + getCost();
     }
 
     protected String fieldsToString() {
-        return name + ";" + price + ";" + number;
+        return name + Constants.DELIMITER  + price + Constants.DELIMITER  + number;
     }
 
     @Override
@@ -68,5 +73,12 @@ public class Purchase {
         if (!(o instanceof Purchase)) return false;
         Purchase purchase = (Purchase) o;
         return name.equals(purchase.name) && price.equals(purchase.price);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        return result;
     }
 }

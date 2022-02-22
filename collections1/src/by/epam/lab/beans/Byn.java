@@ -59,6 +59,11 @@ public final class Byn implements Comparable<Byn> {
     }
 
     @Override
+    public int hashCode() {
+        return value + 17;
+    }
+
+    @Override
     public String toString() {
         return String.format(Constants.BYN_TO_STRING, value / Constants.BYN_VALUE_IN_KOPS,
                 value % Constants.BYN_VALUE_IN_KOPS);
