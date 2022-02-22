@@ -31,7 +31,7 @@ public class Runner {
         }
     }
 
-    private static <T extends Purchase> Byn getPurchasesTotalCost(List<T> list){
+    private static Byn getPurchasesTotalCost(List<? extends Purchase> list){
         Byn sum = new Byn(0);
         for (Purchase purchase : list){
             sum = sum.add(purchase.getCost());
