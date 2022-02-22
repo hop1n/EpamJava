@@ -27,3 +27,4 @@ public class Constants {
     public final static String MEAT = "meat";
     public final static String MONDAY_PURCHASES = "Monday purchases: ";
 }
+

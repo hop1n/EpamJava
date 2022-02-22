@@ -4,10 +4,10 @@ import by.epam.lab.Constants;
 
 import java.util.Scanner;
 
-public class PricePurchase extends Purchase{
+public class PricePurchase extends Purchase {
     private Byn discount;
 
-    public PricePurchase(){
+    public PricePurchase() {
         this.discount = new Byn(0);
     }
 
@@ -30,7 +30,7 @@ public class PricePurchase extends Purchase{
     }
 
     protected String fieldsToString() {
-        return super.fieldsToString() + Constants.DELIMITER  + discount;
+        return super.fieldsToString() + Constants.DELIMITER + discount;
     }
 }
 

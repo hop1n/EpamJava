@@ -54,11 +54,11 @@ public class Purchase {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + Constants.DELIMITER  + fieldsToString() + Constants.DELIMITER + getCost();
+        return getClass().getSimpleName() + Constants.DELIMITER + fieldsToString() + Constants.DELIMITER + getCost();
     }
 
     protected String fieldsToString() {
-        return name + Constants.DELIMITER  + price + Constants.DELIMITER  + number;
+        return name + Constants.DELIMITER + price + Constants.DELIMITER + number;
     }
 
     @Override

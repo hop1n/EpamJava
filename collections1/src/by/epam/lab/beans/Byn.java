@@ -23,7 +23,7 @@ public final class Byn implements Comparable<Byn> {
         this(sc.nextInt());
     }
 
-    public Byn(String value){
+    public Byn(String value) {
         this(Integer.parseInt(value));
     }
 
