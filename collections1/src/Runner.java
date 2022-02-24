@@ -16,7 +16,7 @@ public class Runner {
     public static void main(String[] args) {
         Map<Purchase, WeekDay> firstPurchase = new HashMap<>();
         Map<Purchase, WeekDay> lastPurchase = new HashMap<>();
-        Map<WeekDay, List<Purchase>> dayPurchasesMap = new HashMap<>();
+        Map<WeekDay, List<Purchase>> dayPurchasesMap = new EnumMap<>(WeekDay.class);
         List<PricePurchase> priceDiscountPurchases = new ArrayList<>();
         try (Scanner sc = new Scanner(new FileReader(Constants.PATH))) {
             while (sc.hasNextLine()) {
@@ -27,19 +27,24 @@ public class Runner {
                 if (!(firstPurchase.containsKey(purchase))) {
                     firstPurchase.put(purchase, day);
                 }
-                if (!dayPurchasesMap.containsKey(day)) {
-                    dayPurchasesMap.put(day, new ArrayList<>());
+                List<Purchase> valueListPurchase = dayPurchasesMap.get(day);
+                if (valueListPurchase == null){
+                    dayPurchasesMap.put(day, valueListPurchase = new ArrayList<>());
                 }
-                dayPurchasesMap.get(day).add(purchase);
+                valueListPurchase.add(purchase);
+//                if (!dayPurchasesMap.containsKey(day)) {
+//                    dayPurchasesMap.put(day, new ArrayList<>());
+//                }
+//                dayPurchasesMap.get(day).add(purchase);
                 if (purchase instanceof PricePurchase) {
                     priceDiscountPurchases.add((PricePurchase) purchase);
                 }
             }
             printMap(lastPurchase, Constants.LAST_PURCHASE_MAP);
             printMap(firstPurchase, Constants.FIRST_PURCHASE_MAP);
-            findAndShow(firstPurchase, new Purchase("bread", new Byn(155), 3), "bread;155");
-            findAndShow(lastPurchase, new Purchase("bread", new Byn(155), 3), "bread;155");
-            findAndShow(firstPurchase, new Purchase("bread", new Byn(170), 4), "bread;170");
+            findAndShow(firstPurchase, new Purchase("bread", new Byn(155), 3), Constants.FIND_FIRST_DAY);
+            findAndShow(lastPurchase, new Purchase("bread", new Byn(155), 3), Constants.FIND_LAST_DAY);
+            findAndShow(firstPurchase, new Purchase("bread", new Byn(170), 4), Constants.FIND_FIRST_DAY_FAILED);
             removeEntries(lastPurchase, new EntryChecker<Purchase, WeekDay>() {
                 @Override
                 public boolean check(Map.Entry<Purchase, WeekDay> entry) {
@@ -50,7 +55,7 @@ public class Runner {
 
                 @Override
                 public boolean check(Map.Entry<Purchase, WeekDay> entry) {
-                    return WeekDay.FRIDAY.toString().equals(entry.getKey().getName());
+                    return  WeekDay.FRIDAY == entry.getValue();
                 }
             });
             System.out.println(Constants.OUTPUT_AFTER_DELETING);
@@ -62,7 +67,7 @@ public class Runner {
                 System.out.println(Constants.OUTPUT_COST_EACH_DAY + entry.getKey() + " " +
                         getTotalListCost(entry.getValue()));
             }
-            System.out.println(Constants.MONDAY_PURCHASES + dayPurchasesMap.get(WeekDay.MONDAY));
+            findAndShow(dayPurchasesMap, WeekDay.MONDAY, Constants.MONDAY_PURCHASES);
             removeEntries(dayPurchasesMap, new EntryChecker<WeekDay, List<Purchase>>() {
                 @Override
                 public boolean check(Map.Entry<WeekDay, List<Purchase>> entry) {
@@ -91,7 +96,7 @@ public class Runner {
     }
 
     private static Byn getTotalListCost(List<? extends Purchase> list) {
-        Byn sum = new Byn(0);
+        Byn sum = new Byn();
         for (Purchase purchase : list) {
             sum = sum.add(purchase.getCost());
         }
@@ -99,19 +104,15 @@ public class Runner {
     }
 
     private static <K, V> void findAndShow(Map<K, V> map, K searchKey, String header) {
-        V requiredDay;
-        requiredDay = map.get(searchKey);
-        if (requiredDay == null) {
-            System.out.println(Constants.REQUIRED_PURCHASE + header + Constants.NOT_FOUND);
-        } else {
-            System.out.println(Constants.REQUIRED_PURCHASE + header + Constants.DAY + requiredDay);
-        }
+        V requiredDay = map.get(searchKey);
+        String output = requiredDay == null ? header + Constants.NOT_FOUND : header + requiredDay;
+        System.out.println(output);
     }
 
     private static <K, V> void printMap(Map<K, V> map, String mapType) {
         System.out.println(mapType);
         for (Map.Entry<K, V> entry : map.entrySet()) {
-            System.out.println(entry);
+            System.out.println(entry.getKey() + Constants.DELIMITER + entry.getValue());
         }
     }
 

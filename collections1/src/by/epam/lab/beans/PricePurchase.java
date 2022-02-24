@@ -8,7 +8,7 @@ public class PricePurchase extends Purchase {
     private Byn discount;
 
     public PricePurchase() {
-        this.discount = new Byn(0);
+
     }
 
     public PricePurchase(String[] fields) {
