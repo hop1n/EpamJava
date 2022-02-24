@@ -32,10 +32,6 @@ public class Runner {
                     dayPurchasesMap.put(day, valueListPurchase = new ArrayList<>());
                 }
                 valueListPurchase.add(purchase);
-//                if (!dayPurchasesMap.containsKey(day)) {
-//                    dayPurchasesMap.put(day, new ArrayList<>());
-//                }
-//                dayPurchasesMap.get(day).add(purchase);
                 if (purchase instanceof PricePurchase) {
                     priceDiscountPurchases.add((PricePurchase) purchase);
                 }
