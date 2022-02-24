@@ -38,9 +38,14 @@ public class Runner {
             }
             printMap(lastPurchase, Constants.LAST_PURCHASE_MAP);
             printMap(firstPurchase, Constants.FIRST_PURCHASE_MAP);
-            findAndShow(firstPurchase, new Purchase("bread", new Byn(155), 3), Constants.FIND_FIRST_DAY);
-            findAndShow(lastPurchase, new Purchase("bread", new Byn(155), 3), Constants.FIND_LAST_DAY);
-            findAndShow(firstPurchase, new Purchase("bread", new Byn(170), 4), Constants.FIND_FIRST_DAY_FAILED);
+            Purchase purchaseToSearch = new Purchase(Constants.BREAD, new Byn(155), 3);
+            Purchase wrongPurchaseToSearch = new Purchase(Constants.BREAD, new Byn(170), 3);
+            findAndShow(firstPurchase, purchaseToSearch, Constants.FIND_FIRST_DAY + Constants.OPEN_BRAСKET +
+                    purchaseToSearch.getName() + Constants.DELIMITER + purchaseToSearch.getPrice() + Constants.CLOSE_BRAСKET );
+            findAndShow(lastPurchase, purchaseToSearch, Constants.FIND_LAST_DAY + Constants.OPEN_BRAСKET +
+                    purchaseToSearch.getName() + Constants.DELIMITER + purchaseToSearch.getPrice() + Constants.CLOSE_BRAСKET);
+            findAndShow(firstPurchase, wrongPurchaseToSearch, Constants.FIND_FIRST_DAY_FAILED + Constants.OPEN_BRAСKET +
+                    purchaseToSearch.getName() + Constants.DELIMITER + purchaseToSearch.getPrice() + Constants.CLOSE_BRAСKET);
             removeEntries(lastPurchase, new EntryChecker<Purchase, WeekDay>() {
                 @Override
                 public boolean check(Map.Entry<Purchase, WeekDay> entry) {

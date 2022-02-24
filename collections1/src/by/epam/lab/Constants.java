@@ -20,11 +20,14 @@ public class Constants {
     public final static String NOT_FOUND = "not found ";
     public final static String MEAT = "meat";
     public final static String MILK = "milk";
+    public final static String BREAD = "bread";
     public final static String MONDAY_PURCHASES = "Monday purchases: ";
     public final static String DAY = " day: ";
     public final static String DAY_PURCHASES_MAP = "Day purchases map";
-    public final static String FIND_FIRST_DAY ="First day for purchase (bread;1.55)";
-    public final static String FIND_LAST_DAY = "Last day for purchase (bread;1.55)";
-    public final static String FIND_FIRST_DAY_FAILED ="First day for purchase (bread;1.70)";
+    public final static String FIND_FIRST_DAY ="First day for purchase ";
+    public final static String FIND_LAST_DAY = "Last day for purchase";
+    public final static String FIND_FIRST_DAY_FAILED ="First day for purchase";
+    public final static String OPEN_BRAСKET = " (";
+    public final static String CLOSE_BRAСKET = ") ";
 }
 
