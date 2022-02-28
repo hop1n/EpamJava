@@ -33,7 +33,7 @@ public class Runner {
                 }
             });
             for (LenNum lenNum : list){
-                System.out.println(lenNum.toString());
+                System.out.println(lenNum);
             }
         } catch(FileNotFoundException e){
             System.out.println(e.getMessage());

@@ -33,11 +33,26 @@ public class LenNum implements Comparable<LenNum>{
 
     @Override
     public String toString() {
-        return "(" + len + ";" + num + ")";
+        return len + ";" + num;
     }
 
     @Override
     public int compareTo(LenNum o) {
-        return o.len - len;
+        return len - o.len;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LenNum lenNum = (LenNum) o;
+        return len == lenNum.len;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = len;
+        result = 31 * result + num;
+        return result;
     }
 }
