@@ -10,11 +10,6 @@ public class LenNum implements Comparable<LenNum>{
         num = 0;
     }
 
-    public LenNum(double len, int num){
-        this.len = (int) Math.round(len);
-        this.num = num;
-    }
-
     public LenNum(int len, int num){
         this.len = len;
         this.num = num;
@@ -36,10 +31,6 @@ public class LenNum implements Comparable<LenNum>{
         return num;
     }
 
-    public void incrementNum(){
-        num++;
-    }
-
     @Override
     public String toString() {
         return "(" + len + ";" + num + ")";
@@ -47,6 +38,6 @@ public class LenNum implements Comparable<LenNum>{
 
     @Override
     public int compareTo(LenNum o) {
-        return o.num - num;
+        return o.len - len;
     }
 }
