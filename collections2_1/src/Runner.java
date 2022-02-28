@@ -17,10 +17,11 @@ public class Runner {
                 double y1 = Double.parseDouble(parts[3]);
                 double y2 = Double.parseDouble(parts[4]);
                 int l = (int)  Math.round(Math.sqrt((x1 - x2)*(x1 - x2)+(y1 - y2)*(y1 - y2)));
+                Collections.sort(list);
                 int n = Collections.binarySearch(list, new LenNum(l, 1));
                 if (n >= 0){
                     LenNum lenNum = list.get(n);
-                    lenNum.setLen(lenNum.getLen() + 1);
+                    lenNum.setNum(lenNum.getNum() + 1);
                 } else {
                     list.add(new LenNum(l, 1));
                 }
@@ -28,7 +29,7 @@ public class Runner {
             Collections.sort(list, new Comparator<LenNum>() {
                 @Override
                 public int compare(LenNum a, LenNum b){
-                    return a.getNum() - b.getNum();
+                    return b.getNum() - a.getNum();
                 }
             });
             for (LenNum lenNum : list){
