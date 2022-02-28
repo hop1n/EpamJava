@@ -1,7 +1,7 @@
 package by.epam.lab;
 
 
-public class LenNum {
+public class LenNum implements Comparable<LenNum>{
     private int len;
     private int num;
 
@@ -20,24 +20,33 @@ public class LenNum {
         this.num = num;
     }
 
-    public int getLen() {
-        return len;
-    }
-
     public void setLen(int len) {
         this.len = len;
-    }
-
-    public int getNum() {
-        return num;
     }
 
     public void setNum(int num) {
         this.num = num;
     }
 
+    public int getLen() {
+        return len;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void incrementNum(){
+        num++;
+    }
+
     @Override
     public String toString() {
-        return "( " + len + ";" + num + " )";
+        return "(" + len + ";" + num + ")";
+    }
+
+    @Override
+    public int compareTo(LenNum o) {
+        return o.num - num;
     }
 }
