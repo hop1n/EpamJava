@@ -1,16 +1,16 @@
 package by.epam.lab;
 
 
-public class LenNum implements Comparable<LenNum>{
+public class LenNum implements Comparable<LenNum> {
     private int len;
     private int num;
 
-    public LenNum(){
+    public LenNum() {
         len = 0;
         num = 0;
     }
 
-    public LenNum(int len, int num){
+    public LenNum(int len, int num) {
         this.len = len;
         this.num = num;
     }
@@ -33,26 +33,11 @@ public class LenNum implements Comparable<LenNum>{
 
     @Override
     public String toString() {
-        return len + ";" + num;
+        return len + Constants.DELIMITER + num;
     }
 
     @Override
     public int compareTo(LenNum o) {
         return len - o.len;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LenNum lenNum = (LenNum) o;
-        return len == lenNum.len;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = len;
-        result = 31 * result + num;
-        return result;
     }
 }
