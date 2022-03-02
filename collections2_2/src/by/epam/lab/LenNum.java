@@ -40,12 +40,15 @@ public class LenNum {
         return len + Constants.DELIMITER + num;
     }
 
+    @Override
     public int hashCode() {
         final int PRIME = 31;
         int result = 1;
         result = PRIME * result + len;
         return result;
     }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -59,5 +62,4 @@ public class LenNum {
         other.num++;
         return true;
     }
-
 }
