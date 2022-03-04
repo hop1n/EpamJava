@@ -25,7 +25,7 @@ public class Runner {
                 }
             }
             List<Map.Entry<Integer, Integer>> list = new ArrayList<>(mapNumLen.entrySet());
-            Collections.sort(list, new NumComparator<Integer>());
+            Collections.sort(list, new NumComparator());
             for (Map.Entry<Integer, Integer> outList : list) {
                 System.out.println(outList);
             }
