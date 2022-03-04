@@ -18,15 +18,15 @@ public class Runner {
                 double x2 = Double.parseDouble(parts[Constants.X2_INDEX]);
                 double y2 = Double.parseDouble(parts[Constants.Y2_INDEX]);
                 int l = (int) Math.round(Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)));
-                if (mapNumLen.containsKey(l)){
-                    mapNumLen.put(l, mapNumLen.get(l)+1);
-                } else{
+                if (mapNumLen.containsKey(l)) {
+                    mapNumLen.put(l, mapNumLen.get(l) + 1);
+                } else {
                     mapNumLen.put(l, 1);
                 }
             }
             List<Map.Entry<Integer, Integer>> list = new ArrayList<>(mapNumLen.entrySet());
             Collections.sort(list, new NumComparator<Integer>());
-            for (Map.Entry<Integer, Integer> outList : list){
+            for (Map.Entry<Integer, Integer> outList : list) {
                 System.out.println(outList);
             }
         } catch (FileNotFoundException e) {
