@@ -18,11 +18,11 @@ public class Runner {
                 double x2 = Double.parseDouble(parts[Constants.X2_INDEX]);
                 double y2 = Double.parseDouble(parts[Constants.Y2_INDEX]);
                 int l = (int) Math.round(Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)));
-                Integer value =mapNumLen.get(l) ;
-                if (value == null){
+                Integer value = mapNumLen.get(l);
+                if (value == null) {
                     value = 0;
                 }
-                mapNumLen.put(l, value+1);
+                mapNumLen.put(l, value + 1);
             }
             List<Map.Entry<Integer, Integer>> list = new ArrayList<>(mapNumLen.entrySet());
             Collections.sort(list, new NumComparator());
@@ -32,9 +32,9 @@ public class Runner {
         }
     }
 
-    public static<I> void printCollections(Collection<I> coll){
-        for (I collection : coll){
-            System.out.println(collection);
+    private static void printCollections(List<Map.Entry<Integer, Integer>> coll) {
+        for (Map.Entry<Integer, Integer> collection : coll) {
+            System.out.println(collection.getKey() + Constants.DELIMITER + collection.getValue());
         }
     }
 }
