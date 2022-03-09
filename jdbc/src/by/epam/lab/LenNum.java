@@ -5,18 +5,9 @@ public class LenNum {
     private int len;
     private int num;
 
-    public LenNum() {
-        len = 0;
-        num = 0;
-    }
-
     public LenNum(int len, int num) {
         this.len = len;
         this.num = num;
-    }
-
-    public void incNum() {
-        num++;
     }
 
     public void setLen(int len) {
@@ -38,28 +29,5 @@ public class LenNum {
     @Override
     public String toString() {
         return len + ";" + num;
-    }
-
-    @Override
-    public int hashCode() {
-        final int PRIME = 31;
-        int result = 1;
-        result = PRIME * result + len;
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        final LenNum other = (LenNum) obj;
-        if (len != other.len)
-            return false;
-        other.num++;
-        return true;
     }
 }

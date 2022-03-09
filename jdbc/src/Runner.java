@@ -1,3 +1,4 @@
+import by.epam.lab.Constants;
 import by.epam.lab.LenNum;
 
 import java.sql.*;
@@ -7,36 +8,40 @@ import java.util.List;
 public class Runner {
 
     public static void main(String[] args) {
-		String className = "com.mysql.cj.jdbc.Driver";
-		String dbUrl = "jdbc:mysql://localhost:3306/segments";
-        String user = "root";
-        String password = "mysqlpass";
+		String className = Constants.CLASS_NAME;
+		String dbUrl = Constants.DB_URL;
+        String user = Constants.USER_NAME;
+        String password = Constants.PASSWORD;
         List<LenNum> list = new ArrayList<>();
         try {
 			Class.forName(className);
             Connection cn = null;
             Statement st = null;
             ResultSet rs = null;
+            PreparedStatement ps = null;
             try {
                 cn = DriverManager.getConnection(dbUrl, user, password);
                 System.out.println(DriverManager.getDriver(dbUrl).getClass().getName());
                 System.out.println(cn.getClass().getName());
                 st = cn.createStatement();
-                rs = st.executeQuery("SELECT ROUND(ABS(x1 - x2)) AS len, Count(*) AS num FROM Coordinates GROUP BY len ORDER BY len ASC");
+                rs = st.executeQuery(Constants.GET_LENNUM_TABLE);
                 while (rs.next()) {
-                    list.add(new LenNum(rs.getInt("len"), rs.getInt("num")));
+                    LenNum segment = new LenNum(rs.getInt(Constants.LEN), rs.getInt(Constants.NUM));
+                    list.add(segment);
+                    System.out.println(segment);
                 }
-                st.executeUpdate("DELETE FROM Frequencies");
-                String sql = "INSERT INTO Frequencies(len, num) VALUES (?, ?)";
-                PreparedStatement preparedStatement = cn.prepareStatement(sql);
+                st.executeUpdate(Constants.CLEAR_FREQ_TABLE);
+                String sql = Constants.INSERT_TO_FREQ_TABLE;
+                ps = cn.prepareStatement(sql);
                 for (LenNum value : list){
-                    preparedStatement.setInt(1, value.getLen());
-                    preparedStatement.setInt(2, value.getNum());
-                    preparedStatement.executeUpdate();
+                    ps.setInt(1, value.getLen());
+                    ps.setInt(2, value.getNum());
+                    ps.executeUpdate();
                 }
-                rs = st.executeQuery("SELECT * FROM Frequencies WHERE len > num");
+                rs = st.executeQuery(Constants.GET_FREQ_BY_EXPRESSION);
+                System.out.println(Constants.SOUT_3_EX);
                 while (rs.next()) {
-                    System.out.println(rs.getInt(1) + ";" + rs.getInt(2));
+                    System.out.println(rs.getInt(1) + Constants.DELIMITER + rs.getInt(2));
                 }
 
             } finally {
@@ -48,6 +53,9 @@ public class Runner {
                 }
                 if (cn != null) {
                     cn.close();
+                }
+                if (ps != null){
+                    ps.close();
                 }
             }
         }catch (ClassNotFoundException |SQLException e) {
