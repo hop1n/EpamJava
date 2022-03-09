@@ -1,10 +1,6 @@
 import by.epam.lab.LenNum;
 
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,13 +22,21 @@ public class Runner {
                 System.out.println(DriverManager.getDriver(dbUrl).getClass().getName());
                 System.out.println(cn.getClass().getName());
                 st = cn.createStatement();
-                rs = st.executeQuery("SELECT abs(floor(x2-x1)) as len, count(*) as num FROM segments group by len");
+                rs = st.executeQuery("SELECT ROUND(ABS(x1 - x2)) AS len, Count(*) AS num FROM Coordinates GROUP BY len ORDER BY len ASC");
                 while (rs.next()) {
                     list.add(new LenNum(rs.getInt("len"), rs.getInt("num")));
                 }
-                rs = st.executeQuery("CREATE TABLE Frequencies (len int, num int)");
+                st.executeUpdate("DELETE FROM Frequencies");
+                String sql = "INSERT INTO Frequencies(len, num) VALUES (?, ?)";
+                PreparedStatement preparedStatement = cn.prepareStatement(sql);
                 for (LenNum value : list){
-                    st.executeQuery("INSERT INTO Frequencies (len, num) VALUES (" + value.getLen() + ","  + value.getNum() + ")");
+                    preparedStatement.setInt(1, value.getLen());
+                    preparedStatement.setInt(2, value.getNum());
+                    preparedStatement.executeUpdate();
+                }
+                rs = st.executeQuery("SELECT * FROM Frequencies WHERE len > num");
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + ";" + rs.getInt(2));
                 }
 
             } finally {
@@ -47,7 +51,7 @@ public class Runner {
                 }
             }
         }catch (ClassNotFoundException |SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
     }
 }
