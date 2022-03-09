@@ -9,9 +9,6 @@ public class Runner {
 
     public static void main(String[] args) {
 		String className = Constants.CLASS_NAME;
-		String dbUrl = Constants.DB_URL;
-        String user = Constants.USER_NAME;
-        String password = Constants.PASSWORD;
         List<LenNum> list = new ArrayList<>();
         try {
 			Class.forName(className);
@@ -20,8 +17,8 @@ public class Runner {
             ResultSet rs = null;
             PreparedStatement ps = null;
             try {
-                cn = DriverManager.getConnection(dbUrl, user, password);
-                System.out.println(DriverManager.getDriver(dbUrl).getClass().getName());
+                cn = DriverManager.getConnection(Constants.DB_URL, Constants.USER_NAME, Constants.PASSWORD);
+                System.out.println(DriverManager.getDriver(Constants.DB_URL).getClass().getName());
                 System.out.println(cn.getClass().getName());
                 st = cn.createStatement();
                 rs = st.executeQuery(Constants.GET_LENNUM_TABLE);
