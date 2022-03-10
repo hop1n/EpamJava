@@ -29,7 +29,7 @@ public class Runner {
             }
             try (ResultSet rs = st.executeQuery(Constants.GET_FREQ_BY_EXPRESSION)){
                 while (rs.next()) {
-                    System.out.println(rs.getInt(1) + Constants.DELIMITER + rs.getInt(2));
+                    System.out.println(rs.getInt(Constants.FIRST_PARAMETER) + Constants.DELIMITER + rs.getInt(Constants.SECOND_PARAMETER));
                 }
             }
         }catch (SQLException e) {

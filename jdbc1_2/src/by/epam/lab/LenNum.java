@@ -2,19 +2,11 @@ package by.epam.lab;
 
 
 public class LenNum {
-    private int len;
-    private int num;
+    final private int len;
+    final private int num;
 
     public LenNum(int len, int num) {
         this.len = len;
-        this.num = num;
-    }
-
-    public void setLen(int len) {
-        this.len = len;
-    }
-
-    public void setNum(int num) {
         this.num = num;
     }
 
