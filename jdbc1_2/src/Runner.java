@@ -21,10 +21,11 @@ public class Runner {
                 }
                 st.executeUpdate(Constants.CLEAR_FREQ_TABLE);
                 for (LenNum value : list) {
-                    ps.setInt(1, value.getLen());
-                    ps.setInt(2, value.getNum());
-                    ps.executeUpdate();
+                    ps.setInt(Constants.FIRST_PARAMETER, value.getLen());
+                    ps.setInt(Constants.SECOND_PARAMETER, value.getNum());
+                    ps.addBatch();
                 }
+                ps.executeBatch();
             }
             try (ResultSet rs = st.executeQuery(Constants.GET_FREQ_BY_EXPRESSION)){
                 while (rs.next()) {
