@@ -1,4 +1,4 @@
-import by.epam.lab.Constants;
+import static by.epam.lab.Constants.*;
 import by.epam.lab.LenNum;
 
 import javax.smartcardio.ResponseAPDU;
@@ -10,26 +10,26 @@ public class Runner {
 
     public static void main(String[] args) {
         List<LenNum> list = new ArrayList<>();
-        try (Connection cn = DriverManager.getConnection(Constants.DB_URL, Constants.USER_NAME, Constants.PASSWORD);
+        try (Connection cn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
              Statement st = cn.createStatement();
-             PreparedStatement ps = cn.prepareStatement(Constants.INSERT_TO_FREQ_TABLE)){
-            try (ResultSet rs = st.executeQuery(Constants.GET_LENNUM_TABLE)) {
+             PreparedStatement ps = cn.prepareStatement(INSERT_TO_FREQ_TABLE)){
+            try (ResultSet rs = st.executeQuery(GET_LENNUM_TABLE)) {
                 while (rs.next()) {
-                    LenNum segment = new LenNum(rs.getInt(Constants.LEN), rs.getInt(Constants.NUM));
+                    LenNum segment = new LenNum(rs.getInt(LEN), rs.getInt(NUM));
                     list.add(segment);
                     System.out.println(segment);
                 }
-                st.executeUpdate(Constants.CLEAR_FREQ_TABLE);
+                st.executeUpdate(CLEAR_FREQ_TABLE);
                 for (LenNum value : list) {
-                    ps.setInt(Constants.FIRST_PARAMETER, value.getLen());
-                    ps.setInt(Constants.SECOND_PARAMETER, value.getNum());
+                    ps.setInt(FIRST_PARAMETER, value.getLen());
+                    ps.setInt(SECOND_PARAMETER, value.getNum());
                     ps.addBatch();
                 }
                 ps.executeBatch();
             }
-            try (ResultSet rs = st.executeQuery(Constants.GET_FREQ_BY_EXPRESSION)){
+            try (ResultSet rs = st.executeQuery(GET_FREQ_BY_EXPRESSION)){
                 while (rs.next()) {
-                    System.out.println(rs.getInt(Constants.FIRST_PARAMETER) + Constants.DELIMITER + rs.getInt(Constants.SECOND_PARAMETER));
+                    System.out.println(rs.getInt(FIRST_PARAMETER) + DELIMITER + rs.getInt(SECOND_PARAMETER));
                 }
             }
         }catch (SQLException e) {
