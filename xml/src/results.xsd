@@ -24,15 +24,9 @@
 
     <xsd:complexType name="Test">
         <xsd:attribute name="name" type="Login"/>
-        <xsd:attribute name="date" type="Date"/>
+        <xsd:attribute name="date" type="xsd:date"/>
         <xsd:attribute name="mark" type="Mark"/>
     </xsd:complexType>
-
-    <xsd:simpleType name="Date">
-        <xsd:restriction base="xsd:token">
-            <xsd:pattern value="\d*-\d*-\d*"/>
-        </xsd:restriction>
-    </xsd:simpleType>
 
     <xsd:simpleType name="Mark">
         <xsd:restriction base="xsd:double">
@@ -42,7 +36,7 @@
 
     <xsd:simpleType name="Login">
         <xsd:restriction base="xsd:string">
-            <xsd:pattern value="^[a-zA-Z]{1}+.{2,}"/>
+            <xsd:pattern value="[a-zA-Z].{2,}"/>
         </xsd:restriction>
     </xsd:simpleType>
 </xsd:schema>
