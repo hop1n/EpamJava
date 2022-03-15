@@ -3,27 +3,27 @@
     <xsd:element name="results">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="student" type="Result"
+                <xsd:element name="student" type="Student"
                              minOccurs="1" maxOccurs="unbounded"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
 
-    <xsd:complexType name="Result">
+    <xsd:complexType name="Student">
         <xsd:sequence>
-            <xsd:element name="login" type="xsd:string"/>
+            <xsd:element name="login" type="Login"/>
             <xsd:element name="tests" type="Tests"/>
         </xsd:sequence>
     </xsd:complexType>
 
     <xsd:complexType name="Tests">
         <xsd:sequence>
-            <xsd:element name= "test" type = "Test" />
+            <xsd:element name= "test" type = "Test" minOccurs="1" maxOccurs="unbounded" />
         </xsd:sequence>
     </xsd:complexType>
 
     <xsd:complexType name="Test">
-        <xsd:attribute name="name" type="Login"/>
+        <xsd:attribute name="name" type="xsd:string"/>
         <xsd:attribute name="date" type="xsd:date"/>
         <xsd:attribute name="mark" type="Mark"/>
     </xsd:complexType>
