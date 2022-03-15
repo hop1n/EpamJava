@@ -9,7 +9,7 @@ public class Result {
     private final Date date;
     private final int mark;
 
-    public Result(String login, String test, Date date, int mark){
+    public Result(String login, String test, Date date, int mark) {
         this.login = login;
         this.test = test;
         this.date = date;
@@ -17,7 +17,7 @@ public class Result {
     }
 
     public Result(String login, String test, String date, String mark) {
-        this(login, test, Date.valueOf(date), (int)(Float.parseFloat(mark)*Constants.CONVERT_TO_INT));
+        this(login, test, Date.valueOf(date), (int) (Double.parseDouble(mark) * Constants.CONVERT));
     }
 
     public String getLogin() {
@@ -36,8 +36,8 @@ public class Result {
         return new SimpleDateFormat(Constants.DATE_FORMAT).format(date);
     }
 
-    public String toString(){
+    public String toString() {
         return login + Constants.DELIMITER + test + Constants.DELIMITER +
-                getDate() + Constants.DELIMITER + mark/10 + Constants.DOT + mark%10;
+                getDate() + Constants.DELIMITER + mark / Constants.CONVERT + Constants.DOT + Constants.CONVERT;
     }
 }
