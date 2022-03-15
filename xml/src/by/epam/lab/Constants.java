@@ -7,4 +7,6 @@ public class Constants {
     public final static String DELIMITER = ";";
     public final static String DATE_FORMAT = "dd.MM.yyyy";
     public final static String PATH = "src/results.xml";
+    public final static int CONVERT_TO_INT = 10;
+    public final static char DOT = '.';
 }

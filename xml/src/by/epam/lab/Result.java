@@ -17,15 +17,27 @@ public class Result {
     }
 
     public Result(String login, String test, String date, String mark) {
-        this(login, test, Date.valueOf(date), Math.round(Float.parseFloat(mark)));
+        this(login, test, Date.valueOf(date), (int)(Float.parseFloat(mark)*Constants.CONVERT_TO_INT));
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getTest() {
+        return test;
+    }
+
+    public int getMark() {
+        return mark;
     }
 
     public String getDate() {
-        return date.toString();
+        return new SimpleDateFormat(Constants.DATE_FORMAT).format(date);
     }
 
     public String toString(){
         return login + Constants.DELIMITER + test + Constants.DELIMITER +
-                new SimpleDateFormat(Constants.DATE_FORMAT).format(date) + Constants.DELIMITER + mark;
+                getDate() + Constants.DELIMITER + mark/10 + Constants.DOT + mark%10;
     }
 }

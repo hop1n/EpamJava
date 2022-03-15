@@ -25,7 +25,7 @@ public class ResultHandler extends DefaultHandler {
         }
     }
 
-    public void getResults(){
+    public void printResults(){
         for (Result res: results){
             System.out.println(res);
         }
