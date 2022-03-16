@@ -36,12 +36,12 @@ public class Result {
         return (mark / Constants.CONVERT) + Constants.DOT + (mark % Constants.CONVERT);
     }
 
-    public String getDate() {
+    public String getSimpleDate() {
         return new SimpleDateFormat(Constants.DATE_FORMAT).format(date);
     }
 
     public String toString() {
         return login + Constants.DELIMITER + test + Constants.DELIMITER +
-                getDate() + Constants.DELIMITER + getStringMark();
+                getSimpleDate() + Constants.DELIMITER + getStringMark();
     }
 }

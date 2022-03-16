@@ -12,7 +12,6 @@ import java.util.List;
 
 public class Runner {
     public static void main(String[] args) {
-        List<Result> list = new ArrayList<>();
         try {
             ResultHandler handler = new ResultHandler();
             XMLReader reader = XMLReaderFactory.createXMLReader();
