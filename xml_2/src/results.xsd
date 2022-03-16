@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="results">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="student" type="Student"
+                             minOccurs="1" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="Student">
+        <xsd:sequence>
+            <xsd:element name="login" type="Login"/>
+            <xsd:element name="tests" type="Tests"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="Tests">
+        <xsd:sequence>
+            <xsd:element name= "test" type = "Test" minOccurs="1" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="Test">
+        <xsd:attribute name="name" type="xsd:string"/>
+        <xsd:attribute name="date" type="xsd:date"/>
+        <xsd:attribute name="mark" type="Mark"/>
+    </xsd:complexType>
+
+    <xsd:simpleType name="Mark">
+        <xsd:restriction base="xsd:double">
+            <xsd:pattern value="\d+\.\d|10\.0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="Login">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[a-zA-Z].{2,}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>
