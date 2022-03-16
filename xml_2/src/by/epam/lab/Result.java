@@ -8,6 +8,7 @@ public class Result {
     private final String test;
     private final Date date;
     private final int mark;
+    private static final SimpleDateFormat simpleDate = new SimpleDateFormat(Constants.DATE_FORMAT);
 
     public Result(String login, String test, Date date, int mark) {
         this.login = login;
@@ -37,7 +38,7 @@ public class Result {
     }
 
     public String getSimpleDate() {
-        return new SimpleDateFormat(Constants.DATE_FORMAT).format(date);
+        return simpleDate.format(date);
     }
 
     public String toString() {
