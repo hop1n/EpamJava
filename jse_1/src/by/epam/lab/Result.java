@@ -2,6 +2,7 @@ package by.epam.lab;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import static by.epam.lab.Constants.*;
 
 public class Result {
     private final String login;

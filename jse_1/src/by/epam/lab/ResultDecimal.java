@@ -4,9 +4,16 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 
-public class Result2Task extends Result {
+import static by.epam.lab.Constants.*;
+import static by.epam.lab.Constants.THIRD_PARAMETER;
 
-    public Result2Task(String login, String test, String date, String mark) {
+public class ResultDecimal extends Result {
+
+    public ResultDecimal(String[] parts){
+        this(parts[ZERO_PARAMETER], parts[FIRST_PARAMETER], parts[SECOND_PARAMETER], parts[THIRD_PARAMETER]);
+    }
+
+    public ResultDecimal(String login, String test, String date, String mark) {
         super(login, test, Date.valueOf(date), (int) (Double.parseDouble(mark) * Constants.CONVERT));
     }
 

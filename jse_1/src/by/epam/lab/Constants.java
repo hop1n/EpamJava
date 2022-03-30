@@ -42,5 +42,5 @@ public class Constants {
             "      FROM results INNER JOIN logins INNER JOIN tests\n" +
             "\t     ON results.loginId = logins.idLogin and results.testId = tests.idTest WHERE" +
             " MONTH(`dat`) = MONTH(NOW()) AND YEAR(`dat`) = YEAR(NOW()) order by date asc";
-    public final static String PATH = "src/results.xml";
+    public final static String XML_PATH = "src/results.xml";
 }
