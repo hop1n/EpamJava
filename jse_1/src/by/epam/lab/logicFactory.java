@@ -3,20 +3,17 @@ package by.epam.lab;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 
 import static by.epam.lab.Constants.*;
 
-public class ResultsFactory {
+public class logicFactory {
     public static void getCsvResultsFromFactory(String csvPath) {
         RunnerLogic.clearTables();
         String csvLine;
@@ -25,13 +22,13 @@ public class ResultsFactory {
                 csvLine = sc.nextLine();
                 RunnerLogic.addResult(csvLine.split(DELIMITER));
             }
-            RunnerLogic.otherTasks();
+            RunnerLogic.showStatInConsole();
         } catch (FileNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static void getXmlResultsFromFactory(String xmlPath){
+    public static void getXmlResultsFromFactory(String xmlPath) {
         RunnerLogic.clearTables();
         try {
             ResultHandler handler = new ResultHandler();
@@ -41,6 +38,6 @@ public class ResultsFactory {
         } catch (IOException | SAXException e) {
             System.out.println(e);
         }
-        RunnerLogic.otherTasks();
+        RunnerLogic.showStatInConsole();
     }
 }

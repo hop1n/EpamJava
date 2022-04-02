@@ -46,7 +46,14 @@ public class Result {
     }
 
     public String toString() {
-        return login + Constants.DELIMITER + test + Constants.DELIMITER +
-                getSimpleDate() + Constants.DELIMITER + getMark();
+        String output;
+            if (getMark()%10 == 0) {
+                output = login + Constants.DELIMITER + test + Constants.DELIMITER +
+                        getSimpleDate() + Constants.DELIMITER + getMark()/10;
+            } else {
+                output = login + Constants.DELIMITER + test + Constants.DELIMITER +
+                        getSimpleDate() + Constants.DELIMITER + getMark()/10 + DOT + getMark()%10;
+            }
+        return output;
     }
 }

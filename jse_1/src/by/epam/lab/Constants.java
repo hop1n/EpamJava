@@ -43,4 +43,5 @@ public class Constants {
             "\t     ON results.loginId = logins.idLogin and results.testId = tests.idTest WHERE" +
             " MONTH(`dat`) = MONTH(NOW()) AND YEAR(`dat`) = YEAR(NOW()) order by date asc";
     public final static String XML_PATH = "src/results.xml";
+    public final static String CSV2_PATH = "src/results2.csv";
 }

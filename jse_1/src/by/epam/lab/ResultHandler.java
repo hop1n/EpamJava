@@ -1,13 +1,9 @@
 package by.epam.lab;
 
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import static by.epam.lab.Constants.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ResultHandler extends DefaultHandler {
     private enum ResultEnum {

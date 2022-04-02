@@ -1,15 +1,11 @@
-import by.epam.lab.ResultHandler;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.XMLReaderFactory;
-import static by.epam.lab.Constants.*;
+import by.epam.lab.logicFactory;
 
-import java.io.IOException;
+import static by.epam.lab.Constants.*;
 
 
 public class SecondRunner {
     public static void main(String[] args) {
-
+        logicFactory.getXmlResultsFromFactory(XML_PATH);
     }
 }
 

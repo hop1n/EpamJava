@@ -13,12 +13,13 @@ public class RunnerLogic {
         String name = parts[ZERO_PARAMETER];
         String test = parts[FIRST_PARAMETER];
         Date date = Date.valueOf(parts[SECOND_PARAMETER]);
-        int mark;
+        double mark;
         if (parts[THIRD_PARAMETER].contains(".")){
-            mark = (int) Double.parseDouble(parts[THIRD_PARAMETER]) * 10;
+            mark = (Double.parseDouble(parts[THIRD_PARAMETER]));
         } else{
             mark = Integer.parseInt(parts[THIRD_PARAMETER]);
         }
+        mark *= 10;
         int loginId;
         int testId;
         try (Connection cn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);) {
@@ -53,7 +54,7 @@ public class RunnerLogic {
         }
     }
 
-    public static void otherTasks() {
+    public static void showStatInConsole() {
         try (Connection cn = DBConnector.getConnection()) {
             Statement st = cn.createStatement();
             ResultSet rs;
