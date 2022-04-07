@@ -72,7 +72,9 @@ public class RunnerLogic {
             }
             System.out.println("\nlatest day");
             for (Result results : currentMonthResults){
-                System.out.println(results);
+                if (currentMonthResults.get(currentMonthResults.size()-1).getDate().equals(results.getDate())){
+                    System.out.println(results);
+                }
             }
             System.out.println("\ndata has been added successfully");
         } catch (SQLException e) {
