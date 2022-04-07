@@ -17,7 +17,7 @@ public class DBConnector {
         try {
             cn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
         } catch (SQLException e) {
-            System.out.println("Input file is not found");
+            System.out.println(FILE_NOT_FOUND);
         }
         return cn;
     }
@@ -31,7 +31,7 @@ public class DBConnector {
             try {
                 connection.close();
             } catch (SQLException e) {
-                System.out.println("field close connection");
+                System.out.println(CLOSE_CONNECTION_FAILED);
             }
         }
     }

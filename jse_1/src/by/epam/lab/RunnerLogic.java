@@ -56,29 +56,28 @@ public class RunnerLogic {
             Statement st = cn.createStatement();
             ResultSet rs;
             rs = st.executeQuery(GET_AVG_MARK);
-            System.out.println("Avg result for each student");
+            System.out.println(AVG_RESULT);
             while (rs.next()) {
-                System.out.printf(Locale.ENGLISH, "%s%s%.2f\n", rs.getString("name"), DELIMITER, rs.getFloat("mark"));
+                System.out.printf(Locale.ENGLISH, AVG_OUTPUT, rs.getString(NAME), DELIMITER, rs.getFloat(MARK));
             }
             rs = st.executeQuery(GET_RESULTS_CURRENT_MONTH);
             List<Result> currentMonthResults = new LinkedList<>();
-            System.out.println("\nTests of current month");
+            System.out.println(TESTS_CURRENT_MONTH);
             while (rs.next()) {
-                currentMonthResults.add(new Result(rs.getString("login"), rs.getString("test"),
-                        rs.getDate("date"), rs.getInt("mark")));
+                currentMonthResults.add(new Result(rs.getString(LOGIN), rs.getString(TEST),
+                        rs.getDate(DATE), rs.getInt(MARK)));
             }
             for (Result result : currentMonthResults) {
                 System.out.println(result);
             }
-            System.out.println("\nlatest day");
+            System.out.println(LATEST_DAY);
             for (Result results : currentMonthResults){
                 if (currentMonthResults.get(currentMonthResults.size()-1).getDate().equals(results.getDate())){
                     System.out.println(results);
                 }
             }
-            System.out.println("\ndata has been added successfully");
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
     }
 

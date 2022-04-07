@@ -47,12 +47,12 @@ public class Result {
 
     public String toString() {
         String output;
-            if (getMark()%10 == 0) {
+            if (getMark()%CONVERT == 0) {
                 output = login + Constants.DELIMITER + test + Constants.DELIMITER +
-                        getSimpleDate() + Constants.DELIMITER + getMark()/10;
+                        getSimpleDate() + Constants.DELIMITER + getMark()/CONVERT;
             } else {
                 output = login + Constants.DELIMITER + test + Constants.DELIMITER +
-                        getSimpleDate() + Constants.DELIMITER + getMark()/10 + DOT + getMark()%10;
+                        getSimpleDate() + Constants.DELIMITER + getMark()/CONVERT + DOT + getMark()%CONVERT;
             }
         return output;
     }
