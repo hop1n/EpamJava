@@ -3,22 +3,19 @@ package by.epam.lab;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 import static by.epam.lab.Constants.*;
 
 public class RunnerLogic {
 
     public static void addResult(String[] parts) {
-        ResultSet rs = null;
+        ResultSet rs;
         String name = parts[ZERO_PARAMETER];
         String test = parts[FIRST_PARAMETER];
         Date date = Date.valueOf(parts[SECOND_PARAMETER]);
         double mark;
-        if (parts[THIRD_PARAMETER].contains(".")){
-            mark = (Double.parseDouble(parts[THIRD_PARAMETER]));
-        } else{
-            mark = Integer.parseInt(parts[THIRD_PARAMETER]);
-        }
+        mark = (Double.parseDouble(parts[THIRD_PARAMETER]));
         mark *= 10;
         int loginId;
         int testId;
@@ -61,7 +58,7 @@ public class RunnerLogic {
             rs = st.executeQuery(GET_AVG_MARK);
             System.out.println("Avg result for each student");
             while (rs.next()) {
-                System.out.println(rs.getString("name") + DELIMITER + rs.getFloat("mark"));
+                System.out.printf(Locale.ENGLISH, "%s%s%.2f\n", rs.getString("name"), DELIMITER, rs.getFloat("mark"));
             }
             rs = st.executeQuery(GET_RESULTS_CURRENT_MONTH);
             List<Result> currentMonthResults = new LinkedList<>();
@@ -74,7 +71,9 @@ public class RunnerLogic {
                 System.out.println(result);
             }
             System.out.println("\nlatest day");
-            System.out.println(currentMonthResults.get(currentMonthResults.size() - 1));
+            for (Result results : currentMonthResults){
+                System.out.println(results);
+            }
             System.out.println("\ndata has been added successfully");
         } catch (SQLException e) {
             e.printStackTrace();
