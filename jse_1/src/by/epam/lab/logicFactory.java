@@ -15,21 +15,21 @@ import static by.epam.lab.Constants.*;
 
 public class logicFactory {
     public static void getCsvResultsFromFactory(String csvPath) {
-        RunnerLogic.clearTables();
+        ResultLoader.clearTables();
         String csvLine;
         try (Scanner sc = new Scanner(new FileReader(csvPath)); Connection cn = DBConnector.getConnection()) {
             while (sc.hasNextLine()) {
                 csvLine = sc.nextLine();
-                RunnerLogic.addResult(csvLine.split(DELIMITER));
+                ResultLoader.loadResult(csvLine.split(DELIMITER));
             }
-            RunnerLogic.showStatInConsole();
+            ResultLoader.showStatInConsole();
         } catch (FileNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
 
     public static void getXmlResultsFromFactory(String xmlPath) {
-        RunnerLogic.clearTables();
+        ResultLoader.clearTables();
         try {
             ResultHandler handler = new ResultHandler();
             XMLReader reader = XMLReaderFactory.createXMLReader();
@@ -38,6 +38,6 @@ public class logicFactory {
         } catch (IOException | SAXException e) {
             System.out.println(e);
         }
-        RunnerLogic.showStatInConsole();
+        ResultLoader.showStatInConsole();
     }
 }

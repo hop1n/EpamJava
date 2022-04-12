@@ -4,50 +4,61 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import by.epam.lab.exceptions.*;
 
 import static by.epam.lab.Constants.*;
 
-public class RunnerLogic {
+public class ResultLoader {
 
-    public static void addResult(String[] parts) {
-        ResultSet rs;
-        String name = parts[ZERO_PARAMETER];
-        String test = parts[FIRST_PARAMETER];
-        Date date = Date.valueOf(parts[SECOND_PARAMETER]);
-        double mark;
-        mark = (Double.parseDouble(parts[THIRD_PARAMETER]));
-        mark *= 10;
-        int loginId;
-        int testId;
-        try (Connection cn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);) {
-            CallableStatement addLogins = cn.prepareCall(ADD_LOGINS_QUERY);
-            CallableStatement addTests = cn.prepareCall(ADD_TESTS_QUERY);
-            CallableStatement addToResults = cn.prepareCall(ADD_TO_RESULTS);
-            CallableStatement getLoginId = cn.prepareCall(GET_ID_LOGIN);
-            CallableStatement getTestId = cn.prepareCall(GET_ID_TEST);
-            Statement st = cn.createStatement();
-            st.executeUpdate(RESET_RESULTS_AUTO_INC);
-            st.executeUpdate(RESET_TESTS_AUTO_INC);
-            st.executeUpdate(RESET_LOGINS_AUTO_INC);
-            addLogins.setString(FIRST_PARAMETER, name);
-            addLogins.executeUpdate();
-            getLoginId.setString(FIRST_PARAMETER, name);
-            rs = getLoginId.executeQuery();
-            rs.next();
-            loginId = rs.getInt(ID_LOGIN);
-            addTests.setString(FIRST_PARAMETER, test);
-            addTests.executeUpdate();
-            getTestId.setString(FIRST_PARAMETER, test);
-            rs = getTestId.executeQuery();
-            rs.next();
-            testId = rs.getInt(ID_TESTS);
-            addToResults.setInt(FIRST_PARAMETER, loginId);
-            addToResults.setInt(SECOND_PARAMETER, testId);
-            addToResults.setDate(THIRD_PARAMETER, date);
-            addToResults.setDouble(FOURTH_PARAMETER, mark);
-            addToResults.executeUpdate();
+    public static void loadResult(ResultDao reader) {
+        try {
+            Connection cn = null;
+            CallableStatement addLogins = null;
+            CallableStatement addTests = null;
+            CallableStatement addToResults = null;
+            CallableStatement getLoginId = null;
+            CallableStatement getTestId = null;
+            try {
+                cn = DBConnector.getConnection();
+                addLogins = cn.prepareCall(ADD_LOGINS_QUERY);
+                addTests = cn.prepareCall(ADD_TESTS_QUERY);
+                addToResults = cn.prepareCall(ADD_TO_RESULTS);
+                getLoginId = cn.prepareCall(GET_ID_LOGIN);
+                getTestId = cn.prepareCall(GET_ID_TEST);
+                while (reader.hasResult()) {
+                    Result result = reader.nextResult();
+                    String login = result.getLogin();
+                    String test = result.getTest();
+                    int idLogin = getId(login, selectLogin, insertLogin);
+                    int idTest = getId(test, selectTest, insertTest);
+                    addToResults(idLogin, idTest, result, selectResult, insertResult);
+                }
+                Statement st = cn.createStatement();
+                st.executeUpdate(RESET_RESULTS_AUTO_INC);
+                st.executeUpdate(RESET_TESTS_AUTO_INC);
+                st.executeUpdate(RESET_LOGINS_AUTO_INC);
+                addLogins.setString(FIRST_PARAMETER, name);
+                addLogins.executeUpdate();
+                getLoginId.setString(FIRST_PARAMETER, name);
+                rs = getLoginId.executeQuery();
+                rs.next();
+                loginId = rs.getInt(ID_LOGIN);
+                addTests.setString(FIRST_PARAMETER, test);
+                addTests.executeUpdate();
+                getTestId.setString(FIRST_PARAMETER, test);
+                rs = getTestId.executeQuery();
+                rs.next();
+                testId = rs.getInt(ID_TESTS);
+                addToResults.setInt(FIRST_PARAMETER, loginId);
+                addToResults.setInt(SECOND_PARAMETER, testId);
+                addToResults.setDate(THIRD_PARAMETER, date);
+                addToResults.setDouble(FOURTH_PARAMETER, mark);
+                addToResults.executeUpdate();
+            } finally {
+                DBConnector.closeAllPS(selectLogin, insertLogin, selectTest, insertTest, insertResult);
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new ConnectionException(Constants.INSERT_SQL_ERROR);
         }
     }
 
@@ -71,8 +82,8 @@ public class RunnerLogic {
                 System.out.println(result);
             }
             System.out.println(LATEST_DAY);
-            for (Result results : currentMonthResults){
-                if (currentMonthResults.get(currentMonthResults.size()-1).getDate().equals(results.getDate())){
+            for (Result results : currentMonthResults) {
+                if (currentMonthResults.get(currentMonthResults.size() - 1).getDate().equals(results.getDate())) {
                     System.out.println(results);
                 }
             }
