@@ -22,10 +22,8 @@ public class ResultHandler extends DefaultHandler {
                              Attributes attributes) {
         currentEnum = ResultEnum.valueOf(localName.toUpperCase());
         if (currentEnum == ResultEnum.TEST) {
-            String[] parts = new String[]{login, attributes.getValue(NAME_INDEX),
-                    attributes.getValue(DATE_INDEX), attributes.getValue(MARK_INDEX)};
             results.add(new Result(login, attributes.getValue(NAME_INDEX),
-                    Date.valueOf(attributes.getValue(DATE_INDEX)), Integer.parseInt(attributes.getValue(MARK_INDEX))*10));
+                    Date.valueOf(attributes.getValue(DATE_INDEX)), Double.parseDouble(attributes.getValue(MARK_INDEX))*10));
         }
     }
 

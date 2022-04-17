@@ -25,10 +25,8 @@ public class ResultImplXml implements ResultDao {
 	        reader.setContentHandler(handler);
 			reader.parse(inputFileName);
 			iterator = handler.getResults().iterator();
-		} catch (SAXException e) {
-           throw new SourceException("SAX Parser exc");
-        } catch (IOException e) {
-            throw new SourceException("IOExc");
+		} catch (SAXException | IOException e) {
+			System.out.println(e);
         }
 	}
 

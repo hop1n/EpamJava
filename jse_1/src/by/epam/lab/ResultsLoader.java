@@ -39,17 +39,11 @@ public class ResultsLoader {
         final int ID_MARK = 4;
         Date date = result.getDate();
         int mark = result.getMark();
-        selectResult.setInt(ID_LOGIN, idLogin);
-        selectResult.setInt(ID_TEST, idTest);
-        selectResult.setDate(ID_DATE, date);
-        selectResult.setInt(ID_MARK, mark);
-        if (!selectResult.executeQuery().next()) {
-            insertResult.setInt(ID_LOGIN, idLogin);
-            insertResult.setInt(ID_TEST, idTest);
-            insertResult.setDate(ID_DATE, date);
-            insertResult.setInt(ID_MARK, mark);
-            insertResult.executeUpdate();
-        }
+        insertResult.setInt(ID_LOGIN, idLogin);
+        insertResult.setInt(ID_TEST, idTest);
+        insertResult.setDate(ID_DATE, date);
+        insertResult.setInt(ID_MARK, mark);
+        insertResult.executeUpdate();
     }
 
     public static void loadResults(ResultDao reader) throws SQLException, ConnectionException {
