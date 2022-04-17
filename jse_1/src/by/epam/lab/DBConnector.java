@@ -37,7 +37,7 @@ public class DBConnector {
         }
     }
 
-    public static void closeAllPS(PreparedStatement ... preparedStatements) throws SQLException {
+    public static void closeAllPS(PreparedStatement... preparedStatements) throws SQLException {
         for (PreparedStatement preparedStatement : preparedStatements) {
             if (preparedStatement != null && !preparedStatement.isClosed()) {
                 preparedStatement.close();

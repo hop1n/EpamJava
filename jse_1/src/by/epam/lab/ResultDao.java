@@ -1,7 +1,8 @@
 package by.epam.lab;
 
-public interface ResultDao {
+import java.io.Closeable;
+
+public interface ResultDao extends Closeable {
     Result nextResult();
     boolean hasResult();
-    void closeReader();
 }
