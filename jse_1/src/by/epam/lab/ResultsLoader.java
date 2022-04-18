@@ -71,6 +71,7 @@ public class ResultsLoader {
             } finally {
                 DBConnector.closeAllPS(addLogins, addTests, getTestId,
                         addToResults, getLoginId, getResult);
+                reader.close();
             }
         } catch (SQLException e) {
             throw new ConnectionException(INSERT_EXCEPTION);
