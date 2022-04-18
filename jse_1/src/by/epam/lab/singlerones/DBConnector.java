@@ -1,5 +1,6 @@
-package by.epam.lab;
+package by.epam.lab.singlerones;
 
+import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,31 +9,37 @@ import java.sql.SQLException;
 import static by.epam.lab.Constants.*;
 
 public class DBConnector {
-    private final static Connection connection = buildConnection();
+    private  static Connection CONNECTION;
 
-    public static Connection buildConnection() {
-        String url = DB_URL;
-        String name = USER_NAME;
-        String password = PASSWORD;
+    static {
+        try {
+            CONNECTION = buildConnection();
+        } catch (ConnectException e) {
+            System.out.println(e);
+        }
+    }
+
+
+    public static Connection buildConnection() throws ConnectException {
         Connection cn = null;
         try {
             cn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
         } catch (SQLException e) {
-            System.out.println(FILE_NOT_FOUND);
+            throw new ConnectException(CONNECTION_FAILED);
         }
         return cn;
     }
 
     public static Connection getConnection(){
-        return connection;
+        return CONNECTION;
     }
 
-    public void closeConnection(){
-        if (connection != null) {
+    public void closeConnection() throws ConnectException {
+        if (CONNECTION != null) {
             try {
-                connection.close();
+                CONNECTION.close();
             } catch (SQLException e) {
-                System.out.println(CLOSE_CONNECTION_FAILED);
+                throw new ConnectException(CLOSE_CONNECTION_FAILED);
             }
         }
     }

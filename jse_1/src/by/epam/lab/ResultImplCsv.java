@@ -1,7 +1,5 @@
 package by.epam.lab;
 
-import by.epam.lab.exceptions.SourceException;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.sql.Date;
@@ -25,12 +23,12 @@ public class ResultImplCsv implements ResultDao {
     }
 
     public Result nextResult() {
-        final String[] SPLITED_LINE = scanner.nextLine().split(DELIMITER);
-        String login = SPLITED_LINE[ZERO_PARAMETER];
-        String test = SPLITED_LINE[FIRST_PARAMETER];
-        Date date = Date.valueOf(SPLITED_LINE[SECOND_PARAMETER]);
+        final String[] SPLIT_LINE = scanner.nextLine().split(DELIMITER);
+        String login = SPLIT_LINE[ZERO_PARAMETER];
+        String test = SPLIT_LINE[FIRST_PARAMETER];
+        Date date = Date.valueOf(SPLIT_LINE[SECOND_PARAMETER]);
         double mark;
-        mark = (Double.parseDouble(SPLITED_LINE[THIRD_PARAMETER]));
+        mark = Double.parseDouble(SPLIT_LINE[THIRD_PARAMETER]);
         return new Result(login, test, date, mark);
     }
 

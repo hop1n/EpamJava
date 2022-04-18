@@ -13,10 +13,7 @@ public class Result {
     private static final SimpleDateFormat SIMPLE_DATE = new SimpleDateFormat(Constants.DATE_FORMAT);
 
     public Result() {
-        this.login = "";
-        this.test = "";
-        this.date = null;
-        this.mark = 0;
+       this(EMPTY_LINE, EMPTY_LINE, null, 0);
     }
 
     public Result(String login, String test, Date date, int mark) {
@@ -27,10 +24,7 @@ public class Result {
     }
 
     public Result(String login, String test, Date date, double mark) {
-        this.login = login;
-        this.test = test;
-        this.date = date;
-        this.mark = (int) mark * 10;
+        this(login, test, date, (int) mark * DOUBLE_TO_INT);
     }
 
     public String getLogin() {

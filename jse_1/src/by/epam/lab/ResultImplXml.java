@@ -9,6 +9,8 @@ import org.xml.sax.helpers.XMLReaderFactory;
 
 import by.epam.lab.exceptions.SourceException;
 
+import static by.epam.lab.Constants.*;
+
 public class ResultImplXml implements ResultDao {
 	
 	Iterator<Result> iterator = null;
@@ -25,8 +27,10 @@ public class ResultImplXml implements ResultDao {
 	        reader.setContentHandler(handler);
 			reader.parse(inputFileName);
 			iterator = handler.getResults().iterator();
-		} catch (SAXException | IOException e) {
-			System.out.println(e);
+		} catch (SAXException e) {
+           throw new SourceException(SAX_EXCEPTION);
+        } catch (IOException e) {
+            throw new SourceException(IO_EXCEPTION);
         }
 	}
 

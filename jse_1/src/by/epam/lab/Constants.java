@@ -15,16 +15,12 @@ public class Constants {
     public final static int SECOND_PARAMETER = 2;
     public final static int ZERO_PARAMETER = 0;
     public final static int THIRD_PARAMETER = 3;
-    public final static int  FOURTH_PARAMETER = 4;
     public final static String GET_ID_TEST = "SELECT idTest FROM tests where name = ?";
     public final static String ADD_LOGINS_QUERY = "{call addLogins(?)}";
     public final static String ADD_TESTS_QUERY = "{call addTests(?)}";
     public final static String ADD_TO_RESULTS = "INSERT INTO results (loginId, testId, dat, mark) VALUES (?, ?, ?, ?)";
     public final static String SELECT_RESULT_QUERY = "SELECT * FROM results WHERE loginId = ? AND testId = ? AND date = ? AND mark = ?";
     public final static String GET_ID_LOGIN = "SELECT idLogin FROM logins where name = ?";
-    public final static String RESET_RESULTS_AUTO_INC = "ALTER TABLE results AUTO_INCREMENT = 1";
-    public final static String RESET_TESTS_AUTO_INC = "ALTER TABLE tests AUTO_INCREMENT = 1";
-    public final static String RESET_LOGINS_AUTO_INC = "ALTER TABLE logins AUTO_INCREMENT = 1";
     public final static String GET_AVG_MARK = "SELECT logins.name, AVG(results.mark)/10 AS mark\n" +
             "      FROM results INNER JOIN logins\n" +
             "\t     ON results.loginId = logins.idLogin group by name order by mark desc";
@@ -38,7 +34,7 @@ public class Constants {
             " tests.name as test, results.dat as date , results.mark as mark\n" +
             "      FROM results INNER JOIN logins INNER JOIN tests\n" +
             "\t     ON results.loginId = logins.idLogin and results.testId = tests.idTest WHERE" +
-            " MONTH(`dat`) = MONTH(NOW()) AND YEAR(`dat`) = YEAR(NOW()) order by date asc";
+            " MONTH(`dat`) = MONTH(NOW()) AND YEAR(`dat`) = YEAR(NOW()) order by date desc";
     public final static String XML_PATH = "src/results.xml";
     public final static String CSV2_PATH = "src/results2.csv";
     public final static String AVG_RESULT = "Avg result for each student";
@@ -53,4 +49,11 @@ public class Constants {
     public final static String FILE_NOT_FOUND = "Input file is not found";
     public final static String CLOSE_CONNECTION_FAILED = "field close connection";
     public final static String CONNECTION_FAILED = "field connection";
+    public final static String EMPTY_LINE = "";
+    public final static int DOUBLE_TO_INT = 10;
+    public final static String SAX_EXCEPTION = "SAX Parser exc";
+    public final static String IO_EXCEPTION = "IOException";
+    public final static String INSERT_EXCEPTION = "Insert sql error";
+    public final static String NO_DATA = "data not found";
+    public final static String SQL_EXCEPTION = "sql exception";
 }

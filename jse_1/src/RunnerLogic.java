@@ -1,4 +1,4 @@
-import by.epam.lab.DBConnector;
+import by.epam.lab.singlerones.DBConnector;
 import by.epam.lab.Result;
 import by.epam.lab.ResultDao;
 import by.epam.lab.ResultsLoader;
@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Locale;
 
 import static by.epam.lab.Constants.*;
-import static by.epam.lab.Constants.MARK;
 
 public class RunnerLogic {
     public static void execute(ResultDao daoImplementation) {
@@ -27,7 +26,7 @@ public class RunnerLogic {
             }
 
             //3 Print a mean value of marks (2 digits after a decimal point) on every student in descending order by a mean value.
-            ResultSet rs = null;
+            ResultSet rs;
             Statement st = null;
             try {
                 st = DBConnector.getConnection().createStatement();
@@ -50,7 +49,7 @@ public class RunnerLogic {
                             rs.getDate(DATE), rs.getInt(MARK)));
                 }
                 if (currentMonthResults.size() == 0) {
-                    System.out.print("data not found");
+                    System.out.print(NO_DATA);
                 } else {
                     for (Result result : currentMonthResults) {
                         System.out.println(result);
@@ -58,14 +57,14 @@ public class RunnerLogic {
 
                     //5 Print tests results in the latest day of the current month (without SQL request).
                     System.out.println(LATEST_DAY);
-                    for (Result results : currentMonthResults){
-                        if (currentMonthResults.get(currentMonthResults.size()-1).getDate().equals(results.getDate())){
-                            System.out.println(results);
+                    for (Result result : currentMonthResults){
+                        if (currentMonthResults.get(0).getDate().equals(result.getDate())){
+                            System.out.println(result);
                         }
                     }
                 }
             } catch (SQLException e) {
-                System.err.print("sql exception");
+                System.err.print(SQL_EXCEPTION);
             }
         } catch (Exception e) {
             System.err.print(e);

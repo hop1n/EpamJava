@@ -6,7 +6,7 @@ import by.epam.lab.exceptions.SourceException;
 import static by.epam.lab.Constants.XML_PATH;
 
 public class RunnerDecimal {
-    public static void main(String[] args) throws SourceException {
+    public static void main(String[] args) {
         ResultDao reader = new ResultImplXml(XML_PATH);
         RunnerLogic.execute(reader);
     }

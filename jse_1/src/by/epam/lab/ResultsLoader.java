@@ -1,12 +1,9 @@
 package by.epam.lab;
 
 import by.epam.lab.exceptions.ConnectionException;
+import by.epam.lab.singlerones.DBConnector;
 
-import javax.security.auth.PrivateCredentialPermission;
 import java.sql.*;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
 
 import static by.epam.lab.Constants.*;
 
@@ -31,7 +28,7 @@ public class ResultsLoader {
         }
     }
 
-    private static void insertResult(int idLogin, int idTest, Result result, PreparedStatement selectResult,
+    private static void insertResult(int idLogin, int idTest, Result result,
                                      PreparedStatement insertResult) throws SQLException {
         final int ID_LOGIN = 1;
         final int ID_TEST = 2;
@@ -46,9 +43,9 @@ public class ResultsLoader {
         insertResult.executeUpdate();
     }
 
-    public static void loadResults(ResultDao reader) throws SQLException, ConnectionException {
+    public static void loadResults(ResultDao reader) throws ConnectionException {
         try {
-            Connection cn = null;
+            Connection cn;
             PreparedStatement addLogins = null;
             PreparedStatement addTests = null;
             PreparedStatement addToResults = null;
@@ -69,14 +66,14 @@ public class ResultsLoader {
                     String test = result.getTest();
                     int idLogin = getId(login, getLoginId, addLogins);
                     int idTest = getId(test, getTestId, addTests);
-                    insertResult(idLogin, idTest, result, getResult, addToResults);
+                    insertResult(idLogin, idTest, result, addToResults);
                 }
             } finally {
-                DBConnector.closeAllPS(addLogins, addTests,
+                DBConnector.closeAllPS(addLogins, addTests, getTestId,
                         addToResults, getLoginId, getResult);
             }
         } catch (SQLException e) {
-            throw new ConnectionException("Insert sql error");
+            throw new ConnectionException(INSERT_EXCEPTION);
         }
     }
 
