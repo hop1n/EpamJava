@@ -7,10 +7,6 @@ import static by.epam.lab.Constants.*;
 
 public class ResultHalf extends Result {
 
-    public ResultHalf(String login, String test, Date date, String mark) {
-        super(login, test, date, mark);
-    }
-
     public ResultHalf(String login, String test, Date date, int mark) {
         super(login, test, date, mark);
     }

@@ -16,7 +16,7 @@ import static by.epam.lab.Constants.*;
 
 public class ResultImplXml implements ResultDao {
 
-    Iterator<Result> iterator = null;
+    Iterator<Result> iterator;
 
     public int getResultType() {
         return resultType;
