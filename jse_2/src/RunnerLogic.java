@@ -2,6 +2,8 @@ import by.epam.lab.*;
 import by.epam.lab.singlerones.DBConnector;
 import by.epam.lab.exceptions.DBException;
 
+import java.io.FileNotFoundException;
+import java.net.ConnectException;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,8 +47,9 @@ public class RunnerLogic {
                 List<Result> currentMonthResults = new LinkedList<>();
                 System.out.println(TESTS_CURRENT_MONTH);
                 while (rs.next()) {
-                    currentMonthResults.add(ResultFaсtory.getResultFromFactory(daoImplementation.getResultType(), rs.getString(LOGIN), rs.getString(TEST),
-                            rs.getDate(DATE), String.valueOf(rs.getInt(MARK))));
+                    currentMonthResults.add(ResultFactory.getResultFromFactory(daoImplementation.getResultType(),
+                            rs.getString(LOGIN), rs.getString(TEST),
+                            rs.getDate(DATE), rs.getInt(MARK)));
                 }
                 if (currentMonthResults.size() == 0) {
                     System.out.print(NO_DATA);
@@ -66,7 +69,7 @@ public class RunnerLogic {
             } catch (SQLException e) {
                 System.err.print(SQL_EXCEPTION);
             }
-        } catch (Exception e) {
+        } catch (ConnectException e) {
             System.err.print(e);
         }
     }

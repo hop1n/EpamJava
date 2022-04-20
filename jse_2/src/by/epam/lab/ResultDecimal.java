@@ -7,7 +7,11 @@ import static by.epam.lab.Constants.DOT;
 
 public class ResultDecimal extends Result {
 
-    ResultDecimal(String login, String test, Date date, String mark){
+    ResultDecimal(String login, String test, Date date, String mark) {
+        super(login, test, date, mark);
+    }
+
+    public ResultDecimal(String login, String test, Date date, int mark) {
         super(login, test, date, mark);
     }
 

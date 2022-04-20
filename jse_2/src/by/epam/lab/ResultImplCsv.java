@@ -13,7 +13,7 @@ public class ResultImplCsv implements ResultDao {
     private static Scanner scanner = null;
     private final int resultType;
 
-    public ResultImplCsv(String inputFileName, int resultType) throws FileNotFoundException {
+    public ResultImplCsv(String inputFileName, int resultType) {
         this.resultType = resultType;
         try {
             scanner = new Scanner(new FileReader(inputFileName));
@@ -28,7 +28,7 @@ public class ResultImplCsv implements ResultDao {
         String test = SPLIT_LINE[FIRST_PARAMETER];
         Date date = Date.valueOf(SPLIT_LINE[SECOND_PARAMETER]);
         String mark = SPLIT_LINE[THIRD_PARAMETER];
-        return ResultFaсtory.getResultFromFactory(resultType, login, test, date, mark);
+        return ResultFactory.getResultFromFactory(resultType, login, test, date, mark);
     }
 
     public int getResultType() {

@@ -49,12 +49,12 @@ public class ResultsLoader {
     public static void loadResults(ResultDao reader) throws DBException {
         try {
             Connection cn = DBConnector.getConnection();
-            try(PreparedStatement addLogins = cn.prepareStatement(ADD_LOGINS_QUERY);
-                PreparedStatement addTests = cn.prepareStatement(ADD_TESTS_QUERY);
-                PreparedStatement addToResults = cn.prepareStatement(ADD_TO_RESULTS);
-                PreparedStatement getLoginId = cn.prepareStatement(GET_ID_LOGIN);
-                PreparedStatement getTestId = cn.prepareStatement(GET_ID_TEST);
-                PreparedStatement getResult = cn.prepareStatement(SELECT_RESULT_QUERY)) {
+            try (PreparedStatement addLogins = cn.prepareStatement(ADD_LOGINS_QUERY);
+                 PreparedStatement addTests = cn.prepareStatement(ADD_TESTS_QUERY);
+                 PreparedStatement addToResults = cn.prepareStatement(ADD_TO_RESULTS);
+                 PreparedStatement getLoginId = cn.prepareStatement(GET_ID_LOGIN);
+                 PreparedStatement getTestId = cn.prepareStatement(GET_ID_TEST);
+                 PreparedStatement getResult = cn.prepareStatement(SELECT_RESULT_QUERY)) {
                 while (reader.hasResult()) {
                     Result result = reader.nextResult();
                     String login = result.getLogin();
@@ -66,7 +66,7 @@ public class ResultsLoader {
             }
         } catch (SQLException e) {
             throw new DBException(INSERT_EXCEPTION);
-        } catch (ConnectException e){
+        } catch (ConnectException e) {
             throw new DBException(CONNECTION_FAILED);
         }
     }

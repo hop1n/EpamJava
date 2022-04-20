@@ -27,10 +27,7 @@ public class Result {
         this.login = login;
         this.test = test;
         this.date = date;
-        if(mark.contains(DOT)){
-            mark = mark.replace(".", "");
-        }
-        this.mark = (int)Double.parseDouble(mark);
+        this.mark = (int) (Double.parseDouble(mark) * 10);
     }
 
     public String getLogin() {
@@ -53,7 +50,7 @@ public class Result {
         return SIMPLE_DATE.format(date);
     }
 
-    protected String markToString(){
+    protected String markToString() {
         return String.valueOf(mark / CONVERT);
     }
 

@@ -19,7 +19,7 @@ public class ResultHandler extends DefaultHandler {
     private final List<Result> results = new ArrayList<>();
     private final int resultType;
 
-    public ResultHandler(int resultType){
+    public ResultHandler(int resultType) {
         this.resultType = resultType;
     }
 
@@ -27,7 +27,7 @@ public class ResultHandler extends DefaultHandler {
                              Attributes attributes) {
         currentEnum = ResultEnum.valueOf(localName.toUpperCase());
         if (currentEnum == ResultEnum.TEST) {
-            results.add(ResultFaсtory.getResultFromFactory(resultType, login, attributes.getValue(NAME_INDEX),
+            results.add(ResultFactory.getResultFromFactory(resultType, login, attributes.getValue(NAME_INDEX),
                     Date.valueOf(attributes.getValue(DATE_INDEX)), attributes.getValue(MARK_INDEX)));
         }
     }
