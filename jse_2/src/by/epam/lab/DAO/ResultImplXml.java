@@ -1,9 +1,11 @@
-package by.epam.lab;
+package by.epam.lab.DAO;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
+import by.epam.lab.Result;
+import by.epam.lab.ResultHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;

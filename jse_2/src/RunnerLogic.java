@@ -1,8 +1,8 @@
 import by.epam.lab.*;
+import by.epam.lab.DAO.ResultDao;
 import by.epam.lab.singlerones.DBConnector;
 import by.epam.lab.exceptions.DBException;
 
-import java.io.FileNotFoundException;
 import java.net.ConnectException;
 import java.sql.Date;
 import java.sql.ResultSet;

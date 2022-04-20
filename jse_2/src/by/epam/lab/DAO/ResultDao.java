@@ -1,4 +1,6 @@
-package by.epam.lab;
+package by.epam.lab.DAO;
+
+import by.epam.lab.Result;
 
 import java.io.Closeable;
 

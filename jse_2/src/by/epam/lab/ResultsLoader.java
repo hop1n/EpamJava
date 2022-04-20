@@ -1,10 +1,9 @@
 package by.epam.lab;
 
+import by.epam.lab.DAO.ResultDao;
 import by.epam.lab.exceptions.DBException;
-import by.epam.lab.exceptions.SourceException;
 import by.epam.lab.singlerones.DBConnector;
 
-import java.io.IOException;
 import java.net.ConnectException;
 import java.sql.*;
 

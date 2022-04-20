@@ -1,7 +1,5 @@
-import by.epam.lab.ResultDao;
-import by.epam.lab.ResultImplCsv;
-import by.epam.lab.ResultImplXml;
-import by.epam.lab.exceptions.SourceException;
+import by.epam.lab.DAO.ResultDao;
+import by.epam.lab.DAO.ResultImplXml;
 
 import static by.epam.lab.Constants.XML_PATH;
 
