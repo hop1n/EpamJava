@@ -52,8 +52,7 @@ public class ResultsLoader {
                  PreparedStatement addTests = cn.prepareStatement(ADD_TESTS_QUERY);
                  PreparedStatement addToResults = cn.prepareStatement(ADD_TO_RESULTS);
                  PreparedStatement getLoginId = cn.prepareStatement(GET_ID_LOGIN);
-                 PreparedStatement getTestId = cn.prepareStatement(GET_ID_TEST);
-                 PreparedStatement getResult = cn.prepareStatement(SELECT_RESULT_QUERY)) {
+                 PreparedStatement getTestId = cn.prepareStatement(GET_ID_TEST);) {
                 while (reader.hasResult()) {
                     Result result = reader.nextResult();
                     String login = result.getLogin();

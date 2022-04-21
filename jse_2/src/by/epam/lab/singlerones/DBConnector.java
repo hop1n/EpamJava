@@ -10,12 +10,13 @@ import java.sql.SQLException;
 import static by.epam.lab.Constants.*;
 
 public class DBConnector {
-    private static Connection connection;
+    private static final Connection connection;
 
     static {
         try {
             connection = buildConnection();
         } catch (ConnectException e) {
+            System.out.println(e.getMessage());
             throw new DBException(CONNECTION_FAILED);
         }
     }
