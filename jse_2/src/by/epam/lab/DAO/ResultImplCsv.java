@@ -41,10 +41,6 @@ public class ResultImplCsv implements ResultDao {
         return scanner.hasNextLine();
     }
 
-    public void closeReader() {
-        scanner.close();
-    }
-
     @Override
     public void close() {
         scanner.close();

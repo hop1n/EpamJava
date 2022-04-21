@@ -10,8 +10,8 @@ public class Constants {
     public final static int THIRD_PARAMETER = 3;
     public final static int CONVERT = 10;
     public final static String DB_URL = "jdbc:mysql://localhost:3306/results";
-    public final static String USER_NAME = "jse";
-    public final static String PASSWORD = "jse";
+    public final static String USER_NAME = "root";
+    public final static String PASSWORD = "mysqlpass";
     public final static String DELIMITER = ";";
     public final static String GET_ID_TEST = "SELECT idTest FROM tests where name = ?";
     public final static String ADD_LOGINS_QUERY = "{call addLogins(?)}";
@@ -47,14 +47,15 @@ public class Constants {
     public final static String LATEST_DAY = "\nlatest day";
     public final static String AVG_OUTPUT = "%s%s%.2f\n";
     public final static String FILE_NOT_FOUND = "Input file is not found";
-    public final static String CLOSE_CONNECTION_FAILED = "field close connection";
     public final static String CONNECTION_FAILED = "field connection";
     public final static String EMPTY_LINE = "";
     public final static String SAX_EXCEPTION = "SAX Parser exc";
     public final static String IO_EXCEPTION = "IOException";
     public final static String INSERT_EXCEPTION = "Insert sql error";
     public final static String NO_DATA = "data not found";
-    public final static String SQL_EXCEPTION = "sql exception";
     public final static String OPERATION_FAILED = "sql operation failed";
+    public final static String GET_DATA_FAIL = "failed getting date from DB";
+    public final static String READER_EXCEPTION = "Reader creating exception";
+    public final static String CONNECTION_IS_CLOSED = "Connection is closed";
 
 }

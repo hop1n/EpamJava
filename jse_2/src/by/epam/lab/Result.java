@@ -24,10 +24,7 @@ public class Result {
     }
 
     public Result(String login, String test, Date date, String mark) {
-        this.login = login;
-        this.test = test;
-        this.date = date;
-        this.mark = (int) (Double.parseDouble(mark) * 10);
+        this(login, test, date, (int) (Double.parseDouble(mark) * 10));
     }
 
     public String getLogin() {

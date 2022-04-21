@@ -27,12 +27,7 @@ public class RunnerLogic {
             }
 
             //3 Print a mean value of marks (2 digits after a decimal point) on every student in descending order by a mean value.
-            ResultSet rs;
-            Date date = null;
-            Statement st = null;
-            try {
-                st = DBConnector.getConnection().createStatement();
-                rs = st.executeQuery(GET_AVG_MARK);
+            try (Statement st = DBConnector.getConnection().createStatement(); ResultSet rs = st.executeQuery(GET_AVG_MARK)){
                 System.out.println(AVG_RESULT);
                 while (rs.next()) {
                     System.out.printf(Locale.ENGLISH, AVG_OUTPUT, rs.getString(NAME), DELIMITER, rs.getFloat(MARK));
@@ -42,8 +37,7 @@ public class RunnerLogic {
             }
 
             //4 Create a LinkedList implementation of tests results for the current month sorting by a date ascending and print it.
-            try {
-                rs = st.executeQuery(GET_RESULTS_CURRENT_MONTH);
+            try(Statement st = DBConnector.getConnection().createStatement(); ResultSet rs = st.executeQuery(GET_RESULTS_CURRENT_MONTH)) {
                 List<Result> currentMonthResults = new LinkedList<>();
                 System.out.println(TESTS_CURRENT_MONTH);
                 while (rs.next()) {
@@ -67,7 +61,7 @@ public class RunnerLogic {
                     }
                 }
             } catch (SQLException e) {
-                System.err.print(SQL_EXCEPTION);
+                System.err.print(GET_DATA_FAIL);
             }
         } catch (ConnectException e) {
             System.err.print(e);

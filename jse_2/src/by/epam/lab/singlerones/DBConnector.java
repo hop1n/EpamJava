@@ -1,5 +1,7 @@
 package by.epam.lab.singlerones;
 
+import by.epam.lab.exceptions.DBException;
+
 import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,7 +16,7 @@ public class DBConnector {
         try {
             connection = buildConnection();
         } catch (ConnectException e) {
-            System.out.println(e);
+            throw new DBException(CONNECTION_FAILED);
         }
     }
 
@@ -31,8 +33,9 @@ public class DBConnector {
 
     public static Connection getConnection() throws ConnectException {
         if (connection == null){
-            connection = buildConnection();
+            throw new ConnectException(CONNECTION_IS_CLOSED);
+        } else {
+            return connection;
         }
-        return connection;
     }
 }

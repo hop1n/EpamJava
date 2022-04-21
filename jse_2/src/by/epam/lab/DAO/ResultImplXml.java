@@ -16,17 +16,16 @@ import static by.epam.lab.Constants.*;
 
 public class ResultImplXml implements ResultDao {
 
-    Iterator<Result> iterator;
+    private Iterator<Result> iterator;
+    private final int resultType;
 
     public int getResultType() {
         return resultType;
     }
 
-    private final int resultType;
-
     public ResultImplXml(String inputFileName, int resultType) throws SourceException {
-        this.resultType = resultType;
         XMLReader reader;
+        this.resultType = resultType;
         try {
             reader = XMLReaderFactory.createXMLReader();
             ResultHandler handler = new ResultHandler(resultType);
