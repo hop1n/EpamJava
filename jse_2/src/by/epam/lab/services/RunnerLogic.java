@@ -1,10 +1,12 @@
-import by.epam.lab.*;
+package by.epam.lab.services;
+
 import by.epam.lab.DAO.ResultDao;
+import by.epam.lab.beans.Result;
+import by.epam.lab.services.ResultsLoader;
 import by.epam.lab.singlerones.DBConnector;
 import by.epam.lab.exceptions.DBException;
 
 import java.net.ConnectException;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,7 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
-import static by.epam.lab.Constants.*;
+import static by.epam.lab.services.Constants.*;
 
 public class RunnerLogic {
     public static void execute(ResultDao daoImplementation) {

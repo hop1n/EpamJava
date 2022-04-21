@@ -1,7 +1,7 @@
 package by.epam.lab.DAO;
 
-import by.epam.lab.Result;
-import by.epam.lab.ResultKind;
+import by.epam.lab.beans.Result;
+import by.epam.lab.services.ResultKind;
 import by.epam.lab.exceptions.SourceException;
 
 import java.io.FileNotFoundException;
@@ -9,7 +9,7 @@ import java.io.FileReader;
 import java.sql.Date;
 import java.util.*;
 
-import static by.epam.lab.Constants.*;
+import static by.epam.lab.services.Constants.*;
 
 public class ResultImplCsv implements ResultDao {
     private static Scanner scanner = null;

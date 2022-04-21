@@ -1,9 +1,9 @@
-package by.epam.lab;
+package by.epam.lab.beans;
 
 import java.sql.Date;
 
-import static by.epam.lab.Constants.CONVERT;
-import static by.epam.lab.Constants.DOT;
+import static by.epam.lab.services.Constants.CONVERT;
+import static by.epam.lab.services.Constants.DOT;
 
 public class ResultDecimal extends Result {
 

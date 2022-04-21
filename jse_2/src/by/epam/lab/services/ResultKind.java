@@ -1,8 +1,12 @@
-package by.epam.lab;
+package by.epam.lab.services;
+
+import by.epam.lab.beans.Result;
+import by.epam.lab.beans.ResultDecimal;
+import by.epam.lab.beans.ResultHalf;
 
 import java.sql.Date;
 
-import static by.epam.lab.Constants.CONVERT;
+import static by.epam.lab.services.Constants.CONVERT;
 
 public enum ResultKind {
     RESULT {

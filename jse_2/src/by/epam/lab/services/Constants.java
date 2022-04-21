@@ -1,4 +1,4 @@
-package by.epam.lab;
+package by.epam.lab.services;
 
 public class Constants {
     public final static int NAME_INDEX = 0;

@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import static by.epam.lab.Constants.*;
+import static by.epam.lab.services.Constants.*;
 
 public class DBConnector {
     private static final Connection connection;

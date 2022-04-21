@@ -4,16 +4,16 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
-import by.epam.lab.Result;
-import by.epam.lab.ResultHandler;
-import by.epam.lab.ResultKind;
+import by.epam.lab.beans.Result;
+import by.epam.lab.services.ResultHandler;
+import by.epam.lab.services.ResultKind;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 
 import by.epam.lab.exceptions.SourceException;
 
-import static by.epam.lab.Constants.*;
+import static by.epam.lab.services.Constants.*;
 
 public class ResultImplXml implements ResultDao {
 

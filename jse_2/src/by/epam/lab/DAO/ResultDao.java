@@ -1,7 +1,7 @@
 package by.epam.lab.DAO;
 
-import by.epam.lab.Result;
-import by.epam.lab.ResultKind;
+import by.epam.lab.beans.Result;
+import by.epam.lab.services.ResultKind;
 
 import java.io.Closeable;
 

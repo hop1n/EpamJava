@@ -1,5 +1,6 @@
-package by.epam.lab;
+package by.epam.lab.services;
 
+import by.epam.lab.beans.Result;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -7,7 +8,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.epam.lab.Constants.*;
+import static by.epam.lab.services.Constants.*;
 
 public class ResultHandler extends DefaultHandler {
     private enum ResultEnum {

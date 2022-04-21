@@ -1,8 +1,8 @@
-package by.epam.lab;
+package by.epam.lab.beans;
 
 import java.sql.Date;
 
-import static by.epam.lab.Constants.*;
+import static by.epam.lab.services.Constants.*;
 
 
 public class ResultHalf extends Result {

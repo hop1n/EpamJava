@@ -1,13 +1,14 @@
-package by.epam.lab;
+package by.epam.lab.services;
 
 import by.epam.lab.DAO.ResultDao;
+import by.epam.lab.beans.Result;
 import by.epam.lab.exceptions.DBException;
 import by.epam.lab.singlerones.DBConnector;
 
 import java.net.ConnectException;
 import java.sql.*;
 
-import static by.epam.lab.Constants.*;
+import static by.epam.lab.services.Constants.*;
 
 public class ResultsLoader {
 
