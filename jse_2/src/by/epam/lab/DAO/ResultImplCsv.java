@@ -1,7 +1,7 @@
 package by.epam.lab.DAO;
 
 import by.epam.lab.Result;
-import by.epam.lab.ResultFactory;
+import by.epam.lab.ResultKind;
 import by.epam.lab.exceptions.SourceException;
 
 import java.io.FileNotFoundException;
@@ -13,9 +13,9 @@ import static by.epam.lab.Constants.*;
 
 public class ResultImplCsv implements ResultDao {
     private static Scanner scanner = null;
-    private final int resultType;
+    private final ResultKind resultType;
 
-    public ResultImplCsv(String inputFileName, int resultType) {
+    public ResultImplCsv(String inputFileName, ResultKind resultType) {
         this.resultType = resultType;
         try {
             scanner = new Scanner(new FileReader(inputFileName));
@@ -30,10 +30,10 @@ public class ResultImplCsv implements ResultDao {
         String test = SPLIT_LINE[FIRST_PARAMETER];
         Date date = Date.valueOf(SPLIT_LINE[SECOND_PARAMETER]);
         String mark = SPLIT_LINE[THIRD_PARAMETER];
-        return ResultFactory.getResultFromFactory(resultType, login, test, date, mark);
+        return resultType.getResult(login, test, date, mark);
     }
 
-    public int getResultType() {
+    public ResultKind getResultType() {
         return resultType;
     }
 

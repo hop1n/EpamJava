@@ -17,9 +17,9 @@ public class ResultHandler extends DefaultHandler {
     private ResultEnum currentEnum;
     private String login;
     private final List<Result> results = new ArrayList<>();
-    private final int resultType;
+    private final ResultKind resultType;
 
-    public ResultHandler(int resultType) {
+    public ResultHandler(ResultKind resultType) {
         this.resultType = resultType;
     }
 
@@ -27,7 +27,7 @@ public class ResultHandler extends DefaultHandler {
                              Attributes attributes) {
         currentEnum = ResultEnum.valueOf(localName.toUpperCase());
         if (currentEnum == ResultEnum.TEST) {
-            results.add(ResultFactory.getResultFromFactory(resultType, login, attributes.getValue(NAME_INDEX),
+            results.add(resultType.getResult(login, attributes.getValue(NAME_INDEX),
                     Date.valueOf(attributes.getValue(DATE_INDEX)), attributes.getValue(MARK_INDEX)));
         }
     }

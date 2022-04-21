@@ -6,6 +6,7 @@ import java.util.*;
 
 import by.epam.lab.Result;
 import by.epam.lab.ResultHandler;
+import by.epam.lab.ResultKind;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
@@ -17,13 +18,13 @@ import static by.epam.lab.Constants.*;
 public class ResultImplXml implements ResultDao {
 
     private Iterator<Result> iterator;
-    private final int resultType;
+    private final ResultKind resultType;
 
-    public int getResultType() {
+    public ResultKind getResultType() {
         return resultType;
     }
 
-    public ResultImplXml(String inputFileName, int resultType) throws SourceException {
+    public ResultImplXml(String inputFileName, ResultKind resultType) throws SourceException {
         XMLReader reader;
         this.resultType = resultType;
         try {

@@ -41,9 +41,9 @@ public class RunnerLogic {
                 List<Result> currentMonthResults = new LinkedList<>();
                 System.out.println(TESTS_CURRENT_MONTH);
                 while (rs.next()) {
-                    currentMonthResults.add(ResultFactory.getResultFromFactory(daoImplementation.getResultType(),
-                            rs.getString(LOGIN), rs.getString(TEST),
-                            rs.getDate(DATE), rs.getInt(MARK)));
+                    Result result = daoImplementation.getResultType().getResult(rs.getString(LOGIN), rs.getString(TEST),
+                            rs.getDate(DATE), rs.getInt(MARK));
+                    currentMonthResults.add(result);
                 }
                 if (currentMonthResults.size() == 0) {
                     System.out.print(NO_DATA);
