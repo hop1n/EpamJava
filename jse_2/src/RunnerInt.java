@@ -9,8 +9,9 @@ import static by.epam.lab.services.Constants.*;
 
 public class RunnerInt {
     public static void main(String[] args) {
-        try (ResultDao reader = new ResultImplCsv(CSV_PATH, ResultKind.RESULT);) {
-            RunnerLogic.execute(reader);
+        ResultKind resultKind = ResultKind.RESULT;
+        try (ResultDao reader = new ResultImplCsv(CSV_PATH, resultKind);) {
+            RunnerLogic.execute(reader, resultKind);
         } catch (IOException e) {
             System.out.println(READER_EXCEPTION);
         }

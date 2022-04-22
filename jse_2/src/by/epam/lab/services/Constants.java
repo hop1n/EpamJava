@@ -10,8 +10,8 @@ public class Constants {
     public final static int THIRD_PARAMETER = 3;
     public final static int CONVERT = 10;
     public final static String DB_URL = "jdbc:mysql://localhost:3306/results";
-    public final static String USER_NAME = "jse";
-    public final static String PASSWORD = "jse";
+    public final static String USER_NAME = "root";
+    public final static String PASSWORD = "mysqlpass";
     public final static String DELIMITER = ";";
     public final static String GET_ID_TEST = "SELECT idTest FROM tests where name = ?";
     public final static String ADD_LOGINS_QUERY = "{call addLogins(?)}";
@@ -28,7 +28,6 @@ public class Constants {
     public final static String CLEAR_RESULTS = "delete from results;";
     public final static String CLEAR_TESTS = "delete from tests;";
     public final static String DOT = ".";
-    public final static String DATE_FORMAT = "dd.MM.yyyy";
     public final static String GET_RESULTS_CURRENT_MONTH = "SELECT logins.name as login," +
             " tests.name as test, results.dat as date , results.mark as mark\n" +
             "      FROM results INNER JOIN logins INNER JOIN tests\n" +
@@ -44,6 +43,9 @@ public class Constants {
     public final static String TEST = "test";
     public final static String DATE = "date";
     public final static String MARK = "mark";
+    public final static String DATE_FORMAT = "dd.MM.yyyy";
+    public final static String ERROR_PARCE_DATE = "parse date error";
+    public final static String TO_DATE = "yy-MM-dd";;
     public final static String LATEST_DAY = "\nlatest day";
     public final static String AVG_OUTPUT = "%s%s%.2f\n";
     public final static String FILE_NOT_FOUND = "Input file is not found";

@@ -1,8 +1,8 @@
 package by.epam.lab.beans;
 
-import by.epam.lab.services.Constants;
 
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import static by.epam.lab.services.Constants.*;
@@ -12,7 +12,8 @@ public class Result {
     private final String test;
     private final Date date;
     private final int mark;
-    private static final SimpleDateFormat SIMPLE_DATE = new SimpleDateFormat(Constants.DATE_FORMAT);
+    private static final SimpleDateFormat SIMPLE_DATE = new SimpleDateFormat(DATE_FORMAT);
+    private final static SimpleDateFormat SET_DATE_FORMAT = new SimpleDateFormat(TO_DATE);
 
     public Result() {
         this(EMPTY_LINE, EMPTY_LINE, null, 0);
@@ -27,6 +28,14 @@ public class Result {
 
     public Result(String login, String test, Date date, String mark) {
         this(login, test, date, (int) (Double.parseDouble(mark) * 10));
+    }
+
+    static Date toDate(String dateString){
+        try{
+            return new Date(SET_DATE_FORMAT.parse(dateString).getTime());
+        } catch (ParseException e){
+            throw new IllegalArgumentException(ERROR_PARCE_DATE);
+        }
     }
 
     public String getLogin() {
@@ -54,7 +63,7 @@ public class Result {
     }
 
     public String toString() {
-        return login + Constants.DELIMITER + test + Constants.DELIMITER +
-                getSimpleDate() + Constants.DELIMITER + markToString();
+        return login + DELIMITER + test + DELIMITER +
+                getSimpleDate() + DELIMITER + markToString();
     }
 }

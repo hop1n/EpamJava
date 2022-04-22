@@ -9,6 +9,4 @@ public interface ResultDao extends Closeable {
     Result nextResult();
 
     boolean hasResult();
-
-    ResultKind getResultType();
 }

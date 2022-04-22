@@ -17,7 +17,7 @@ import java.util.Locale;
 import static by.epam.lab.services.Constants.*;
 
 public class RunnerLogic {
-    public static void execute(ResultDao daoImplementation) {
+    public static void execute(ResultDao daoImplementation, ResultKind resultKind) {
         try {
 
             //2 Load data from a file results.csv into DB.
@@ -43,7 +43,7 @@ public class RunnerLogic {
                 List<Result> currentMonthResults = new LinkedList<>();
                 System.out.println(TESTS_CURRENT_MONTH);
                 while (rs.next()) {
-                    Result result = daoImplementation.getResultType().getResult(rs.getString(LOGIN), rs.getString(TEST),
+                    Result result = resultKind.getResult(rs.getString(LOGIN), rs.getString(TEST),
                             rs.getDate(DATE), rs.getInt(MARK));
                     currentMonthResults.add(result);
                 }

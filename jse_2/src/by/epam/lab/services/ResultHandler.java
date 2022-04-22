@@ -34,8 +34,8 @@ public class ResultHandler extends DefaultHandler {
     }
 
     public void characters(char[] ch, int start, int length) {
-        String str = new String(ch, start, length).trim();
         if (currentEnum == ResultEnum.LOGIN) {
+            String str = new String(ch, start, length).trim();
             if (!str.isEmpty()) {
                 login = str;
             }

@@ -15,19 +15,18 @@ public class ResultsLoader {
     private static int getId(String value, PreparedStatement select, PreparedStatement insert) throws SQLException {
         final int SELECT_LOGIN_INDEX = 1;
         final int ID_INDEX = 1;
-        ResultSet rs = null;
-        try {
-            select.setString(SELECT_LOGIN_INDEX, value);
-            rs = select.executeQuery();
+        select.setString(SELECT_LOGIN_INDEX, value);
+        try (ResultSet rs = select.executeQuery()) {
             if (!rs.next()) {
                 insert.setString(SELECT_LOGIN_INDEX, value);
                 insert.executeUpdate();
-                rs = select.executeQuery();
-                rs.next();
+                try(ResultSet rs1 = select.executeQuery()){
+                    rs1.next();
+                    return rs1.getInt(ID_INDEX);
+                }
+            } else{
+                return rs.getInt(ID_INDEX);
             }
-            return rs.getInt(ID_INDEX);
-        } finally {
-            rs.close();
         }
     }
 

@@ -16,9 +16,9 @@ public class ResultImplCsv implements ResultDao {
     private final ResultKind resultType;
 
     public ResultImplCsv(String inputFileName, ResultKind resultType) {
-        this.resultType = resultType;
         try {
             scanner = new Scanner(new FileReader(inputFileName));
+            this.resultType = resultType;
         } catch (FileNotFoundException e) {
             throw new SourceException(FILE_NOT_FOUND);
         }
@@ -26,17 +26,15 @@ public class ResultImplCsv implements ResultDao {
 
     public Result nextResult() {
         final String[] SPLIT_LINE = scanner.nextLine().split(DELIMITER);
-        String login = SPLIT_LINE[ZERO_PARAMETER];
-        String test = SPLIT_LINE[FIRST_PARAMETER];
-        Date date = Date.valueOf(SPLIT_LINE[SECOND_PARAMETER]);
-        String mark = SPLIT_LINE[THIRD_PARAMETER];
-        return resultType.getResult(login, test, date, mark);
+        return resultType.getResult(SPLIT_LINE[ZERO_PARAMETER], SPLIT_LINE[FIRST_PARAMETER],
+                Date.valueOf(SPLIT_LINE[SECOND_PARAMETER]), SPLIT_LINE[THIRD_PARAMETER]);
     }
 
     public ResultKind getResultType() {
         return resultType;
     }
 
+    @Override
     public boolean hasResult() {
         return scanner.hasNextLine();
     }
