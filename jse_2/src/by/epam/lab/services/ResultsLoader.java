@@ -12,7 +12,8 @@ import static by.epam.lab.services.Constants.*;
 
 public class ResultsLoader {
 
-    private static int getId(String value, PreparedStatement select, PreparedStatement insert) throws SQLException {
+    private static int getId(String value, PreparedStatement select,
+                             PreparedStatement insert) throws SQLException {
         final int SELECT_LOGIN_INDEX = 1;
         final int ID_INDEX = 1;
         select.setString(SELECT_LOGIN_INDEX, value);

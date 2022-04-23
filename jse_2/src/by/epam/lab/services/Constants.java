@@ -16,6 +16,7 @@ public class Constants {
     public final static String GET_ID_TEST = "SELECT idTest FROM tests where name = ?";
     public final static String ADD_LOGINS_QUERY = "{call addLogins(?)}";
     public final static String ADD_TESTS_QUERY = "{call addTests(?)}";
+    public final static String HALF = ".5";
 //    public final static String ADD_LOGINS_QUERY = "insert ignore into logins (name) values (?)";
 //    public final static String ADD_TESTS_QUERY = "insert ignore into tests (name) values (?)";
     public final static String ADD_TO_RESULTS = "INSERT INTO results (loginId, testId, dat, mark) VALUES (?, ?, ?, ?)";

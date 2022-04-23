@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 import static by.epam.lab.services.Constants.*;
 
-public class DBConnector {
+public class DBConnector implements Cloneable {
     private static final Connection connection;
 
     static {

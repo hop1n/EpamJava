@@ -25,6 +25,7 @@ public class RunnerLogic {
                 ResultsLoader.clearTables();
                 ResultsLoader.loadResults(daoImplementation);
             } catch (DBException e) {
+                System.out.println(e.getMessage());
                 System.err.print(e);
             }
 
@@ -35,7 +36,7 @@ public class RunnerLogic {
                     System.out.printf(Locale.ENGLISH, AVG_OUTPUT, rs.getString(NAME), DELIMITER, rs.getFloat(MARK));
                 }
             } catch (SQLException e) {
-                System.err.print(CONNECTION_FAILED);
+                System.err.print(CONNECTION_FAILED + e.getMessage());
             }
 
             //4 Create a LinkedList implementation of tests results for the current month sorting by a date ascending and print it.
@@ -66,7 +67,7 @@ public class RunnerLogic {
                 System.err.print(GET_DATA_FAIL);
             }
         } catch (ConnectException e) {
-            System.err.print(e);
+            System.err.print(CONNECTION_FAILED + e.getMessage());
         }
     }
 }

@@ -12,7 +12,7 @@ import java.util.*;
 import static by.epam.lab.services.Constants.*;
 
 public class ResultImplCsv implements ResultDao {
-    private static Scanner scanner = null;
+    private final Scanner scanner;
     private final ResultKind resultType;
 
     public ResultImplCsv(String inputFileName, ResultKind resultType) {
@@ -28,10 +28,6 @@ public class ResultImplCsv implements ResultDao {
         final String[] SPLIT_LINE = scanner.nextLine().split(DELIMITER);
         return resultType.getResult(SPLIT_LINE[ZERO_PARAMETER], SPLIT_LINE[FIRST_PARAMETER],
                 Date.valueOf(SPLIT_LINE[SECOND_PARAMETER]), SPLIT_LINE[THIRD_PARAMETER]);
-    }
-
-    public ResultKind getResultType() {
-        return resultType;
     }
 
     @Override

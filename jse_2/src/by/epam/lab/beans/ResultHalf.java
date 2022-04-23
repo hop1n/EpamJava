@@ -13,12 +13,6 @@ public class ResultHalf extends Result {
 
     @Override
     public String markToString() {
-        String markStr;
-        if (getMark() % CONVERT != 0) {
-            markStr = getMark() / CONVERT + DOT + getMark() % CONVERT;
-        } else {
-            markStr = super.markToString();
-        }
-        return markStr;
+        return getMark() / CONVERT + (getMark() % 10 == 0 ? EMPTY_LINE : HALF);
     }
 }
