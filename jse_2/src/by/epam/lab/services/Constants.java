@@ -10,8 +10,8 @@ public class Constants {
     public final static int THIRD_PARAMETER = 3;
     public final static int CONVERT = 10;
     public final static String DB_URL = "jdbc:mysql://localhost:3306/results";
-    public final static String USER_NAME = "root";
-    public final static String PASSWORD = "mysqlpass";
+    public final static String USER_NAME = "jse";
+    public final static String PASSWORD = "jse";
     public final static String DELIMITER = ";";
     public final static String GET_ID_TEST = "SELECT idTest FROM tests where name = ?";
     public final static String ADD_LOGINS_QUERY = "{call addLogins(?)}";
