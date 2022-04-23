@@ -69,5 +69,12 @@ public class RunnerLogic {
         } catch (ConnectException e) {
             System.err.print(CONNECTION_FAILED + e.getMessage());
         }
+        finally {
+            try {
+                DBConnector.close();
+            } catch (ConnectException e){
+                System.out.println(CONNECTION_CLOSE_FAILED + e.getMessage());
+            }
+        }
     }
 }

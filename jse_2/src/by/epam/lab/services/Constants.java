@@ -51,6 +51,7 @@ public class Constants {
     public final static String AVG_OUTPUT = "%s%s%.2f\n";
     public final static String FILE_NOT_FOUND = "Input file is not found";
     public final static String CONNECTION_FAILED = "field connection";
+    public final static String CONNECTION_CLOSE_FAILED = "field close connection";
     public final static String EMPTY_LINE = "";
     public final static String SAX_EXCEPTION = "SAX Parser exc";
     public final static String IO_EXCEPTION = "IOException";

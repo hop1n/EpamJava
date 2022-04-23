@@ -39,4 +39,12 @@ public class DBConnector implements Cloneable {
             return connection;
         }
     }
+
+    public static void close() throws ConnectException {
+        try{
+            connection.close();
+        }catch (SQLException e){
+            throw new ConnectException(CONNECTION_CLOSE_FAILED + e.getMessage());
+        }
+    }
 }
