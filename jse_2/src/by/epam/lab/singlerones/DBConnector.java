@@ -2,6 +2,7 @@ package by.epam.lab.singlerones;
 
 import by.epam.lab.exceptions.DBException;
 
+import java.io.Closeable;
 import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 
 import static by.epam.lab.services.Constants.*;
 
-public class DBConnector implements Cloneable {
+public class DBConnector implements Closeable {
     private static final Connection connection;
 
     static {
@@ -40,9 +41,11 @@ public class DBConnector implements Cloneable {
         }
     }
 
-    public static void close() throws ConnectException {
+    public void close() throws ConnectException {
         try{
-            connection.close();
+            if (connection != null){
+                connection.close();
+            }
         }catch (SQLException e){
             throw new ConnectException(CONNECTION_CLOSE_FAILED + e.getMessage());
         }
