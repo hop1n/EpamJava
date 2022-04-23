@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 import static by.epam.lab.services.Constants.*;
 
-public class DBConnector implements Closeable {
+public class DBConnector {
     private static final Connection connection;
 
     static {
@@ -41,7 +41,8 @@ public class DBConnector implements Closeable {
         }
     }
 
-    public void close() throws ConnectException {
+
+    public static void close() throws ConnectException {
         try{
             if (connection != null){
                 connection.close();

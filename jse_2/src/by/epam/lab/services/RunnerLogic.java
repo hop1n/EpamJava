@@ -2,7 +2,6 @@ package by.epam.lab.services;
 
 import by.epam.lab.DAO.ResultDao;
 import by.epam.lab.beans.Result;
-import by.epam.lab.services.ResultsLoader;
 import by.epam.lab.singlerones.DBConnector;
 import by.epam.lab.exceptions.DBException;
 
