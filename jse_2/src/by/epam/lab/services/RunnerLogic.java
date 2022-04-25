@@ -65,10 +65,8 @@ public class RunnerLogic {
             } catch (SQLException e) {
                 System.err.print(GET_DATA_FAIL);
             }
-        } catch (ConnectException e) {
-            System.err.print(CONNECTION_FAILED + e.getMessage());
         } catch (IOException e) {
-            System.out.println(READER_EXCEPTION);
+            System.out.println(CONNECTION_FAILED + e.getMessage());
         } finally {
             try {
                 DBConnector.close();
