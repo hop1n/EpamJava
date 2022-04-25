@@ -5,6 +5,7 @@ import by.epam.lab.beans.Result;
 import by.epam.lab.singlerones.DBConnector;
 import by.epam.lab.exceptions.DBException;
 
+import java.io.IOException;
 import java.net.ConnectException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,8 +18,7 @@ import static by.epam.lab.services.Constants.*;
 
 public class RunnerLogic {
     public static void execute(String path, ResultKind resultKind) {
-        try {
-            ResultDao reader = resultKind.getDao(path);
+        try(ResultDao reader = resultKind.getDao(path)) {
             //2 Load data from a file results.csv into DB.
             try {
                 ResultsLoader.clearTables();
@@ -67,6 +67,8 @@ public class RunnerLogic {
             }
         } catch (ConnectException e) {
             System.err.print(CONNECTION_FAILED + e.getMessage());
+        } catch (IOException e) {
+            System.out.println(READER_EXCEPTION);
         } finally {
             try {
                 DBConnector.close();
