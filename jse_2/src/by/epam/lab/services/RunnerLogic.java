@@ -16,20 +16,20 @@ import java.util.Locale;
 import static by.epam.lab.services.Constants.*;
 
 public class RunnerLogic {
-    public static void execute(ResultDao daoImplementation, ResultKind resultKind) {
+    public static void execute(String path, ResultKind resultKind) {
         try {
-
+            ResultDao reader = resultKind.getDao(path);
             //2 Load data from a file results.csv into DB.
             try {
                 ResultsLoader.clearTables();
-                ResultsLoader.loadResults(daoImplementation);
+                ResultsLoader.loadResults(reader);
             } catch (DBException e) {
                 System.out.println(e.getMessage());
                 System.err.print(e);
             }
 
             //3 Print a mean value of marks (2 digits after a decimal point) on every student in descending order by a mean value.
-            try (Statement st = DBConnector.getConnection().createStatement(); ResultSet rs = st.executeQuery(GET_AVG_MARK)){
+            try (Statement st = DBConnector.getConnection().createStatement(); ResultSet rs = st.executeQuery(GET_AVG_MARK)) {
                 System.out.println(AVG_RESULT);
                 while (rs.next()) {
                     System.out.printf(Locale.ENGLISH, AVG_OUTPUT, rs.getString(NAME), DELIMITER, rs.getFloat(MARK));
@@ -39,7 +39,7 @@ public class RunnerLogic {
             }
 
             //4 Create a LinkedList implementation of tests results for the current month sorting by a date ascending and print it.
-            try(Statement st = DBConnector.getConnection().createStatement(); ResultSet rs = st.executeQuery(GET_RESULTS_CURRENT_MONTH)) {
+            try (Statement st = DBConnector.getConnection().createStatement(); ResultSet rs = st.executeQuery(GET_RESULTS_CURRENT_MONTH)) {
                 List<Result> currentMonthResults = new LinkedList<>();
                 System.out.println(TESTS_CURRENT_MONTH);
                 while (rs.next()) {
@@ -56,8 +56,8 @@ public class RunnerLogic {
 
                     //5 Print tests results in the latest day of the current month (without SQL request).
                     System.out.println(LATEST_DAY);
-                    for (Result result : currentMonthResults){
-                        if (currentMonthResults.get(0).getDate().equals(result.getDate())){
+                    for (Result result : currentMonthResults) {
+                        if (currentMonthResults.get(0).getDate().equals(result.getDate())) {
                             System.out.println(result);
                         }
                     }
@@ -67,11 +67,10 @@ public class RunnerLogic {
             }
         } catch (ConnectException e) {
             System.err.print(CONNECTION_FAILED + e.getMessage());
-        }
-        finally {
+        } finally {
             try {
                 DBConnector.close();
-            } catch (ConnectException e){
+            } catch (ConnectException e) {
                 System.out.println(CONNECTION_CLOSE_FAILED + e.getMessage());
             }
         }

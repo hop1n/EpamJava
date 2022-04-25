@@ -2,7 +2,6 @@ package by.epam.lab.singlerones;
 
 import by.epam.lab.exceptions.DBException;
 
-import java.io.Closeable;
 import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.DriverManager;

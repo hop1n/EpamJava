@@ -9,11 +9,6 @@ import static by.epam.lab.services.Constants.*;
 
 public class RunnerDecimal {
     public static void main(String[] args) {
-        ResultKind resultKind = ResultKind.RESULT_DECIMAL;
-        try (ResultDao reader = new ResultImplXml(XML_PATH, resultKind);) {
-            RunnerLogic.execute(reader, resultKind);
-        } catch (IOException e) {
-            System.out.println(READER_EXCEPTION);
-        }
+        RunnerLogic.execute(XML_PATH, ResultKind.RESULT_DECIMAL);
     }
 }
