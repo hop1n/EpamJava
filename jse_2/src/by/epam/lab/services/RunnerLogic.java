@@ -3,6 +3,7 @@ package by.epam.lab.services;
 import by.epam.lab.DAO.ResultDao;
 import by.epam.lab.beans.Result;
 import by.epam.lab.exceptions.ConnectionException;
+import by.epam.lab.exceptions.SourceException;
 import by.epam.lab.singlerones.DBConnector;
 
 import java.io.IOException;
@@ -18,10 +19,14 @@ import static by.epam.lab.services.Constants.*;
 
 public class RunnerLogic {
     public static void execute(String path, ResultKind resultKind) {
-        try (ResultDao reader = resultKind.getDao(path)) {
+        try {
             //2 Load data from a file results.csv into DB.
-            ResultsLoader.clearTables();
-            ResultsLoader.loadResults(reader);
+            try(ResultDao reader = resultKind.getDao(path)) {
+                ResultsLoader.clearTables();
+                ResultsLoader.loadResults(reader);
+            }catch (SourceException e){
+                System.out.println(e.getMessage());
+            }
             //3 Print a mean value of marks (2 digits after a decimal point) on every student in descending order by a mean value.
             try (Statement st = DBConnector.getConnection().createStatement(); ResultSet rs = st.executeQuery(GET_AVG_MARK)) {
                 System.out.println(AVG_RESULT);

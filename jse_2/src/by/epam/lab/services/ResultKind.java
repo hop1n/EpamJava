@@ -6,6 +6,7 @@ import by.epam.lab.DAO.ResultImplXml;
 import by.epam.lab.beans.Result;
 import by.epam.lab.beans.ResultDecimal;
 import by.epam.lab.beans.ResultHalf;
+import by.epam.lab.exceptions.SourceException;
 
 import java.sql.Date;
 
@@ -17,7 +18,7 @@ public enum ResultKind {
             return new Result(login, test, date, mark);
         }
 
-        public ResultDao getDao(String path){
+        public ResultDao getDao(String path) throws SourceException {
             return new ResultImplCsv(path ,RESULT);
         }
     },
@@ -26,7 +27,7 @@ public enum ResultKind {
             return new ResultDecimal(login, test, date, mark);
         }
 
-        public ResultDao getDao(String path){
+        public ResultDao getDao(String path) throws SourceException {
             return new ResultImplXml(path ,RESULT_DECIMAL);
         }
     },
@@ -35,14 +36,14 @@ public enum ResultKind {
             return new ResultHalf(login, test, date, mark);
         }
 
-        public ResultDao getDao(String path){
+        public ResultDao getDao(String path) throws SourceException {
             return new ResultImplCsv(path ,RESULT_HALF);
         }
     };
 
     public abstract Result getResult(String login, String test, Date date, int mark);
 
-    public abstract ResultDao getDao(String path);
+    public abstract ResultDao getDao(String path) throws SourceException;
 
     public Result getResult(String login, String test, Date date, String mark) {
         return getResult(login, test, date, (int) (Double.parseDouble(mark) * CONVERT));
