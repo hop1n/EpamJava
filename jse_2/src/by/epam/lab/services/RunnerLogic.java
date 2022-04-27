@@ -2,8 +2,8 @@ package by.epam.lab.services;
 
 import by.epam.lab.DAO.ResultDao;
 import by.epam.lab.beans.Result;
+import by.epam.lab.exceptions.ConnectionException;
 import by.epam.lab.singlerones.DBConnector;
-import by.epam.lab.exceptions.DBException;
 
 import java.io.IOException;
 import java.net.ConnectException;
@@ -18,16 +18,10 @@ import static by.epam.lab.services.Constants.*;
 
 public class RunnerLogic {
     public static void execute(String path, ResultKind resultKind) {
-        try(ResultDao reader = resultKind.getDao(path)) {
+        try (ResultDao reader = resultKind.getDao(path)) {
             //2 Load data from a file results.csv into DB.
-            try {
-                ResultsLoader.clearTables();
-                ResultsLoader.loadResults(reader);
-            } catch (DBException e) {
-                System.out.println(e.getMessage());
-                System.err.print(e);
-            }
-
+            ResultsLoader.clearTables();
+            ResultsLoader.loadResults(reader);
             //3 Print a mean value of marks (2 digits after a decimal point) on every student in descending order by a mean value.
             try (Statement st = DBConnector.getConnection().createStatement(); ResultSet rs = st.executeQuery(GET_AVG_MARK)) {
                 System.out.println(AVG_RESULT);
@@ -65,12 +59,15 @@ public class RunnerLogic {
             } catch (SQLException e) {
                 System.err.print(GET_DATA_FAIL);
             }
+        } catch (ConnectionException e) {
+            System.out.println(CONNECTION_FAILED);
         } catch (IOException e) {
-            System.out.println(CONNECTION_FAILED + e.getMessage());
+            System.out.println(READER_EXCEPTION);
+            e.printStackTrace();
         } finally {
             try {
                 DBConnector.close();
-            } catch (ConnectException e) {
+            } catch (ConnectionException e) {
                 System.out.println(CONNECTION_CLOSE_FAILED + e.getMessage());
             }
         }

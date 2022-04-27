@@ -1,8 +1,6 @@
 package by.epam.lab.singlerones;
 
-import by.epam.lab.exceptions.DBException;
-
-import java.net.ConnectException;
+import by.epam.lab.exceptions.ConnectionException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,44 +8,39 @@ import java.sql.SQLException;
 import static by.epam.lab.services.Constants.*;
 
 public class DBConnector {
-    private static final Connection connection;
+    private static final Connection CONNECTION;
 
     static {
-        try {
-            connection = buildConnection();
-        } catch (ConnectException e) {
-            System.out.println(e.getMessage());
-            throw new DBException(CONNECTION_FAILED);
-        }
+        CONNECTION = buildConnection();
     }
 
 
-    public static Connection buildConnection() throws ConnectException {
+    public static Connection buildConnection() throws ConnectionException {
         Connection cn;
         try {
             cn = DriverManager.getConnection(DB_URL, USER_NAME, PASSWORD);
         } catch (SQLException e) {
-            throw new ConnectException(CONNECTION_FAILED);
+            throw new ConnectionException(CONNECTION_FAILED);
         }
         return cn;
     }
 
-    public static Connection getConnection() throws ConnectException {
-        if (connection == null){
-            throw new ConnectException(CONNECTION_IS_CLOSED);
+    public static Connection getConnection() throws ConnectionException {
+        if (CONNECTION == null) {
+            throw new ConnectionException(CONNECTION_IS_CLOSED);
         } else {
-            return connection;
+            return CONNECTION;
         }
     }
 
 
-    public static void close() throws ConnectException {
-        try{
-            if (connection != null){
-                connection.close();
+    public static void close() throws ConnectionException {
+        try {
+            if (CONNECTION != null) {
+                CONNECTION.close();
             }
-        }catch (SQLException e){
-            throw new ConnectException(CONNECTION_CLOSE_FAILED + e.getMessage());
+        } catch (SQLException e) {
+            throw new ConnectionException(CONNECTION_CLOSE_FAILED + e.getMessage());
         }
     }
 }

@@ -15,7 +15,7 @@ public class ResultImplCsv implements ResultDao {
     private final Scanner scanner;
     private final ResultKind resultType;
 
-    public ResultImplCsv(String inputFileName, ResultKind resultType) {
+    public ResultImplCsv(String inputFileName, ResultKind resultType) throws SourceException {
         try {
             scanner = new Scanner(new FileReader(inputFileName));
             this.resultType = resultType;

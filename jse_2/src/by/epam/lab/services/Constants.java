@@ -54,6 +54,7 @@ public class Constants {
     public final static String CONNECTION_CLOSE_FAILED = "field close connection";
     public final static String EMPTY_LINE = "";
     public final static String SAX_EXCEPTION = "SAX Parser exc";
+    public final static String LOAD_ERROR = "load data error";
     public final static String IO_EXCEPTION = "IOException";
     public final static String INSERT_EXCEPTION = "Insert sql error";
     public final static String NO_DATA = "data not found";

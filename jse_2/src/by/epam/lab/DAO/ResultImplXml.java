@@ -29,10 +29,10 @@ public class ResultImplXml implements ResultDao {
             iterator = handler.getResults().iterator();
         } catch (FileNotFoundException e) {
             throw new SourceException(FILE_NOT_FOUND);
+        } catch (IOException e) {
+            throw new SourceException(e.getMessage());
         } catch (SAXException e) {
             throw new SourceException(SAX_EXCEPTION);
-        } catch (IOException e) {
-            throw new SourceException(IO_EXCEPTION);
         }
     }
 

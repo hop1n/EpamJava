@@ -2,7 +2,7 @@ package by.epam.lab.services;
 
 import by.epam.lab.DAO.ResultDao;
 import by.epam.lab.beans.Result;
-import by.epam.lab.exceptions.DBException;
+import by.epam.lab.exceptions.ConnectionException;
 import by.epam.lab.singlerones.DBConnector;
 
 import java.net.ConnectException;
@@ -21,11 +21,11 @@ public class ResultsLoader {
             if (!rs.next()) {
                 insert.setString(SELECT_LOGIN_INDEX, value);
                 insert.executeUpdate();
-                try(ResultSet rs1 = select.executeQuery()){
+                try (ResultSet rs1 = select.executeQuery()) {
                     rs1.next();
                     return rs1.getInt(ID_INDEX);
                 }
-            } else{
+            } else {
                 return rs.getInt(ID_INDEX);
             }
         }
@@ -46,7 +46,7 @@ public class ResultsLoader {
         insertResult.executeUpdate();
     }
 
-    public static void loadResults(ResultDao reader) throws DBException {
+    public static void loadResults(ResultDao reader) throws ConnectionException {
         try {
             Connection cn = DBConnector.getConnection();
             try (PreparedStatement addLogins = cn.prepareStatement(ADD_LOGINS_QUERY);
@@ -64,22 +64,20 @@ public class ResultsLoader {
                 }
             }
         } catch (SQLException e) {
-            throw new DBException(INSERT_EXCEPTION);
-        } catch (ConnectException e) {
-            throw new DBException(CONNECTION_FAILED);
+            throw new ConnectionException(LOAD_ERROR);
         }
     }
 
 
-    public static void clearTables() {
+    public static void clearTables() throws ConnectException {
         try {
             Connection cn = DBConnector.getConnection();
             Statement st = cn.createStatement();
             st.executeUpdate(CLEAR_LOGINS);
             st.executeUpdate(CLEAR_TESTS);
             st.executeUpdate(CLEAR_RESULTS);
-        } catch (SQLException | ConnectException e) {
-            throw new DBException(OPERATION_FAILED);
+        } catch (SQLException e) {
+            throw new ConnectException(OPERATION_FAILED);
         }
     }
 }
