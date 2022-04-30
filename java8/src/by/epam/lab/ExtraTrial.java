@@ -22,7 +22,7 @@ public class ExtraTrial extends Trial {
     }
 
     @Override
-    public void clearMarks(){
+    public void clearMarks() {
         super.clearMarks();
         mark3 = 0;
     }

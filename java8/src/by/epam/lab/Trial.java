@@ -1,7 +1,5 @@
 package by.epam.lab;
 
-import java.util.Objects;
-
 import static by.epam.lab.Constants.*;
 
 public class Trial {
@@ -36,11 +34,11 @@ public class Trial {
         return mark2;
     }
 
-    public int getSum(){
+    public int getSum() {
         return mark1 + mark2;
     }
 
-    public void clearMarks(){
+    public void clearMarks() {
         mark1 = 0;
         mark2 = 0;
     }
@@ -49,7 +47,7 @@ public class Trial {
         return mark1 + mark2 >= MARK_TO_BE_PASSED;
     }
 
-    public Trial getClone(){
+    public Trial getClone() {
         return new Trial(account, mark1, mark2);
     }
 
