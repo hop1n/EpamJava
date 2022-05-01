@@ -12,6 +12,10 @@ public class Trial {
     public Trial() {
     }
 
+    public Trial(Trial t){
+        this(t.getAccount(), t.getMark1(), t.getMark2());
+    }
+
     public Trial(String account, int mark1, int mark2) {
         this.account = account;
         this.mark1 = mark1;
@@ -44,7 +48,7 @@ public class Trial {
     }
 
     public Trial getClone() {
-        return new Trial(account, mark1, mark2);
+        return new Trial(this);
     }
 
     @Override

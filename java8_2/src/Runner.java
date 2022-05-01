@@ -52,6 +52,8 @@ public class Runner {
         int[] sums = trainee.stream()
                 .mapToInt(getSum)
                 .toArray();
-        System.out.println(Arrays.stream(sums).mapToObj(String::valueOf).collect(Collectors.joining(DELIMITER)));
+        System.out.println(Arrays.stream(sums)
+                .mapToObj(String::valueOf)
+                .collect(Collectors.joining(DELIMITER)));
     }
 }
