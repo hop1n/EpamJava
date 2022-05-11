@@ -1,5 +1,7 @@
 package by.epam.lab;
 
+import static by.epam.lab.Constants.*;
+
 public class Drop {
     private String message;
     private boolean empty = true;
@@ -26,12 +28,10 @@ public class Drop {
             } catch (InterruptedException e) {
             }
         }
-        // Toggle status.
         empty = false;
-        // Store message.
         this.message = message;
-        // Notify consumer that status
-        // has changed.
+        if (!message.equals(DONE))
+        System.out.println(GOT + message);
         notifyAll();
     }
 }

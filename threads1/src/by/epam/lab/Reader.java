@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.util.Random;
 import java.util.Scanner;
 
+import static by.epam.lab.Constants.*;
+
 public class Reader implements Runnable {
     private final Drop drop;
     private final String path;
@@ -26,11 +28,11 @@ public class Reader implements Runnable {
             String line = sc.nextLine();
             drop.put(line);
             try {
-                Thread.sleep(random.nextInt(10));
+                Thread.sleep(random.nextInt(5000));
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
             }
         }
-        drop.put("DONE");
+        drop.put(DONE);
     }
 }
