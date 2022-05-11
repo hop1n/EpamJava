@@ -26,6 +26,7 @@ public class Drop {
             try {
                 wait();
             } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
             }
         }
         empty = false;
