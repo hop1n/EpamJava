@@ -24,7 +24,7 @@ public class TrialProducer implements Runnable {
                 trialBuffer.put(new Trial(parts));
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Input file is not found");
+            System.out.println(FILE_NOT_FOUND);
         } finally {
             trialBuffer.put(new Trial(FAIL, 0, 0));
         }

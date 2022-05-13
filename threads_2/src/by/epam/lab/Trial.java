@@ -7,13 +7,7 @@ public class Trial {
     private int mark1;
     private int mark2;
 
-    private static final int MARK_TO_BE_PASSED = 100;
-
     public Trial() {
-    }
-
-    public Trial(Trial t){
-        this(t.getAccount(), t.getMark1(), t.getMark2());
     }
 
     public Trial(String account, int mark1, int mark2) {
@@ -26,10 +20,6 @@ public class Trial {
         this(strings[ACCOUNT_INDEX], Integer.parseInt(strings[MARK1_INDEX]), Integer.parseInt(strings[MARK2_INDEX]));
     }
 
-    public static int getMarkToBePassed() {
-        return MARK_TO_BE_PASSED;
-    }
-
     public String getAccount() {
         return account;
     }
@@ -40,19 +30,6 @@ public class Trial {
 
     public int getMark2() {
         return mark2;
-    }
-
-    public void clearMarks() {
-        mark1 = 0;
-        mark2 = 0;
-    }
-
-    public boolean isPassed() {
-        return mark1 + mark2 >= MARK_TO_BE_PASSED;
-    }
-
-    public Trial getClone() {
-        return new Trial(this);
     }
 
     @Override
