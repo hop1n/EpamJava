@@ -19,14 +19,7 @@ public class TrialConsumer implements Runnable {
             if (trial.getAccount().equals(FAIL)){
                 break;
             }
-            System.out.println(PUT + trial);
-            try {
-                Thread.sleep(random.nextInt(5000));
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
-            }
-            if (!trial.getAccount().equals(FAIL))
-                System.out.println(GOT + trial);
+            System.out.println(GOT + trial);
         }
     }
 }

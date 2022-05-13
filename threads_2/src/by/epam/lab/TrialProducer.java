@@ -20,8 +20,9 @@ public class TrialProducer implements Runnable {
         try (Scanner sc = new Scanner(new FileReader(path))) {
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
-                String[] parts = line.split(DELIMITER);
-                trialBuffer.put(new Trial(parts));
+                Trial trial = new Trial(parts);
+                trialBuffer.put(trial);
+                System.out.println(PUT + trial);
             }
         } catch (FileNotFoundException e) {
             System.out.println(FILE_NOT_FOUND);
