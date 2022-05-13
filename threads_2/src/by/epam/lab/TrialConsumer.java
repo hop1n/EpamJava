@@ -5,24 +5,28 @@ import java.util.Random;
 import static by.epam.lab.Constants.*;
 
 public class TrialConsumer implements Runnable {
-    private final Drop drop;
+    private final TrialBuffer trialBuffer;
 
-    public TrialConsumer(Drop drop) {
-        this.drop = drop;
+    public TrialConsumer(TrialBuffer trialBuffer) {
+        this.trialBuffer = trialBuffer;
     }
 
     @Override
     public void run() {
         Random random = new Random();
-        for (String message = drop.take();
-             !message.contains(FAIL);
-             message = drop.take()) {
-            System.out.println(PUT + message);
+        while (true){
+            Trial trial = trialBuffer.take();
+            if (trial.getAccount().equals(FAIL)){
+                break;
+            }
+            System.out.println(PUT + trial);
             try {
                 Thread.sleep(random.nextInt(5000));
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
             }
+            if (!trial.getAccount().equals(FAIL))
+                System.out.println(GOT + trial);
         }
     }
 }
