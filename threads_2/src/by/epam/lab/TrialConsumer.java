@@ -13,7 +13,6 @@ public class TrialConsumer implements Runnable {
 
     @Override
     public void run() {
-        Random random = new Random();
         while (true){
             Trial trial = trialBuffer.take();
             if (trial.getAccount().equals(FAIL)){
