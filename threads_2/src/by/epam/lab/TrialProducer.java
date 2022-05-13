@@ -20,7 +20,7 @@ public class TrialProducer implements Runnable {
         try (Scanner sc = new Scanner(new FileReader(path))) {
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
-                Trial trial = new Trial(parts);
+                Trial trial = new Trial(line.split(DELIMITER));
                 trialBuffer.put(trial);
                 System.out.println(PUT + trial);
             }
