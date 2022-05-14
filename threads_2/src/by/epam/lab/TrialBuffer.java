@@ -13,10 +13,10 @@ public class TrialBuffer {
 
     public synchronized Trial take() {
         while (empty) {
-            //the thread will never be interrupted
             try {
                 wait();
             } catch (InterruptedException e) {
+                //the thread will never be interrupted
                 LOGGER.error("current thread is interrupted", e);
             }
         }
@@ -32,6 +32,7 @@ public class TrialBuffer {
             try {
                 wait();
             } catch (InterruptedException e) {
+                //the thread will never be interrupted
                 LOGGER.error("current thread is interrupted", e);
             }
         }

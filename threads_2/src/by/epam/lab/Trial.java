@@ -2,7 +2,7 @@ package by.epam.lab;
 
 import static by.epam.lab.Constants.*;
 
-public class Trial {
+public class Trial implements Comparable<Trial>{
     private String account;
     private int mark1;
     private int mark2;
@@ -18,6 +18,18 @@ public class Trial {
 
     public Trial(String[] strings){
         this(strings[ACCOUNT_INDEX], Integer.parseInt(strings[MARK1_INDEX]), Integer.parseInt(strings[MARK2_INDEX]));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Trial trial = (Trial) o;
+
+        if (mark1 != trial.mark1) return false;
+        if (mark2 != trial.mark2) return false;
+        return account.equals(trial.account);
     }
 
     public String getAccount() {
