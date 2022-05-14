@@ -13,4 +13,5 @@ public class Constants {
     public static final int MARK1_INDEX = 1;
     public static final int MARK2_INDEX = 2;
     public static final String FILE_NOT_FOUND ="Input file is not found";
+    public static final Trial FAILED_TRIAL = new Trial(FAIL, 0, 0);
 }

@@ -27,7 +27,7 @@ public class TrialProducer implements Runnable {
         } catch (FileNotFoundException e) {
             System.out.println(FILE_NOT_FOUND);
         } finally {
-            trialBuffer.put(new Trial(FAIL, 0, 0));
+            trialBuffer.put(FAILED_TRIAL);
         }
     }
 }

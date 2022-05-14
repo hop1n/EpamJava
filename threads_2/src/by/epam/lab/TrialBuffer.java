@@ -1,17 +1,23 @@
 package by.epam.lab;
 
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
+
 import static by.epam.lab.Constants.*;
 
 public class TrialBuffer {
     private Trial trial;
     private boolean empty = true;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(TrialBuffer.class);
+
     public synchronized Trial take() {
         while (empty) {
+            //the thread will never be interrupted
             try {
                 wait();
             } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
+                LOGGER.error("current thread is interrupted", e);
             }
         }
         empty = true;
@@ -26,7 +32,7 @@ public class TrialBuffer {
             try {
                 wait();
             } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
+                LOGGER.error("current thread is interrupted", e);
             }
         }
         empty = false;

@@ -15,7 +15,7 @@ public class TrialConsumer implements Runnable {
     public void run() {
         while (true){
             Trial trial = trialBuffer.take();
-            if (trial.getAccount().equals(FAIL)){
+            if (trial.equals(FAILED_TRIAL)){
                 break;
             }
             System.out.println(GOT + trial);
