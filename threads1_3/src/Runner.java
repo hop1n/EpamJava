@@ -28,7 +28,7 @@ public class Runner {
                 producersPool.execute(new TrialProducer(trialBuffer, path, stringBuffer));
             }
         }
-        TrialConsumer consumer = new TrialConsumer(trialBuffer, trialQueue);
+        TrialConsumer consumer = new TrialConsumer(stringBuffer, trialQueue, trialBuffer);
         for(int i = 0; i <2; i++){
             consumersPool.execute(consumer);
         }
