@@ -2,7 +2,6 @@ package by.epam.lab;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.Writer;
 import java.util.Scanner;
 import java.util.concurrent.PriorityBlockingQueue;
 

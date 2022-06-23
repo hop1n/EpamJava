@@ -1,10 +1,7 @@
 package by.epam.lab;
 
-import java.io.Writer;
-import java.util.Objects;
 import java.util.Queue;
 import java.util.concurrent.PriorityBlockingQueue;
-
 import static by.epam.lab.Constants.*;
 
 public class TrialConsumer implements Runnable {
@@ -19,9 +16,9 @@ public class TrialConsumer implements Runnable {
     @Override
     public void run() {
         while (true) {
+            String s;
             try {
-                String s = stringBuffer.take();
-                System.out.println(s);
+                s = stringBuffer.take();
                 if (s.contains("false")) {
                     break;
                 }
@@ -31,7 +28,10 @@ public class TrialConsumer implements Runnable {
             } catch (InterruptedException e) {
                 break;
             }
-
         }
+        System.out.println(stringBuffer);
+        TrialsWriter trialsWriter = new TrialsWriter(trialQueue);
+        trialsWriter.run();
+//        System.out.println(trialQueue.size());
     }
 }

@@ -29,6 +29,7 @@ public class Runner {
         }
         for(int i = 0; i <2; i++){
             consumersPool.execute(new TrialConsumer(stringBuffer, trialQueue));
+
         }
         System.out.println(trialQueue.size());
         producersPool.shutdown();
