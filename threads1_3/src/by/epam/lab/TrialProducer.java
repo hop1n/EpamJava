@@ -9,12 +9,11 @@ import java.util.concurrent.PriorityBlockingQueue;
 import static by.epam.lab.Constants.*;
 
 public class TrialProducer implements Runnable {
-    private final TrialBuffer trialBuffer;
     private final String path;
-    private static final PriorityBlockingQueue<String> stringBuffer = new PriorityBlockingQueue<>(200);
+    private final PriorityBlockingQueue<String> stringBuffer;
 
-    public TrialProducer(TrialBuffer trialBuffer, String path, PriorityBlockingQueue<String> stringBuffer) {
-        this.trialBuffer = trialBuffer;
+    public TrialProducer(String path, PriorityBlockingQueue<String> stringBuffer) {
+        this.stringBuffer = stringBuffer;
         this.path = path;
     }
 
@@ -26,11 +25,10 @@ public class TrialProducer implements Runnable {
                 stringBuffer.put(line);
                 System.out.println(PUT + line);
             }
-            trialBuffer.put(stringBuffer);
         } catch (FileNotFoundException e) {
             System.out.println(FILE_NOT_FOUND);
         } finally {
-            trialBuffer.put(null);
+            stringBuffer.put("false");
         }
     }
 }

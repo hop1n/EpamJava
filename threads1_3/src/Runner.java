@@ -15,7 +15,6 @@ import static by.epam.lab.Constants.*;
 
 public class Runner {
     public static void main(String[] args) {
-        TrialBuffer trialBuffer = new TrialBuffer();
         Queue<Trial> trialQueue  = new ConcurrentLinkedQueue<>();
         PriorityBlockingQueue<String> stringBuffer = new PriorityBlockingQueue<>(200);
         ExecutorService producersPool = Executors.newFixedThreadPool(2);
@@ -25,13 +24,13 @@ public class Runner {
         for (File file : listOfFiles) {
             if (file.isFile()) {
                 String path = file.getPath();
-                producersPool.execute(new TrialProducer(trialBuffer, path, stringBuffer));
+                producersPool.execute(new TrialProducer(path, stringBuffer));
             }
         }
-        TrialConsumer consumer = new TrialConsumer(stringBuffer, trialQueue, trialBuffer);
         for(int i = 0; i <2; i++){
-            consumersPool.execute(consumer);
+            consumersPool.execute(new TrialConsumer(stringBuffer, trialQueue));
         }
+        System.out.println(trialQueue.size());
         producersPool.shutdown();
         consumersPool.shutdown();
     }
