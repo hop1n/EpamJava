@@ -13,7 +13,6 @@ import static by.epam.lab.Constants.*;
 public class Runner {
     public static void main(String[] args) {
         ResourceBundle rb = ResourceBundle.getBundle(PROPERTY_FILE_NAME);
-        Enumeration<String> keys = rb.getKeys();
         String folderName = rb.getString(FOLDER_NAME);
         int maxProducersNumber = Integer.parseInt(rb.getString(MAX_PRODUCERS_NUMBER));
         int maxConsumersNumber = Integer.parseInt(rb.getString(MAX_CONSUMERS_NUMBER));
