@@ -22,12 +22,11 @@ public class TrialProducer implements Runnable {
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
                 stringBuffer.put(line);
-                System.out.println(PUT + line);
             }
         } catch (FileNotFoundException e) {
             System.out.println(FILE_NOT_FOUND);
         } finally {
-            stringBuffer.put("false");
+            stringBuffer.put(FALSE);
         }
     }
 }

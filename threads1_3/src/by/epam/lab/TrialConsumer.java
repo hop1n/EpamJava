@@ -19,19 +19,15 @@ public class TrialConsumer implements Runnable {
             String s;
             try {
                 s = stringBuffer.take();
-                if (s.contains("false")) {
+                if (s.contains(FALSE)) {
                     break;
                 }
-                String[] parts = s.split(";");
+                String[] parts = s.split(DELIMITER);
                 trialQueue.add(new Trial(parts));
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 break;
             }
         }
-        System.out.println(stringBuffer);
-        TrialsWriter trialsWriter = new TrialsWriter(trialQueue);
-        trialsWriter.run();
-//        System.out.println(trialQueue.size());
     }
 }
