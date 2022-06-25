@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.PriorityBlockingQueue;
 
 import static by.epam.lab.Constants.*;
 
@@ -27,8 +26,10 @@ public class TrialProducer implements Runnable {
                 String line = sc.nextLine();
                 stringBuffer.put(line);
             }
-        } catch (FileNotFoundException | InterruptedException e) {
+        } catch (FileNotFoundException e) {
             System.out.println(FILE_NOT_FOUND);
+        } catch (InterruptedException e){
+            System.out.println(e.getMessage());
         } finally {
             countdownlatch.countDown();
         }
