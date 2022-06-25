@@ -2,16 +2,15 @@ package by.epam.lab;
 
 import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.PriorityBlockingQueue;
+
 import static by.epam.lab.Constants.*;
 
 public class TrialConsumer implements Runnable {
-    private final Queue<Trial> trialQueue;
+    private final Queue<Trial> buffer;
     private final BlockingQueue<String> stringBuffer;
 
-    public TrialConsumer(BlockingQueue<String> stringBuffer, Queue<Trial> trialQueue) {
-        this.trialQueue = trialQueue;
+    public TrialConsumer(BlockingQueue<String> stringBuffer, Queue<Trial> buffer) {
+        this.buffer = buffer;
         this.stringBuffer = stringBuffer;
     }
 
@@ -21,17 +20,15 @@ public class TrialConsumer implements Runnable {
             String s;
             try {
                 s = stringBuffer.take();
-                if (s.equals(FALSE)) {
+                if (FALSE.equals(s)) {
                     break;
                 }
-                String[] parts = s.split(DELIMITER);
-                Trial trial = new Trial(parts);
+                Trial trial = new Trial(s.split(DELIMITER));
                 if (trial.isPassed()){
-                    trialQueue.add(trial);
+                    buffer.add(trial);
                 }
-                Thread.sleep(2000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());;
             }
         }
     }

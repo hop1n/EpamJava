@@ -36,12 +36,8 @@ public class Runner {
         } catch (InterruptedException e){
             e.printStackTrace();
         }
-        try {
-            for (int i = 0; i < fileCount; i++){
-                stringBuffer.put(FALSE);
-            }
-        } catch (InterruptedException e){
-            e.printStackTrace();
+        for (int i = 0; i < fileCount; i++){
+            stringBuffer.add(FALSE);
         }
         new Thread(new TrialsWriter(buffer, FINAL_RESULT_PATH)).start();
         producersPool.shutdown();
