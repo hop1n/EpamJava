@@ -21,9 +21,6 @@ public class TrialsWriter implements Runnable {
                     break;
                 }
                 Trial trial = buffer.remove();
-                if (trial == null) {
-                    break;
-                }
                 writer.write(trial + "\n");
             }
         } catch (IOException e) {
