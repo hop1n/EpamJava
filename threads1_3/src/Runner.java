@@ -43,8 +43,7 @@ public class Runner {
         } catch (InterruptedException e){
             e.printStackTrace();
         }
-        Thread thread = new Thread(new TrialsWriter(buffer, FINAL_RESULT_PATH));
-        thread.start();
+        new Thread(new TrialsWriter(buffer, FINAL_RESULT_PATH)).start();
         producersPool.shutdown();
         consumersPool.shutdown();
     }
