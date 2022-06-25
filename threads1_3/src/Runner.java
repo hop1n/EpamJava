@@ -34,7 +34,7 @@ public class Runner {
         try {
             countDownLatch.await();
         } catch (InterruptedException e){
-            e.printStackTrace();
+            System.out.println(e);;
         }
         for (int i = 0; i < fileCount; i++){
             stringBuffer.add(FALSE);
