@@ -7,9 +7,9 @@ import static by.epam.lab.Constants.*;
 
 public class TrialConsumer implements Runnable {
     private final Queue<Trial> trialQueue;
-    private final PriorityBlockingQueue<String> stringBuffer;
+    private final Queue<String> stringBuffer;
 
-    public TrialConsumer(PriorityBlockingQueue<String> stringBuffer, Queue<Trial> trialQueue) {
+    public TrialConsumer(Queue<String> stringBuffer, Queue<Trial> trialQueue) {
         this.trialQueue = trialQueue;
         this.stringBuffer = stringBuffer;
     }
@@ -19,7 +19,7 @@ public class TrialConsumer implements Runnable {
         while (true) {
             String s;
             try {
-                s = stringBuffer.take();
+                s = stringBuffer.remove();
                 if (s.equals(FALSE)) {
                     break;
                 }

@@ -15,7 +15,7 @@ public class Runner {
         int bufferStrLength = Integer.parseInt(rb.getString(STRING_BUFFER_LENGTH));
         CountDownLatch countDownLatch = new CountDownLatch(3);
         Queue<Trial> buffer  = new ConcurrentLinkedQueue<>();
-        PriorityBlockingQueue<String> stringBuffer = new PriorityBlockingQueue<>(bufferStrLength);
+        Queue<String> stringBuffer = new PriorityBlockingQueue<>(bufferStrLength);
         ExecutorService producersPool = Executors.newFixedThreadPool(maxProducersNumber);
         ExecutorService consumersPool = Executors.newFixedThreadPool(maxConsumersNumber);
         File folder = new File(folderName);
@@ -28,11 +28,6 @@ public class Runner {
                 producersPool.execute(new TrialProducer(path, stringBuffer, countDownLatch));
             }
         }
-        try {
-            countDownLatch.await();
-        } catch (InterruptedException e){
-            e.printStackTrace();
-        }
         for(int i = 0; i <maxConsumersNumber; i++){
             consumersPool.execute(new TrialConsumer(stringBuffer, buffer));
         }
@@ -42,7 +37,7 @@ public class Runner {
             e.printStackTrace();
         }
         for (int i = 0; i < fileCount; i++){
-            stringBuffer.put(FALSE);
+            stringBuffer.remove(FALSE);
         }
         new TrialsWriter(buffer, FINAL_RESULT_PATH).run();
         producersPool.shutdown();
