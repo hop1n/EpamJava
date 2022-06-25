@@ -1,7 +1,5 @@
 package by.epam.lab;
 
-import java.io.File;
-
 public class Constants {
     public static final String DELIMITER = ";";
     public static final int ACCOUNT_INDEX = 0;

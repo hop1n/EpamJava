@@ -3,6 +3,7 @@ package by.epam.lab;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.PriorityBlockingQueue;
 
 import static by.epam.lab.Constants.*;
@@ -10,10 +11,12 @@ import static by.epam.lab.Constants.*;
 public class TrialProducer implements Runnable {
     private final String path;
     private final PriorityBlockingQueue<String> stringBuffer;
+    private final CountDownLatch countdownlatch;
 
-    public TrialProducer(String path, PriorityBlockingQueue<String> stringBuffer) {
+    public TrialProducer(String path, PriorityBlockingQueue<String> stringBuffer, CountDownLatch countDownLatch) {
         this.stringBuffer = stringBuffer;
         this.path = path;
+        this.countdownlatch = countDownLatch;
     }
 
     @Override
@@ -26,7 +29,7 @@ public class TrialProducer implements Runnable {
         } catch (FileNotFoundException e) {
             System.out.println(FILE_NOT_FOUND);
         } finally {
-            stringBuffer.put(FALSE);
+            countdownlatch.countDown();
         }
     }
 }

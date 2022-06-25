@@ -3,23 +3,25 @@ package by.epam.lab;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Queue;
-import static by.epam.lab.Constants.*;
 
 public class TrialsWriter implements Runnable {
-    private final Queue<Trial> queue;
+    private final Queue<Trial> QUEUE;
+    private final String FILE_NAME;
 
-    public TrialsWriter(Queue<Trial> queue){
-        this.queue = queue;
+    public TrialsWriter(Queue<Trial> queue, String path){
+        this.QUEUE = queue;
+        FILE_NAME = path;
+
     }
     @Override
     public void run() {
-        try(FileWriter writer = new FileWriter(FINAL_RESULT_PATH))
+        try(FileWriter writer = new FileWriter(FILE_NAME))
         {
             while (true) {
-                if(queue.isEmpty()){
+                if(QUEUE.isEmpty()){
                     break;
                 }
-                Trial trial = queue.remove();
+                Trial trial = QUEUE.remove();
                 if (trial == null) {
                     break;
                 }

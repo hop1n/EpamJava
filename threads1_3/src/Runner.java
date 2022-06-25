@@ -1,12 +1,8 @@
 import by.epam.lab.*;
-import sun.nio.ch.ThreadPool;
 
 import java.io.*;
-import java.nio.file.Path;
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static by.epam.lab.Constants.*;
 
@@ -17,33 +13,38 @@ public class Runner {
         int maxProducersNumber = Integer.parseInt(rb.getString(MAX_PRODUCERS_NUMBER));
         int maxConsumersNumber = Integer.parseInt(rb.getString(MAX_CONSUMERS_NUMBER));
         int bufferStrLength = Integer.parseInt(rb.getString(STRING_BUFFER_LENGTH));
-        Queue<Trial> trialQueue  = new ConcurrentLinkedQueue<>();
+        CountDownLatch countDownLatch = new CountDownLatch(3);
+        Queue<Trial> buffer  = new ConcurrentLinkedQueue<>();
         PriorityBlockingQueue<String> stringBuffer = new PriorityBlockingQueue<>(bufferStrLength);
         ExecutorService producersPool = Executors.newFixedThreadPool(maxProducersNumber);
         ExecutorService consumersPool = Executors.newFixedThreadPool(maxConsumersNumber);
         File folder = new File(folderName);
         File[] listOfFiles = folder.listFiles();
+        int fileCount = 0;
         for (File file : listOfFiles) {
             if (file.isFile()) {
+                fileCount++;
                 String path = file.getPath();
-                producersPool.execute(new TrialProducer(path, stringBuffer));
+                producersPool.execute(new TrialProducer(path, stringBuffer, countDownLatch));
             }
         }
-        for(int i = 0; i <2; i++){
-            consumersPool.execute(new TrialConsumer(stringBuffer, trialQueue));
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+        for(int i = 0; i <maxConsumersNumber; i++){
+            consumersPool.execute(new TrialConsumer(stringBuffer, buffer));
         }
         try {
-            TimeUnit.SECONDS.sleep(20);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            countDownLatch.await();
+        } catch (InterruptedException e){
+            e.printStackTrace();
         }
-        try {
-            TimeUnit.SECONDS.sleep(20);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        for (int i = 0; i < fileCount; i++){
+            stringBuffer.put(FALSE);
         }
-        TrialsWriter writer = new TrialsWriter(trialQueue);
-        writer.run();
+        new TrialsWriter(buffer, FINAL_RESULT_PATH).run();
         producersPool.shutdown();
         consumersPool.shutdown();
     }
