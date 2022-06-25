@@ -36,7 +36,7 @@ public class Runner {
         } catch (InterruptedException e){
             System.out.println(e);;
         }
-        for (int i = 0; i < fileCount; i++){
+        for (int i = 0; i < maxConsumersNumber; i++){
             stringBuffer.add(FALSE);
         }
         new Thread(new TrialsWriter(buffer, FINAL_RESULT_PATH)).start();
