@@ -1,4 +1,4 @@
-package by.epam.lab;
+package by.epam.lab.beans;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
 
-import static by.epam.lab.Constants.*;
+import static by.epam.lab.service.Constants.*;
 
 public class TrialProducer implements Runnable {
     private final String path;

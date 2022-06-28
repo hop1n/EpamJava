@@ -1,9 +1,9 @@
-package by.epam.lab;
+package by.epam.lab.beans;
 
 import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 
-import static by.epam.lab.Constants.*;
+import static by.epam.lab.service.Constants.*;
 
 public class TrialConsumer implements Runnable {
     private final Queue<Trial> buffer;

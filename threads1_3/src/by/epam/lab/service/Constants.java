@@ -1,4 +1,4 @@
-package by.epam.lab;
+package by.epam.lab.service;
 
 public class Constants {
     public static final String DELIMITER = ";";

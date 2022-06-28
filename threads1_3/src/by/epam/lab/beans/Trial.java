@@ -1,6 +1,6 @@
-package by.epam.lab;
+package by.epam.lab.beans;
 
-import static by.epam.lab.Constants.*;
+import static by.epam.lab.service.Constants.*;
 
 public class Trial{
     private String account;

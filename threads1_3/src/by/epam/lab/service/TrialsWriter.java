@@ -1,10 +1,11 @@
-package by.epam.lab;
+package by.epam.lab.service;
 
-import java.io.FileNotFoundException;
+import by.epam.lab.beans.Trial;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Queue;
-import static by.epam.lab.Constants.*;
+import static by.epam.lab.service.Constants.*;
 
 public class TrialsWriter implements Runnable {
     private final Queue<Trial> buffer;

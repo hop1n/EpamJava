@@ -1,10 +1,13 @@
-import by.epam.lab.*;
+import by.epam.lab.beans.Trial;
+import by.epam.lab.beans.TrialConsumer;
+import by.epam.lab.beans.TrialProducer;
+import by.epam.lab.service.TrialsWriter;
 
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.*;
 
-import static by.epam.lab.Constants.*;
+import static by.epam.lab.service.Constants.*;
 
 public class Runner {
     public static void main(String[] args) {
