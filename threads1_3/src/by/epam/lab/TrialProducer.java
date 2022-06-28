@@ -30,6 +30,7 @@ public class TrialProducer implements Runnable {
             System.out.println(FILE_NOT_FOUND);
         } catch (InterruptedException e){
             System.out.println(e.getMessage());
+            //thread will never interrupt
         } finally {
             countdownlatch.countDown();
         }

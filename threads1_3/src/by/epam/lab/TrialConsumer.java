@@ -17,13 +17,13 @@ public class TrialConsumer implements Runnable {
     @Override
     public void run() {
         while (true) {
-            String s;
+            String line;
             try {
-                s = stringBuffer.take();
-                if (FALSE.equals(s)) {
+                line = stringBuffer.take();
+                if (POISONED_PILL.equals(line)) {
                     break;
                 }
-                Trial trial = new Trial(s.split(DELIMITER));
+                Trial trial = new Trial(line.split(DELIMITER));
                 if (trial.isPassed()){
                     buffer.add(trial);
                 }

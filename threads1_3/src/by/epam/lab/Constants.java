@@ -11,6 +11,6 @@ public class Constants {
     public static final String MAX_PRODUCERS_NUMBER = "maxProducersNumber";
     public static final String MAX_CONSUMERS_NUMBER = "maxConsumersNumber";
     public static final String STRING_BUFFER_LENGTH = "bufferStrLength";
-    public static final String FALSE = "false";
+    public static final String POISONED_PILL = "false";
     public static final String FINAL_RESULT_PATH = "finalTrials.csv";
 }

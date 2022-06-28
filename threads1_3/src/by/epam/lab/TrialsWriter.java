@@ -1,8 +1,10 @@
 package by.epam.lab;
 
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Queue;
+import static by.epam.lab.Constants.*;
 
 public class TrialsWriter implements Runnable {
     private final Queue<Trial> buffer;
@@ -24,7 +26,7 @@ public class TrialsWriter implements Runnable {
                 writer.write(trial + "\n");
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println(FILE_NOT_FOUND);
         }
     }
 }

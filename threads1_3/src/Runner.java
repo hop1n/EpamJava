@@ -14,30 +14,28 @@ public class Runner {
         int maxConsumersNumber = Integer.parseInt(rb.getString(MAX_CONSUMERS_NUMBER));
         int bufferStrLength = Integer.parseInt(rb.getString(STRING_BUFFER_LENGTH));
         CountDownLatch countDownLatch = new CountDownLatch(3);
-        Queue<Trial> buffer  = new ConcurrentLinkedQueue<>();
+        Queue<Trial> buffer = new ConcurrentLinkedQueue<>();
         BlockingQueue<String> stringBuffer = new PriorityBlockingQueue<>(bufferStrLength);
         ExecutorService producersPool = Executors.newFixedThreadPool(maxProducersNumber);
         ExecutorService consumersPool = Executors.newFixedThreadPool(maxConsumersNumber);
-        File folder = new File(folderName);
-        File[] listOfFiles = folder.listFiles();
+        File[] listOfFiles = new File(folderName).listFiles();
         int fileCount = 0;
         for (File file : listOfFiles) {
             if (file.isFile()) {
                 fileCount++;
-                String path = file.getPath();
-                producersPool.execute(new TrialProducer(path, stringBuffer, countDownLatch));
+                producersPool.execute(new TrialProducer(file.getPath(), stringBuffer, countDownLatch));
             }
         }
-        for(int i = 0; i <maxConsumersNumber; i++){
+        for (int i = 0; i < maxConsumersNumber; i++) {
             consumersPool.execute(new TrialConsumer(stringBuffer, buffer));
         }
         try {
             countDownLatch.await();
-        } catch (InterruptedException e){
-            System.out.println(e);;
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
         }
-        for (int i = 0; i < maxConsumersNumber; i++){
-            stringBuffer.add(FALSE);
+        for (int i = 0; i < maxConsumersNumber; i++) {
+            stringBuffer.add(POISONED_PILL);
         }
         new Thread(new TrialsWriter(buffer, FINAL_RESULT_PATH)).start();
         producersPool.shutdown();

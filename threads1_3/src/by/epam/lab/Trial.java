@@ -23,11 +23,11 @@ public class Trial{
     }
 
     public boolean isPassed(){
-        return (mark1 + mark2) > MARK_TO_BE_PASSED;
+        return mark1 + mark2 > MARK_TO_BE_PASSED;
     }
 
     @Override
     public String toString() {
-        return account + DELIMITER + mark1 + DELIMITER + mark2;
+        return account + DELIMITER + mark1 + DELIMITER + mark2 + DELIMITER + isPassed();
     }
 }
