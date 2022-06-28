@@ -23,7 +23,7 @@ public class Trial{
     }
 
     public boolean isPassed(){
-        return mark1 + mark2 > MARK_TO_BE_PASSED;
+        return mark1 + mark2 >= MARK_TO_BE_PASSED;
     }
 
     @Override
