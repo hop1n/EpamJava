@@ -2,7 +2,7 @@ package by.epam.lab.beans;
 
 import static by.epam.lab.service.Constants.*;
 
-public class Trial{
+public class Trial {
     private String account;
     private int mark1;
     private int mark2;
@@ -18,16 +18,16 @@ public class Trial{
         this.mark2 = mark2;
     }
 
-    public Trial(String[] strings){
+    public Trial(String[] strings) {
         this(strings[ACCOUNT_INDEX], Integer.parseInt(strings[MARK1_INDEX]), Integer.parseInt(strings[MARK2_INDEX]));
     }
 
-    public boolean isPassed(){
+    public boolean isPassed() {
         return mark1 + mark2 >= MARK_TO_BE_PASSED;
     }
 
     @Override
     public String toString() {
-        return account + DELIMITER + mark1 + DELIMITER + mark2 + DELIMITER + isPassed();
+        return account + SEMICOLON + mark1 + SEMICOLON + mark2 + SEMICOLON + isPassed();
     }
 }

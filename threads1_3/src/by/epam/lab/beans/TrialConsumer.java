@@ -23,12 +23,13 @@ public class TrialConsumer implements Runnable {
                 if (POISONED_PILL.equals(line)) {
                     break;
                 }
-                Trial trial = new Trial(line.split(DELIMITER));
-                if (trial.isPassed()){
+                Trial trial = new Trial(line.split(SEMICOLON));
+                if (trial.isPassed()) {
                     buffer.add(trial);
                 }
             } catch (InterruptedException e) {
-                System.out.println(e.getMessage());;
+                Thread.currentThread().interrupt();
+                System.out.println(INTERRUPT_EXCEPTION);
             }
         }
     }

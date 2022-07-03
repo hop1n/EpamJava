@@ -28,9 +28,9 @@ public class TrialProducer implements Runnable {
             }
         } catch (FileNotFoundException e) {
             System.out.println(FILE_NOT_FOUND);
-        } catch (InterruptedException e){
-            System.out.println(e.getMessage());
-            //thread will never interrupt
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.out.println(INTERRUPT_EXCEPTION);
         } finally {
             countdownlatch.countDown();
         }
