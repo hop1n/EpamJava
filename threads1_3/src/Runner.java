@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 import static by.epam.lab.service.Constants.*;
 
 public class Runner {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         ResourceBundle rb = ResourceBundle.getBundle(PROPERTY_FILE_NAME);
         String folderName = rb.getString(FOLDER_NAME);
         int maxProducersNumber = Integer.parseInt(rb.getString(MAX_PRODUCERS_NUMBER));
@@ -23,7 +23,7 @@ public class Runner {
         ExecutorService producersPool = Executors.newFixedThreadPool(maxProducersNumber);
         ExecutorService consumersPool = Executors.newFixedThreadPool(maxConsumersNumber);
         ExecutorService writerThread = Executors.newSingleThreadExecutor();
-        List<String> filesList = Arrays.stream(Objects.requireNonNull(new File(folderName).listFiles()))
+        List<String> filesList = Arrays.stream((new File(folderName).listFiles()))
                 .filter(File::isFile)
                 .map(File::getName)
                 .filter(s -> s.contains(CSV_EXTENSION))
