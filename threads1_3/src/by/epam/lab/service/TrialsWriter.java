@@ -1,5 +1,6 @@
 package by.epam.lab.service;
 
+import by.epam.lab.Exceptions.WriteException;
 import by.epam.lab.beans.Trial;
 
 import java.io.FileWriter;
@@ -13,13 +14,13 @@ public class TrialsWriter implements Runnable {
     private final String fileName;
     private volatile boolean isStopRequested = false;
 
-    public TrialsWriter(Queue<Trial> queue, String path) {
-        this.buffer = queue;
+    public TrialsWriter(Queue<Trial> buffer, String path) {
+        this.buffer = buffer;
         fileName = path;
     }
 
     @Override
-    public void run() {
+    public void run() throws WriteException{
         try (FileWriter writer = new FileWriter(FINAL_RESULTS_FOLDER + fileName)) {
             while (!isStopRequested || !buffer.isEmpty()) {
                 Trial trial = buffer.poll();
@@ -30,7 +31,7 @@ public class TrialsWriter implements Runnable {
                 }
             }
         } catch (IOException e) {
-
+            throw new WriteException(WRITER_FILE);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             System.out.println(INTERRUPT_EXCEPTION);
