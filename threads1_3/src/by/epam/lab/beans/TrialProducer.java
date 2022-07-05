@@ -36,7 +36,7 @@ public class TrialProducer implements Runnable {
         } catch (InterruptedException e) {
             LOGGER.error(INTERRUPT_EXC);
             Thread.currentThread().interrupt();
-            System.out.println(INTERRUPT_EXCEPTION);
+            System.err.println(INTERRUPT_EXCEPTION + path);
         } finally {
             countdownlatch.countDown();
         }
