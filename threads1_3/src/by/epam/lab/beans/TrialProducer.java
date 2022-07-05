@@ -12,8 +12,6 @@ import java.util.concurrent.CountDownLatch;
 import static by.epam.lab.service.Constants.*;
 
 public class TrialProducer implements Runnable {
-    private static final Logger LOGGER = LoggerFactory.getLogger(TrialProducer.class);
-
     private final String path;
     private final BlockingQueue<String> stringBuffer;
     private final CountDownLatch countdownlatch;
@@ -28,15 +26,16 @@ public class TrialProducer implements Runnable {
     public void run() {
         try (Scanner sc = new Scanner(new FileReader(path))) {
             while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                stringBuffer.put(line);
+                try {
+                    String line = sc.nextLine();
+                    stringBuffer.put(line);
+                } catch (InterruptedException e) {
+                    System.err.println(INTERRUPT_EXCEPTION + path);
+                    Thread.currentThread().interrupt();
+                }
             }
         } catch (FileNotFoundException e) {
             System.out.println(FILE_NOT_FOUND);
-        } catch (InterruptedException e) {
-            LOGGER.error(INTERRUPT_EXC);
-            Thread.currentThread().interrupt();
-            System.err.println(INTERRUPT_EXCEPTION + path);
         } finally {
             countdownlatch.countDown();
         }

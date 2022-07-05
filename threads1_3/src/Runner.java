@@ -36,15 +36,15 @@ public class Runner {
         writerThread.execute(writer);
         try {
             countDownLatch.await();
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            System.out.println(INTERRUPT_EXCEPTION);
-        }
         IntStream.rangeClosed(0, maxConsumersNumber - 1)
                 .forEach(i -> stringBuffer.add(POISONED_PILL));
         writer.requestStop();
         writerThread.shutdown();
         producersPool.shutdown();
         consumersPool.shutdown();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            System.out.println(INTERRUPT_EXCEPTION);
+        }
     }
 }

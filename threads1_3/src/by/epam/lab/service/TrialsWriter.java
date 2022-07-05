@@ -6,6 +6,7 @@ import by.epam.lab.beans.Trial;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Queue;
+import java.util.concurrent.TimeUnit;
 
 import static by.epam.lab.service.Constants.*;
 
@@ -20,21 +21,23 @@ public class TrialsWriter implements Runnable {
     }
 
     @Override
-    public void run() throws WriteException{
+    public void run() throws WriteException {
         try (FileWriter writer = new FileWriter(FINAL_RESULTS_FOLDER + fileName)) {
             while (!isStopRequested || !buffer.isEmpty()) {
                 Trial trial = buffer.poll();
                 if (trial != null) {
                     writer.write(trial + "\n");
                 } else {
-                    Thread.sleep(10000);
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(100);
+                    } catch (InterruptedException e) {
+                        System.out.println(INTERRUPT_EXCEPTION);
+                        Thread.currentThread().interrupt();
+                    }
                 }
             }
         } catch (IOException e) {
             throw new WriteException(WRITER_FILE);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            System.out.println(INTERRUPT_EXCEPTION);
         }
     }
 
