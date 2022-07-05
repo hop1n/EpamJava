@@ -17,6 +17,4 @@ public class Constants {
     public static final String FINAL_RESULTS_FOLDER = "src\\by\\epam\\lab\\trials\\results\\";
     public static final String INTERRUPT_EXCEPTION = "current thread is interrupted";
     public static final String WRITER_FILE = "writer field";
-    public static final String INTERRUPT_EXC = "current thread is interrupted";
-    public static final String EMPTY_LINE = "";
 }

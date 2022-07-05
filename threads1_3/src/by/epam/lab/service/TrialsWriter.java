@@ -31,7 +31,7 @@ public class TrialsWriter implements Runnable {
                     try {
                         TimeUnit.MILLISECONDS.sleep(100);
                     } catch (InterruptedException e) {
-                        System.out.println(INTERRUPT_EXCEPTION);
+                        System.err.println(INTERRUPT_EXCEPTION);
                         Thread.currentThread().interrupt();
                     }
                 }
