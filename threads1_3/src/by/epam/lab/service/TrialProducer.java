@@ -1,4 +1,4 @@
-package by.epam.lab.beans;
+package by.epam.lab.service;
 
 import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;

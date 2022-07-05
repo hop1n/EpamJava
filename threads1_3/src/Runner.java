@@ -1,6 +1,6 @@
 import by.epam.lab.beans.Trial;
-import by.epam.lab.beans.TrialConsumer;
-import by.epam.lab.beans.TrialProducer;
+import by.epam.lab.service.TrialConsumer;
+import by.epam.lab.service.TrialProducer;
 import by.epam.lab.service.TrialsWriter;
 
 import java.io.*;
@@ -28,17 +28,17 @@ public class Runner {
                 .collect(Collectors.toList());
         CountDownLatch countDownLatch = new CountDownLatch(filesList.size());
         filesList.forEach(file -> producersPool.execute(new TrialProducer(file.getPath(), stringBuffer, countDownLatch)));
-        IntStream.rangeClosed(0, maxConsumersNumber - 1)
+        IntStream.range(0, maxConsumersNumber)
                 .forEach(i -> consumersPool.execute(new TrialConsumer(stringBuffer, buffer)));
         TrialsWriter writer = new TrialsWriter(buffer, FINAL_RESULT_PATH);
         writerThread.execute(writer);
         try {
             countDownLatch.await();
+            producersPool.shutdown();
             IntStream.rangeClosed(0, maxConsumersNumber - 1)
                     .forEach(i -> stringBuffer.add(POISONED_PILL));
             writer.requestStop();
             writerThread.shutdown();
-            producersPool.shutdown();
             consumersPool.shutdown();
         } catch (InterruptedException e) {
             System.out.println(INTERRUPT_EXCEPTION);

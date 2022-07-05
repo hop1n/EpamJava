@@ -1,4 +1,6 @@
-package by.epam.lab.beans;
+package by.epam.lab.service;
+
+import by.epam.lab.beans.Trial;
 
 import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
@@ -17,12 +19,13 @@ public class TrialConsumer implements Runnable {
     @Override
     public void run() {
         while (true) {
-            String line = EMPTY_LINE;
+            String line;
             try {
                 line = stringBuffer.take();
             } catch (InterruptedException e) {
                 System.out.println(INTERRUPT_EXCEPTION);
                 Thread.currentThread().interrupt();
+                continue;
             }
             if (POISONED_PILL.equals(line)) {
                 break;
