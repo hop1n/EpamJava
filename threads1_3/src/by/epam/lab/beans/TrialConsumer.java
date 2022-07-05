@@ -1,9 +1,5 @@
 package by.epam.lab.beans;
 
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
-import jdk.nashorn.internal.runtime.Context;
-
 import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 
@@ -21,7 +17,7 @@ public class TrialConsumer implements Runnable {
     @Override
     public void run() {
         while (true) {
-            String line = "";
+            String line = EMPTY_LINE;
             try {
                 line = stringBuffer.take();
             } catch (InterruptedException e) {

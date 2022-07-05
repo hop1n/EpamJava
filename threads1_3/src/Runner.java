@@ -1,4 +1,3 @@
-import by.epam.lab.Exceptions.WriteException;
 import by.epam.lab.beans.Trial;
 import by.epam.lab.beans.TrialConsumer;
 import by.epam.lab.beans.TrialProducer;
@@ -7,7 +6,6 @@ import by.epam.lab.service.TrialsWriter;
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -26,7 +24,7 @@ public class Runner {
         ExecutorService consumersPool = Executors.newFixedThreadPool(maxConsumersNumber);
         ExecutorService writerThread = Executors.newSingleThreadExecutor();
         List<File> filesList = Arrays.stream(new File(folderName).listFiles())
-                .filter(file -> file.getName().contains(".csv"))
+                .filter(file -> file.getName().contains(CSV_EXT))
                 .collect(Collectors.toList());
         CountDownLatch countDownLatch = new CountDownLatch(filesList.size());
         filesList.forEach(file -> producersPool.execute(new TrialProducer(file.getPath(), stringBuffer, countDownLatch)));
@@ -36,15 +34,15 @@ public class Runner {
         writerThread.execute(writer);
         try {
             countDownLatch.await();
-        IntStream.rangeClosed(0, maxConsumersNumber - 1)
-                .forEach(i -> stringBuffer.add(POISONED_PILL));
-        writer.requestStop();
-        writerThread.shutdown();
-        producersPool.shutdown();
-        consumersPool.shutdown();
+            IntStream.rangeClosed(0, maxConsumersNumber - 1)
+                    .forEach(i -> stringBuffer.add(POISONED_PILL));
+            writer.requestStop();
+            writerThread.shutdown();
+            producersPool.shutdown();
+            consumersPool.shutdown();
         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
             System.out.println(INTERRUPT_EXCEPTION);
+            Thread.currentThread().interrupt();
         }
     }
 }

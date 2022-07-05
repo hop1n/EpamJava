@@ -12,9 +12,11 @@ public class Constants {
     public static final String MAX_CONSUMERS_NUMBER = "maxConsumersNumber";
     public static final String STRING_BUFFER_LENGTH = "bufferStrLength";
     public static final String POISONED_PILL = "false";
+    public static final String CSV_EXT = ".csv";
     public static final String FINAL_RESULT_PATH = "finalTrials.csv";
     public static final String FINAL_RESULTS_FOLDER = "src\\by\\epam\\lab\\trials\\results\\";
     public static final String INTERRUPT_EXCEPTION = "current thread is interrupted";
     public static final String WRITER_FILE = "writer field";
     public static final String INTERRUPT_EXC = "current thread is interrupted";
+    public static final String EMPTY_LINE = "";
 }
