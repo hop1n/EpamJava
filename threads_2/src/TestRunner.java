@@ -60,7 +60,6 @@ public class TestRunner {
             latch.await();
         } catch (InterruptedException e) {
             System.out.println(INTERRUPT_EXCEPTION);
-            Thread.currentThread().interrupt();
         }
     }
 }
