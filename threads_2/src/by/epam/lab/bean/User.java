@@ -1,3 +1,5 @@
+package by.epam.lab.bean;
+
 public class User {
     private final int id;
     private final String account;
@@ -12,6 +14,11 @@ public class User {
     }
 
     public String getAccount() {
+        return account;
+    }
+
+    @Override
+    public String toString() {
         return account;
     }
 }
