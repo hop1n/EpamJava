@@ -13,7 +13,7 @@ import static by.epam.lab.Constants.Constants.INTERRUPT_EXCEPTION;
 
 public class TestRunner {
 
-//    if you want to test ListImpl just unComment fields below
+    //    if you want to test ListImpl just unComment fields below
     private final Map<Integer, User> usersMap = new ConcurrentHashMap<>();
     private final StorageService service = new MapServiceImpl(usersMap);
 //    private final List<User> usersList = new CopyOnWriteArrayList<>();

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class MapServiceImpl extends AbstractImpl{
+public class MapServiceImpl extends AbstractImpl {
     private final Map<Integer, User> concurrentMap;
 
     public MapServiceImpl(Map<Integer, User> concurrentMap) {

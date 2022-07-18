@@ -5,7 +5,7 @@ import by.epam.lab.beans.User;
 import java.util.List;
 import java.util.Optional;
 
-public class ListServiceImpl extends AbstractImpl{
+public class ListServiceImpl extends AbstractImpl {
     private final List<User> concurrentList;
 
     public ListServiceImpl(List<User> concurrentList) {
