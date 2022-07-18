@@ -12,9 +12,6 @@ public abstract class AbstractImpl implements StorageService {
     private final AtomicInteger idCounter = new AtomicInteger(0);
     private final ReentrantLock locker = new ReentrantLock();
 
-    protected AbstractImpl() {
-    }
-
     @Override
     public Optional<User> add(String account) {
         locker.lock();
@@ -32,7 +29,7 @@ public abstract class AbstractImpl implements StorageService {
         }
     }
 
-    public abstract List<User> getStorageImplForSearch();
+    protected abstract List<User> getStorageImplForSearch();
 
-    public abstract void addUserToStorage(User userToAdd);
+    protected abstract void addUserToStorage(User userToAdd);
 }

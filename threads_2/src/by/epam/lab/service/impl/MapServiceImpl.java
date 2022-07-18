@@ -1,15 +1,11 @@
 package by.epam.lab.service.impl;
 
 import by.epam.lab.beans.User;
-import by.epam.lab.service.StorageService;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.stream.Collectors;
 
 public class MapServiceImpl extends AbstractImpl{
     private final Map<Integer, User> concurrentMap;

@@ -1,24 +1,23 @@
-import by.epam.lab.service.impl.ListServiceImpl;
 import by.epam.lab.service.impl.MapServiceImpl;
 import by.epam.lab.service.StorageService;
 import by.epam.lab.beans.User;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.sql.Time;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import static by.epam.lab.Constants.Constants.INTERRUPT_EXCEPTION;
 
 public class TestRunner {
-    private final List<User> usersList = new CopyOnWriteArrayList<>();
+
+//    if you want to test ListImpl just unComment fields below
     private final Map<Integer, User> usersMap = new ConcurrentHashMap<>();
-    StorageService service = new MapServiceImpl(usersMap);
-//    StorageService service = new ListServiceImpl(usersList); -> if u want to test ListImpl
+    private final StorageService service = new MapServiceImpl(usersMap);
+//    private final List<User> usersList = new CopyOnWriteArrayList<>();
+//    private final StorageService service = new ListServiceImpl(usersList);
 
     @Test
     public void TestWithEmpty() throws InterruptedException {
@@ -59,7 +58,7 @@ public class TestRunner {
     }
 
     @Test
-    public void TestWithTwoUnUniqAccounts() throws InterruptedException{
+    public void TestWithTwoUnUniqAccounts() throws InterruptedException {
         String[] accounts = {"Alex Zinchenko", "Alex Zinchenko"};
         int usersNumber = 1;
         addTwoAccountsWithSleep(accounts);
@@ -67,7 +66,7 @@ public class TestRunner {
     }
 
     @Test
-    public void TestTwoDuplicatedWithPreparedStorage() throws InterruptedException{
+    public void TestTwoDuplicatedWithPreparedStorage() throws InterruptedException {
         String[] accounts = {"Alex Zinchenko", "Alex Zinchenko"};
         int usersNumber = 3;
         service.add("Lily Potter");
@@ -77,7 +76,7 @@ public class TestRunner {
     }
 
     @Test
-    public void TestTwoUniqWithPreparedStorage() throws InterruptedException{
+    public void TestTwoUniqWithPreparedStorage() throws InterruptedException {
         String[] accounts = {"Alex Zinchenko", "Lenny Hope"};
         int usersNumber = 4;
         service.add("Lily Potter");
@@ -87,7 +86,7 @@ public class TestRunner {
     }
 
     @Test
-    public void TestTwoUnUniqWithPreparedStorage() throws InterruptedException{
+    public void TestTwoUnUniqWithPreparedStorage() throws InterruptedException {
         String[] accounts = {"Lily Potter", "Lenny Hope"};
         int usersNumber = 3;
         service.add("Lily Potter");
@@ -98,7 +97,7 @@ public class TestRunner {
 
     private void addTwoAccountsWithSleep(String[] accounts) throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(accounts.length);
-        for (String s : accounts){
+        for (String s : accounts) {
             new Thread(() -> {
                 service.add(s);
                 try {
