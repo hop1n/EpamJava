@@ -1,4 +1,6 @@
-package by.epam.lab.bean;
+package by.epam.lab.beans;
+
+import static by.epam.lab.Constants.Constants.*;
 
 public class User {
     private final int id;
@@ -19,6 +21,6 @@ public class User {
 
     @Override
     public String toString() {
-        return account;
+        return id + DELIMITER + account;
     }
 }

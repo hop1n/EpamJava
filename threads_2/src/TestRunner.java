@@ -1,22 +1,27 @@
-import by.epam.lab.service.MapServiceImpl;
-import by.epam.lab.interfaces.StorageImplInterface;
-import by.epam.lab.bean.User;
+import by.epam.lab.service.impl.ListServiceImpl;
+import by.epam.lab.service.impl.MapServiceImpl;
+import by.epam.lab.service.StorageService;
+import by.epam.lab.beans.User;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.sql.Time;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import static by.epam.lab.Constants.Constants.INTERRUPT_EXCEPTION;
 
 public class TestRunner {
     private final List<User> usersList = new CopyOnWriteArrayList<>();
     private final Map<Integer, User> usersMap = new ConcurrentHashMap<>();
+    StorageService service = new MapServiceImpl(usersMap);
+//    StorageService service = new ListServiceImpl(usersList); -> if u want to test ListImpl
 
     @Test
-    public void listTestWithEmpty() {
+    public void TestWithEmpty() throws InterruptedException {
         String[] accounts = {"Chet Hooper", "Chet Hooper", "Chet Hooper", "Chet Hooper",
                 "Chet Hooper", "Chet Hooper", "Chet Hooper", "Chet Hooper", "Chet Hooper",
                 "Chet Hooper"};
@@ -26,7 +31,7 @@ public class TestRunner {
     }
 
     @Test
-    public void listTestWithTen() {
+    public void TestWithTenUniqAccounts() throws InterruptedException {
         String[] accounts = {"Alex Zinchenko", "Lenny Hope", "Betty Bards", "Billie Brown",
                 "Chet Hooper", "Spencer Cooper", "Sam Kolt", "Lenny Penny", "Rose Bell",
                 "Chloe Moriondo"};
@@ -36,7 +41,7 @@ public class TestRunner {
     }
 
     @Test
-    public void listTestWithNonUniq() {
+    public void TestWithNonUniq() throws InterruptedException {
         String[] accounts = {"Alex Zinchenko", "Lenny Hope", "Betty Bards", "Billie Brown",
                 "Chet Hooper", "Chet Hooper", "Chet Hooper", "Chet Hooper", "Chet Hooper",
                 "Chet Hooper"};
@@ -45,8 +50,69 @@ public class TestRunner {
         Assert.assertEquals(usersNumber, usersMap.size());
     }
 
-    private void addTenAccounts(String[] accounts) {
-        StorageImplInterface service = new MapServiceImpl(usersMap);
+    @Test
+    public void TestWithTwoUniqAccounts() throws InterruptedException {
+        String[] accounts = {"Alex Zinchenko", "Lenny Hope"};
+        int usersNumber = 2;
+        addTwoAccountsWithSleep(accounts);
+        Assert.assertEquals(usersNumber, usersMap.size());
+    }
+
+    @Test
+    public void TestWithTwoUnUniqAccounts() throws InterruptedException{
+        String[] accounts = {"Alex Zinchenko", "Alex Zinchenko"};
+        int usersNumber = 1;
+        addTwoAccountsWithSleep(accounts);
+        Assert.assertEquals(usersNumber, usersMap.size());
+    }
+
+    @Test
+    public void TestTwoDuplicatedWithPreparedStorage() throws InterruptedException{
+        String[] accounts = {"Alex Zinchenko", "Alex Zinchenko"};
+        int usersNumber = 3;
+        service.add("Lily Potter");
+        service.add("James Potter");
+        addTwoAccountsWithSleep(accounts);
+        Assert.assertEquals(usersNumber, usersMap.size());
+    }
+
+    @Test
+    public void TestTwoUniqWithPreparedStorage() throws InterruptedException{
+        String[] accounts = {"Alex Zinchenko", "Lenny Hope"};
+        int usersNumber = 4;
+        service.add("Lily Potter");
+        service.add("James Potter");
+        addTwoAccountsWithSleep(accounts);
+        Assert.assertEquals(usersNumber, usersMap.size());
+    }
+
+    @Test
+    public void TestTwoUnUniqWithPreparedStorage() throws InterruptedException{
+        String[] accounts = {"Lily Potter", "Lenny Hope"};
+        int usersNumber = 3;
+        service.add("Lily Potter");
+        service.add("James Potter");
+        addTwoAccountsWithSleep(accounts);
+        Assert.assertEquals(usersNumber, usersMap.size());
+    }
+
+    private void addTwoAccountsWithSleep(String[] accounts) throws InterruptedException {
+        CountDownLatch latch = new CountDownLatch(accounts.length);
+        for (String s : accounts){
+            new Thread(() -> {
+                service.add(s);
+                try {
+                    TimeUnit.MILLISECONDS.sleep(1000);
+                } catch (InterruptedException e) {
+                    System.out.println(INTERRUPT_EXCEPTION);
+                }
+                latch.countDown();
+            }).start();
+        }
+        latch.await();
+    }
+
+    private void addTenAccounts(String[] accounts) throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(accounts.length);
         for (String s : accounts) {
             Random random = new Random();
@@ -56,10 +122,6 @@ public class TestRunner {
                 latch.countDown();
             }).start();
         }
-        try {
-            latch.await();
-        } catch (InterruptedException e) {
-            System.out.println(INTERRUPT_EXCEPTION);
-        }
+        latch.await();
     }
 }
