@@ -11,7 +11,6 @@ public class MapServiceImpl extends AbstractImpl {
     private final Map<Integer, User> concurrentMap;
 
     public MapServiceImpl(Map<Integer, User> concurrentMap) {
-        super();
         this.concurrentMap = concurrentMap;
     }
 
